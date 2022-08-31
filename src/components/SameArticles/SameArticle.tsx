@@ -1,11 +1,17 @@
-import Image from 'next/image';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 import { Button, Flex, Link, Text } from '@chakra-ui/react';
 import { ISameArticle } from 'interfaces';
+import { eng, rus } from 'translations/translation';
+import { useAppContext } from 'hooks/useAppContext';
 
 export const SameArticle = ({ image, date, title }: ISameArticle): JSX.Element => {
   const [showReadBtn, setShowReadBtn] = useState<boolean>(false);
+  const { currentLanguage } = useAppContext();
+  const router = useRouter();
+  const t = router.locale === 'en' || currentLanguage === 'en' ? eng : rus;
 
   const onMouseOverArticle = () => {
     setShowReadBtn(true);
@@ -23,7 +29,7 @@ export const SameArticle = ({ image, date, title }: ISameArticle): JSX.Element =
           <Image src={image} layout='fill' objectFit='cover' width='330px' height='220px' alt='same-yacht'/>
           <Button pos='absolute' opacity={showReadBtn ? '1' : '0'} w='96px' h='44px' borderRadius='21px' bg='white'
                   fontSize='14px' letterSpacing='0.5px' color='#0250C8'>
-            Read
+            {t.readBtn}
           </Button>
         </Flex>
         <Link href='/' w={{ md: '330px', sm: '280px' }} whiteSpace='pre-line'>

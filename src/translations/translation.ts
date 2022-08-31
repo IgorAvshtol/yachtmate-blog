@@ -18,6 +18,7 @@ export const eng = {
     description: 'Here we will collect useful and interesting articles for you.'
   },
   moreBtn: 'Read more',
+  readBtn: 'Read',
   generalArticlesData: {
     date: 'Apr',
     time_for_reading: 'min for reading',
@@ -46,6 +47,7 @@ export const rus = {
     description: 'Здесь мы будем собирать для вас полезные и интересные статьи.'
   },
   moreBtn: 'Читать ещё',
+  readBtn: 'Читать',
   generalArticlesData: {
     date: 'Апр',
     time_for_reading: 'минут для прочтения',
