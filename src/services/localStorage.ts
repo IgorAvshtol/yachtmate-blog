@@ -1,4 +1,4 @@
-const NEXT_APP_LOCALSTORAGE_KEY = 'userData';
+const NEXT_APP_LOCALSTORAGE_KEY = 'lang';
 
 export const getLangFromLocalStorage = () => {
   if (typeof window !== 'undefined') {

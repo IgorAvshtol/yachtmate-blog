@@ -1,13 +1,8 @@
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import { useState } from 'react';
 
 import { Button, Flex, Link, Text } from '@chakra-ui/react';
-
-interface ISameArticle {
-  image: StaticImageData;
-  title: string;
-  date: string;
-}
+import { ISameArticle } from 'interfaces';
 
 export const SameArticle = ({ image, date, title }: ISameArticle): JSX.Element => {
   const [showReadBtn, setShowReadBtn] = useState<boolean>(false);
@@ -23,8 +18,9 @@ export const SameArticle = ({ image, date, title }: ISameArticle): JSX.Element =
   return (
       <Flex direction='column' w={{ md: '330px', sm: '280px' }} m='20px 20px 0' onMouseOver={onMouseOverArticle}
             onMouseOut={onMouseOutArticle} zIndex='10'>
-        <Flex pos='relative' w='100%' h='220px' justifyContent='center' alignItems='center' borderRadius='12px'>
-          <Image src={image} layout='fill' alt='yacht'/>
+        <Flex pos='relative' w='100%' h='220px' justifyContent='center' alignItems='center' borderRadius='12px'
+              overflow='hidden'>
+          <Image src={image} layout='fill' objectFit='cover' width='330px' height='220px' alt='same-yacht'/>
           <Button pos='absolute' opacity={showReadBtn ? '1' : '0'} w='96px' h='44px' borderRadius='21px' bg='white'
                   fontSize='14px' letterSpacing='0.5px' color='#0250C8'>
             Read

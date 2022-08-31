@@ -23,7 +23,7 @@ export const eng = {
     time_for_reading: 'min for reading',
     authors: 'Author'
   },
-  footer: 'Яхтмейт — объединение людей которые любят яхтинг, умеют ходить на своих яхтах, умею с ними обращаться, ценят ту особую атмосферу жизни на лодк'
+  footer: 'Yachtmate — an association of people who love yachting know how to sail on their yachts know how to handle them appreciate that special atmosphere of life on a boat'
 };
 
 export const rus = {
@@ -36,20 +36,20 @@ export const rus = {
     main_page: 'Главная страница',
     blog: 'Блог'
   },
-  main_title: 'Яхтмейт блог',
+  main_title: 'Блог Yachtmate',
   main_posts: {
     title: 'Яхтмейт блог',
     date: 'авг 2, 2022'
   },
   same_way: {
-    title: 'Same way',
-    description: 'Here we will collect useful and interesting articles for you.'
+    title: 'Так же',
+    description: 'Здесь мы будем собирать для вас полезные и интересные статьи.'
   },
-  moreBtn: 'Ещё',
+  moreBtn: 'Читать ещё',
   generalArticlesData: {
     date: 'Апр',
     time_for_reading: 'минут для прочтения',
     authors: 'Автор изображения'
   },
-  footer: 'Яхтмейт — объединение людей которые любят яхтинг, умеют ходить на своих яхтах, умею с ними обращаться, ценят ту особую атмосферу жизни на лодке'
+  footer: 'Яхтмейт — объединение людей которые любят яхтинг, умеют ходить на своих яхтах, умею с ними обращаться, ценят ту особую атмосферу жизни на лодк'
 };

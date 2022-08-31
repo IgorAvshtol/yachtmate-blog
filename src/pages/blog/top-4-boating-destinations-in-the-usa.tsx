@@ -1,7 +1,8 @@
-import { Box, Flex, Link, Text } from '@chakra-ui/react';
+import { useEffect } from 'react';
 import Image from 'next/image';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { Box, Flex, Link, Text } from '@chakra-ui/react';
 import parse from 'html-react-parser';
 
 import missouri from 'public/missouri.png';
@@ -14,6 +15,7 @@ import { Sidebar } from 'components/Sidebar/Sidebar';
 import { PictureAuthorsBlock } from 'components/PictureAuthorsBlock';
 import { TimeBlock } from 'components/TimeBlock';
 import { eng, rus } from 'translations/thirdArticle';
+import { useAppContext } from 'hooks/useAppContext';
 
 const imageAuthors = [
   { id: 1, name: 'Jayden Herr' },
@@ -23,8 +25,13 @@ const imageAuthors = [
 ];
 
 const Third = (): JSX.Element => {
+  const { setCurrentArticleTab } = useAppContext();
   const router = useRouter();
   const t = router.locale === 'en' ? eng : rus;
+
+  useEffect(() => {
+    setCurrentArticleTab(t.thirdArticle.title);
+  }, [setCurrentArticleTab, t.thirdArticle.title]);
 
   return (
       <>
@@ -47,7 +54,7 @@ const Third = (): JSX.Element => {
             </Text>
           </Flex>
           <Box w='100%' pos='relative'>
-            <Image src={preview} layout='responsive' alt='yacht'/>
+            <Image src={preview} layout='responsive' width='1440px' height='547px' alt='yacht'/>
           </Box>
           <Flex direction='column' alignItems='center' bg='#E5E5E5'>
             <Flex direction='column' mb={{ md: '120px', sm: '80px' }}
@@ -113,7 +120,7 @@ const Third = (): JSX.Element => {
               </Text>
             </Flex>
           </Flex>
-          <SameArticles/>
+          <SameArticles currentArticleIndex={2}/>
         </Flex>
       </>
   );

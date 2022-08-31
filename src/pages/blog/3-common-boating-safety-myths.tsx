@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Image from 'next/image';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -10,14 +11,20 @@ import { Sidebar } from 'components/Sidebar/Sidebar';
 import { PictureAuthorsBlock } from 'components/PictureAuthorsBlock';
 import { TimeBlock } from 'components/TimeBlock';
 import { eng, rus } from 'translations/firstArticle';
+import { useAppContext } from 'hooks/useAppContext';
 
 const imageAuthors = [
   { id: 1, name: 'Chris Yacubovich' },
 ];
 
 const First = (): JSX.Element => {
+  const { setCurrentArticleTab } = useAppContext();
   const router = useRouter();
   const t = router.locale === 'en' ? eng : rus;
+
+  useEffect(() => {
+    setCurrentArticleTab(t.firstArticle.title);
+  }, [setCurrentArticleTab, t.firstArticle.title]);
 
   return (
       <>
@@ -45,7 +52,7 @@ const First = (): JSX.Element => {
           </Flex>
           <Box w='100%' textAlign='center'>
             <Box w='100%' pos='relative'>
-              <Image src={yacht} layout='responsive' alt='yacht'/>
+              <Image src={yacht} layout='responsive' width='1440px' height='547px' alt='yacht'/>
             </Box>
           </Box>
           <Flex direction='column' alignItems='center' w='100%' bg='#E5E5E5'>
@@ -84,7 +91,7 @@ const First = (): JSX.Element => {
             </Flex>
 
           </Flex>
-          <SameArticles/>
+          <SameArticles currentArticleIndex={0}/>
         </Flex>
       </>
   );

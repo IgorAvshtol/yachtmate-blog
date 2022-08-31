@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Image from 'next/image';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -10,14 +11,20 @@ import { Sidebar } from 'components/Sidebar/Sidebar';
 import { PictureAuthorsBlock } from 'components/PictureAuthorsBlock';
 import { TimeBlock } from 'components/TimeBlock';
 import { eng, rus } from 'translations/fifthArticle';
+import { useAppContext } from 'hooks/useAppContext';
 
 const imageAuthors = [
   { id: 1, name: 'Jayden Herr' },
 ];
 
 const Fifth = (): JSX.Element => {
+  const { setCurrentArticleTab } = useAppContext();
   const router = useRouter();
   const t = router.locale === 'en' ? eng : rus;
+
+  useEffect(() => {
+    setCurrentArticleTab(t.fifthArticle.title);
+  }, [setCurrentArticleTab, t.fifthArticle.title]);
 
   return (
       <>
@@ -41,7 +48,7 @@ const Fifth = (): JSX.Element => {
           </Flex>
           <Box w='100%' textAlign='center'>
             <Box w='100%' pos='relative'>
-              <Image src={conquering} layout='responsive' alt='conquering'/>
+              <Image src={conquering} layout='responsive' width='1440px' height='547px' alt='conquering'/>
             </Box>
           </Box>
           <Flex w='100%' direction='column' alignItems='center' bg='#E5E5E5'>
@@ -98,7 +105,7 @@ const Fifth = (): JSX.Element => {
               </Text>
             </Flex>
           </Flex>
-          <SameArticles/>
+          <SameArticles currentArticleIndex={4}/>
         </Flex>
       </>
   );

@@ -30,15 +30,15 @@ export const Header = (): JSX.Element => {
             </Button>
             <Menu/>
           </Flex>
-          <Flex w='498px' justifyContent='space-between' display={{ md: 'flex', sm: 'none' }}>
+          <Flex w='598px' justifyContent='end' display={{ md: 'flex', sm: 'none' }}>
             <Input placeholder={t.header.input_placeholder} w='147px' h='44px' paddingX='10px' borderColor='transparent'
                    borderRadius={22} bg='#F5F6F8' fontWeight='500' color='#001240' letterSpacing='0.02em'
                    textAlign='center' _placeholder={{ color: '#001240' }}/>
-            <Button display='flex' justifyContent='space-around' w='128px' h='44px' borderRadius='22px' bg='#F5F6F8'>
+            <Button mx='10px' display='flex' justifyContent='space-around' w='128px' h='44px' borderRadius='22px' bg='#F5F6F8'>
               <Text>{t.header.loginBtn}</Text>
               <Image src={login} width='24px' height='24px' alt='login'/>
             </Button>
-            <Button w='80px' h='44px' borderRadius='22px' bg='#0250C8' textAlign='center'>Join</Button>
+            <Button mr='10px' h='44px' px='20px' borderRadius='22px' bg='#0250C8' textAlign='center'>{t.header.signUpBtn}</Button>
             <SelectLang/>
           </Flex>
         </Flex>

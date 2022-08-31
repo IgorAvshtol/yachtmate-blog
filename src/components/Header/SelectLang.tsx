@@ -5,9 +5,11 @@ import { Box, Flex, Select } from '@chakra-ui/react';
 
 import globe from 'public/globe.svg';
 import { getLangFromLocalStorage, setLangFromLocalStorage } from 'services/localStorage';
+import { useAppContext } from 'hooks/useAppContext';
 
 export const SelectLang = (): JSX.Element => {
   const [lang, setLang] = useState<string>(getLangFromLocalStorage());
+  const { setCurrentLanguage } = useAppContext();
   const router = useRouter();
 
   const handleLanguageToggle = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -16,11 +18,13 @@ export const SelectLang = (): JSX.Element => {
         router.push(`${router.pathname}`, `${router.pathname}`, { locale: 'en' });
         setLangFromLocalStorage('en');
         setLang('en');
+        setCurrentLanguage('en');
         break;
       case 'ru':
         router.push(`${router.pathname}`, `${router.pathname}`, { locale: 'ru' });
         setLangFromLocalStorage('ru');
         setLang('ru');
+        setCurrentLanguage('ru');
         break;
     }
   };

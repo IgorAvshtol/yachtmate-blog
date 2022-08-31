@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Box, Flex, Link, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 import Head from 'next/head';
@@ -7,12 +8,19 @@ import { SameArticles } from 'components/SameArticles/SameArticles';
 import { Sidebar } from 'components/Sidebar/Sidebar';
 import { PictureAuthorsBlock } from 'components/PictureAuthorsBlock';
 import { TimeBlock } from 'components/TimeBlock';
+import { useAppContext } from 'hooks/useAppContext';
 
 const imageAuthors = [
   { id: 1, name: 'Jayden Herr' },
 ];
 
 const Fourth = (): JSX.Element => {
+  const { setCurrentArticleTab } = useAppContext();
+
+  useEffect(() => {
+    setCurrentArticleTab('Boats vs Yachts: Is There Any Difference');
+  }, [setCurrentArticleTab]);
+
   return (
       <>
         <Head>
@@ -37,7 +45,7 @@ const Fourth = (): JSX.Element => {
           </Flex>
           <Box w='100%' textAlign='center'>
             <Box w='100%' pos='relative'>
-              <Image src={cormack} layout='responsive' alt='cormack'/>
+              <Image src={cormack} layout='responsive' width='1440px' height='547px' alt='cormack'/>
             </Box>
           </Box>
           <Flex w='100%' direction='column' alignItems='center' bg='#E5E5E5'>
@@ -103,7 +111,7 @@ const Fourth = (): JSX.Element => {
               </Text>
             </Flex>
           </Flex>
-          <SameArticles/>
+          <SameArticles currentArticleIndex={3}/>
         </Flex>
       </>
   );

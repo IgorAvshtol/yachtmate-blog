@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Image from 'next/image';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -11,14 +12,20 @@ import { Sidebar } from 'components/Sidebar/Sidebar';
 import { PictureAuthorsBlock } from 'components/PictureAuthorsBlock';
 import { TimeBlock } from 'components/TimeBlock';
 import { eng, rus } from 'translations/sixthArticle';
+import { useAppContext } from 'hooks/useAppContext';
 
 const imageAuthors = [
   { id: 1, name: 'Jayden Herr' },
 ];
 
 const Sixth = (): JSX.Element => {
+  const { setCurrentArticleTab } = useAppContext();
   const router = useRouter();
   const t = router.locale === 'en' ? eng : rus;
+
+  useEffect(() => {
+    setCurrentArticleTab(t.sixthArticle.title);
+  }, [setCurrentArticleTab, t.sixthArticle.title]);
 
   return (
       <>
@@ -40,7 +47,7 @@ const Sixth = (): JSX.Element => {
           </Flex>
           <Box w='100%' textAlign='center'>
             <Box w='100%' pos='relative'>
-              <Image src={nose} layout='responsive' alt='yacht'/>
+              <Image src={nose} layout='responsive' width='1440px' height='547px' alt='yacht'/>
             </Box>
           </Box>
           <Flex w='100%' direction='column' alignItems='center' bg='#E5E5E5'>
@@ -77,7 +84,7 @@ const Sixth = (): JSX.Element => {
               </Text>
             </Flex>
           </Flex>
-          <SameArticles/>
+          <SameArticles currentArticleIndex={1}/>
         </Flex>
       </>
   );
