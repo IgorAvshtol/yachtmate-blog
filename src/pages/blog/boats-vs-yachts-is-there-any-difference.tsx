@@ -52,7 +52,8 @@ const Fourth = (): JSX.Element => {
             <PictureAuthorsBlock authors={imageAuthors}/>
             <Flex direction='column' mb={{ md: '120px', sm: '80px' }}
                   w={{ xl: '800px', lg: '55%', md: '80%', sm: '90%' }}>
-              <Text mt={{ md: '56px', sm: '40px' }} fontWeight='400' fontSize='20px' lineHeight='180%'>
+              <Text mt={{ md: '56px', sm: '40px' }} fontWeight='400' fontSize={{ md: '20px', sm: '18px' }}
+                    lineHeight='180%'>
                 Every year, boating lovers from all over the world flock to San Diego. It is a great place to get out on
                 the water and enjoy different types of boats, including yachts, catamarans, racing boats and others. The
                 city’s temperate climate and steady winds make it an ideal destination for comfortable water travel.
@@ -65,7 +66,7 @@ const Fourth = (): JSX.Element => {
                     letterSpacing='0.3px'>
                 Size
               </Text>
-              <Text mt='32px' fontWeight='400' fontSize='20px' lineHeight='180%'>
+              <Text mt='32px' fontWeight='400' fontSize={{ md: '20px', sm: '18px' }} lineHeight='180%'>
                 The first thing that comes to mind is size. When you think about yachts, most likely you don’t imagine a
                 small 5-meter-long (15 feet) vessel. Yachts are expensive recreational crafts, which are obviously
                 bigger than regular boats. The smallest yachts are at least around 10 meters (35 feet) in length, while
@@ -80,7 +81,7 @@ const Fourth = (): JSX.Element => {
                     letterSpacing='0.3px'>
                 Technology
               </Text>
-              <Text mt='32px' fontWeight='400' fontSize='20px' lineHeight='180%'>
+              <Text mt='32px' fontWeight='400' fontSize={{ md: '20px', sm: '18px' }} lineHeight='180%'>
                 Unlike most regular boats, yachts are equipped with advanced propulsion and marine electronics. These
                 systems ensure smooth and comfortable sailing, especially during trans-oceanic trips. Yachts are
                 designed to go into the open ocean, which requires a precise navigation system. This includes a GPS, a
@@ -91,13 +92,13 @@ const Fourth = (): JSX.Element => {
                     letterSpacing='0.3px'>
                 Operation
               </Text>
-              <Text mt='32px' fontWeight='400' fontSize='20px' lineHeight='180%'>
+              <Text mt='32px' fontWeight='400' fontSize={{ md: '20px', sm: '18px' }} lineHeight='180%'>
                 Yachts are a luxury, so by definition their main purpose is leisure. Often beautifully designed and
                 equipped with entertainment facilities, they bring their owners aesthetic pleasure and a convenient
                 sailing experience. Moreover, yachts can go into the open ocean for long voyages and withstand rough
                 waves and winds, while smaller boats are suitable only for more shallow and calm waters.
               </Text>
-              <Text mt='80px' fontWeight='400' fontSize='24px' lineHeight='180%'>
+              <Text mt='80px' fontWeight='400' fontSize={{ md: '24px', sm: '20px' }} lineHeight='180%'>
                 Yachtmateclub is the world’s first boat sharing platform that allows boat and yacht owners to explore
                 waters around the globe and connect with other captains for free.
                 <Link color='black' textDecoration='underline'

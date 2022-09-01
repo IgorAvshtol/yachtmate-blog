@@ -62,7 +62,7 @@ const Sixth = (): JSX.Element => {
                 {
                   t.sixthArticle.paragraphs['0'].description.map((paragraph) => (
                           paragraph &&
-                          <Text key={nanoid()} fontWeight='400' fontSize='20px' lineHeight='180%'>
+                          <Text key={nanoid()} fontWeight='400' fontSize={{ md: '20px', sm: '18px' }} lineHeight='180%'>
                             {paragraph}
                             <br/><br/>
                           </Text>
@@ -70,11 +70,11 @@ const Sixth = (): JSX.Element => {
                   )
                 }
               </Box>
-              <Text as='h2' mt={{ md: '80px', sm: '56px' }} fontWeight='600' fontSize='32px' lineHeight='140%'
+              <Text as='h2' mt={{ md: '60px', sm: '36px' }} fontWeight='600' fontSize='32px' lineHeight='140%'
                     letterSpacing='0.3px'>
                 {t.sixthArticle.paragraphs['1'].title}
               </Text>
-              <Text mt='12px' fontWeight='400' fontSize='20px' lineHeight='180%'>
+              <Text mt='12px' fontWeight='400' fontSize={{ md: '20px', sm: '18px' }} lineHeight='180%'>
                 {parse(t.sixthArticle.paragraphs['1'].description['0'])}
               </Text>
               <Text mt={{ md: '80px', sm: '56px' }} fontSize={{ md: '24px', sm: '20px' }}

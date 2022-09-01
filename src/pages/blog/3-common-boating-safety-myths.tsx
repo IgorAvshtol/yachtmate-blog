@@ -62,23 +62,23 @@ const First = (): JSX.Element => {
               <Text as='h2' mt='80px' fontWeight='600' fontSize='32px' lineHeight='140%' letterSpacing='0.3px'>
                 {t.firstArticle.paragraphs['0'].title}
               </Text>
-              <Text mt='12px' fontWeight='400' fontSize='20px' lineHeight='180%'>
+              <Text mt='12px' fontWeight='400' fontSize={{ md: '20px', sm: '18px' }} lineHeight='180%'>
                 {t.firstArticle.paragraphs['0'].description['0']}
                 <br/><br/>
                 {t.firstArticle.paragraphs['0'].description['1']}
               </Text>
-              <Text as='h2' mt='80px' fontWeight='600' fontSize='32px' lineHeight='140%' letterSpacing='0.3px'>
+              <Text as='h2' mt={{md: '80px', sm: '56px'}} fontWeight='600' fontSize='32px' lineHeight='140%' letterSpacing='0.3px'>
                 {t.firstArticle.paragraphs['1'].title}
               </Text>
-              <Text mt='12px' fontWeight='400' fontSize='20px' lineHeight='180%'>
+              <Text mt='12px' fontWeight='400' fontSize={{ md: '20px', sm: '18px' }} lineHeight='180%'>
                 {t.firstArticle.paragraphs['1'].description['0']}
                 <br/><br/>
                 {t.firstArticle.paragraphs['1'].description['1']}
               </Text>
-              <Text as='h2' mt='80px' fontWeight='600' fontSize='32px' lineHeight='140%' letterSpacing='0.3px'>
+              <Text as='h2' mt={{md: '80px', sm: '56px'}} fontWeight='600' fontSize='32px' lineHeight='140%' letterSpacing='0.3px'>
                 {t.firstArticle.paragraphs['2'].title}
               </Text>
-              <Text mt='12px' fontWeight='400' fontSize='20px' lineHeight='180%'>
+              <Text mt='12px' fontWeight='400' fontSize={{ md: '20px', sm: '18px' }} lineHeight='180%'>
                 {t.firstArticle.paragraphs['2'].description['0']}
               </Text>
               <Text mt='80px' fontWeight='400' fontSize={{ md: '24px', sm: '20px' }} lineHeight='180%'>

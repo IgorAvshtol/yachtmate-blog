@@ -13,7 +13,7 @@ export const PictureAuthorsBlock = ({ authors }: IPictureAuthorsBlock): JSX.Elem
   const t = router.locale === 'en' || currentLanguage === 'en' ? eng : rus;
 
   return (
-      <Flex justifyContent='center' mt='16px' w={{ md: '100%', sm: '90%' }} textAlign='center' fontWeight='500'
+      <Flex justifyContent='center' flexWrap='wrap' mt='16px' w={{ md: '100%', sm: '90%' }} textAlign='center' fontWeight='500'
             fontSize='14px' lineHeight='140%' letterSpacing='0.5' opacity='0.5'>
         <Text>{t.generalArticlesData.authors}:&nbsp;</Text>
         {

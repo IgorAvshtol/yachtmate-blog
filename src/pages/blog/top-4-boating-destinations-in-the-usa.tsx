@@ -41,7 +41,7 @@ const Third = (): JSX.Element => {
           </title>
         </Head>
         <Flex direction='column' w='100%' alignItems='center' bg='#ffffff'>
-          <Flex direction='column' mt={{ md: '65px', sm: '24px' }} mb={{ md: '120px', sm: '80px' }}
+          <Flex direction='column' mt={{ md: '65px', sm: '24px' }} mb={{ md: '60px', sm: '40px' }}
                 w={{ xl: '800px', lg: '55%', md: '80%', sm: '90%' }}>
             <Sidebar/>
             <TimeBlock/>
@@ -68,7 +68,7 @@ const Third = (): JSX.Element => {
                 <Image src={missouri} layout='responsive' width={800} height={420} alt='missouri'/>
               </Box>
               <PictureAuthorsBlock authors={[{ id: 1, name: 'Daniel Guerra' }]}/>
-              <Text mt='32px' fontWeight='400' fontSize='20px' lineHeight='180%'>
+              <Text mt='32px' fontWeight='400' fontSize={{md: '20px', sm: '18px'}} lineHeight='180%'>
                 {t.thirdArticle.paragraphs['0'].description['0']}
               </Text>
               <Text as='h2' mt={{ md: '80px', sm: '56px' }} fontWeight='600' fontSize='32px' lineHeight='140%'
@@ -79,7 +79,7 @@ const Third = (): JSX.Element => {
                 <Image src={california} layout='responsive' width={800} height={520} alt='california'/>
               </Box>
               <PictureAuthorsBlock authors={[{ id: 1, name: 'Daniel Guerra' }]}/>
-              <Text mt='32px' fontWeight='400' fontSize='20px' lineHeight='180%'>
+              <Text mt='32px' fontWeight='400' fontSize={{md: '20px', sm: '18px'}} lineHeight='180%'>
                 {t.thirdArticle.paragraphs['1'].description['0']}
               </Text>
               <Text as='h2' mt={{ md: '80px', sm: '56px' }} fontWeight='600' fontSize='32px' lineHeight='140%'
@@ -90,7 +90,7 @@ const Third = (): JSX.Element => {
                 <Image src={washington} layout='responsive' width={800} height={440} alt='washington'/>
               </Box>
               <PictureAuthorsBlock authors={[{ id: 1, name: 'Benjamin Massello' }]}/>
-              <Text mt='32px' fontWeight='400' fontSize='20px' lineHeight='180%'>
+              <Text mt='32px' fontWeight='400' fontSize={{md: '20px', sm: '18px'}} lineHeight='180%'>
                 {t.thirdArticle.paragraphs['2'].description['0']}
               </Text>
               <Text as='h2' mt={{ md: '80px', sm: '56px' }} fontWeight='600' fontSize='32px' lineHeight='140%'
@@ -101,19 +101,19 @@ const Third = (): JSX.Element => {
                 <Image src={lighthouse} layout='responsive' width={800} height={440} alt='lighthouse'/>
               </Box>
               <PictureAuthorsBlock authors={[{ id: 1, name: 'Rusty Watson' }]}/>
-              <Text mt='32px' fontWeight='400' fontSize='20px' lineHeight='180%'>
+              <Text mt='32px' fontWeight='400' fontSize={{md: '20px', sm: '18px'}} lineHeight='180%'>
                 {t.thirdArticle.paragraphs['3'].description['0']}
               </Text>
-              <Text mt='80px' fontWeight='400' fontSize='24px' lineHeight='180%'>
+              <Text mt='80px' fontWeight='400' fontSize={{md: '24px', sm: '20px'}} lineHeight='180%'>
                 {parse(t.thirdArticle.paragraphs['4'].description['0'])}
               </Text>
               {
                   t.thirdArticle.paragraphs['5'].description['0'] &&
-                  <Text mt='60px' fontWeight='400' fontSize='24px' lineHeight='180%'>
+                  <Text mt='60px' fontWeight='400' fontSize={{ md: '24px', sm: '20px' }} lineHeight='180%'>
                     {parse(t.thirdArticle.paragraphs['5'].description['0'])}
                   </Text>
               }
-              <Text mt='60px' fontWeight='400' fontSize='24px' lineHeight='180%'>
+              <Text mt='60px' fontWeight='400' fontSize={{ md: '24px', sm: '20px' }} lineHeight='180%'>
                 {t.thirdArticle.paragraphs.contact_us.text}&nbsp;
                 <Link color='black' textDecoration='underline'
                       href='/'>hi@yachtmate.club</Link>
