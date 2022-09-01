@@ -32,10 +32,17 @@ export const SameArticle = ({ image, date, title }: ISameArticle): JSX.Element =
             {t.readBtn}
           </Button>
         </Flex>
+        <Text display={{ md: 'none', sm: 'block' }} mt='12px' fontSize='14px' lineHeight='140%' letterSpacing='0.5px'
+              opacity='0.5'>
+          {date}
+        </Text>
         <Link href='/' w={{ md: '330px', sm: '280px' }} whiteSpace='pre-line'>
           <Text mt='12px' fontSize='20px' lineHeight='148%' noOfLines={2}>{title}</Text>
         </Link>
-        <Text mt='12px' fontSize='14px' lineHeight='140%' letterSpacing='0.5px' opacity='0.5'>{date}</Text>
+        <Text display={{ md: 'block', sm: 'none' }} mt='12px' fontSize='14px' lineHeight='140%' letterSpacing='0.5px'
+              opacity='0.5'>
+          {date}
+        </Text>
       </Flex>
   );
 };
