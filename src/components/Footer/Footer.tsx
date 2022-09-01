@@ -54,7 +54,7 @@ export const Footer = (): JSX.Element => {
               <ResponseImage src={instagramLogo} alt='instagram' mx='20px' w='40px' h='40px'/>
               <ResponseImage src={youtubeLogo} alt='youtube' w='40px' h='40px'/>
             </Flex>
-            <Box mt='40px' textAlign='center' display={{ md: 'none', sm: 'block' }}>
+            <Box w='100%' mt='40px' textAlign='center' display={{ md: 'none', sm: 'block' }}>
               <PoweredBy/>
             </Box>
           </Flex>
