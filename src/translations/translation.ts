@@ -24,7 +24,7 @@ export const eng = {
     time_for_reading: 'min for reading',
     authors: 'Author'
   },
-  footer: 'Yachtmate — an association of people who love yachting know how to sail on their yachts know how to handle them appreciate that special atmosphere of life on a boat'
+  footer: 'Yachtmate an association of people who love yachting know how to sail on their yachts know how to handle them appreciate that special atmosphere of life on a boat'
 };
 
 export const rus = {
