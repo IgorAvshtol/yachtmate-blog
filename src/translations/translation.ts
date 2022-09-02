@@ -1,6 +1,6 @@
 export const eng = {
   header: {
-    input_placeholder: 'Yacht search',
+    search_btn: 'Yacht search',
     loginBtn: 'Log In',
     signUpBtn: 'Join'
   },
@@ -29,7 +29,7 @@ export const eng = {
 
 export const rus = {
   header: {
-    input_placeholder: 'Поиск яхт',
+    search_btn: 'Поиск яхт',
     loginBtn: 'Войти',
     signUpBtn: 'Присоединиться'
   },

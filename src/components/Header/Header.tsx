@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { Button, Flex, Input, Link, Text } from '@chakra-ui/react';
+import { Button, Flex, Link, Text } from '@chakra-ui/react';
 
 import logo from 'public/logo.png';
 import logoTitle from 'public/logoTitle.png';
@@ -31,14 +31,17 @@ export const Header = (): JSX.Element => {
             <Menu/>
           </Flex>
           <Flex w='598px' justifyContent='end' display={{ md: 'flex', sm: 'none' }}>
-            <Input placeholder={t.header.input_placeholder} w='147px' h='44px' paddingX='10px' borderColor='transparent'
-                   borderRadius={22} bg='#F5F6F8' fontWeight='500' color='#001240' letterSpacing='0.02em'
-                   textAlign='center' _placeholder={{ color: '#001240' }}/>
-            <Button mx='10px' display='flex' justifyContent='space-around' w='128px' h='44px' borderRadius='22px' bg='#F5F6F8'>
+            <Button w='147px' h='44px' paddingX='10px' borderColor='transparent'
+                    borderRadius={22} bg='#F5F6F8' fontWeight='500' color='#001240' letterSpacing='0.02em'>
+              {t.header.search_btn}
+            </Button>
+            <Button mx='10px' display='flex' justifyContent='space-around' w='128px' h='44px' borderRadius='22px'
+                    bg='#F5F6F8'>
               <Text>{t.header.loginBtn}</Text>
               <Image src={login} width='24px' height='24px' alt='login'/>
             </Button>
-            <Button mr='10px' h='44px' px='20px' borderRadius='22px' bg='#0250C8' textAlign='center'>{t.header.signUpBtn}</Button>
+            <Button mr='10px' h='44px' px='20px' borderRadius='22px' bg='#0250C8'
+                    textAlign='center'>{t.header.signUpBtn}</Button>
             <SelectLang/>
           </Flex>
         </Flex>
