@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-
 import { Button, Flex, Link, Text } from '@chakra-ui/react';
+
 import { ISameArticle } from 'interfaces';
 import { eng, rus } from 'translations/translation';
 import { useAppContext } from 'hooks/useAppContext';
