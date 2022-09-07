@@ -1,0 +1,26 @@
+pipelines:
+    branches:
+        master:
+            - step:
+                  name: Deploy to Test
+                  deployment: test
+                  script:
+                      - pipe: atlassian/ftp-deploy:0.3.7
+                        variables:
+                            USER: $MY_USER
+                            PASSWORD: $MY_PASS
+                            SERVER: $MY_SERVER
+                            REMOTE_PATH: files/blog/
+                            DELETE_FLAG: 'false' # Don't delete existing files
+                            EXTRA_ARGS: '--exclude=.bitbucket/ --exclude=.git/ --exclude=bitbucket-pipelines.yml --exclude=.gitignore' # Ignore these
+                            DEBUG: 'true' # Optional
+            - step:
+                  name: Building on Test
+                  script:
+                      - pipe: atlassian/ssh-run:0.4.1
+                        variables:
+                            SSH_USER: $MY_USER
+                            SERVER: $MY_SERVER
+                            MODE: 'command' # Optional
+                            COMMAND: './blog-deployment-script.sh'
+                            DEBUG: 'true' # Optional
