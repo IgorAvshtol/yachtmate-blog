@@ -1,5 +1,5 @@
--pipelines:
--    branches:
+pipelines:
+    branches:
         master:
             - step:
                   name: Deploy to Test
