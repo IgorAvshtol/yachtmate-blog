@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 import { Box, Flex, Select } from '@chakra-ui/react';
 
 import globe from 'public/globe.svg';
