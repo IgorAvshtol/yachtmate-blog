@@ -55,7 +55,7 @@ const First = (): JSX.Element => {
               <Image src={yacht} layout='responsive' width='1440px' height='547px' alt='yacht'/>
             </Box>
           </Box>
-          <Flex direction='column' alignItems='center' w='100%' bg='#E5E5E5'>
+          <Flex direction='column' alignItems='center' w='100%' bg='#F5F7FB'>
             <PictureAuthorsBlock authors={imageAuthors}/>
             <Flex direction='column' mb={{ md: '64px', sm: '32px' }}
                   w={{ xl: '800px', lg: '55%', md: '80%', sm: '90%' }}>

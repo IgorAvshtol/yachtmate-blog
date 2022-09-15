@@ -24,7 +24,7 @@ export const MainPosts = (): JSX.Element => {
   };
 
   return (
-      <Flex direction='column' mb={{ md: '124px', sm: '24px' }} w={{ lg: '75%', md: '80%', sm: '90%' }}>
+      <Flex direction='column' mb={{ md: '124px', sm: '24px' }} maxW='1100px' w={{ lg: '75%', md: '85%', sm: '90%' }}>
         <Text as='h1' fontWeight='600' fontSize={{ md: '48px', sm: '40px' }} lineHeight='120%'
               letterSpacing={{ md: '1.5px', sm: '0.3px' }}>
           {tr.main_title}

@@ -63,8 +63,8 @@ export const Posts = (): JSX.Element => {
   const tr = router.locale === 'en' || currentLanguage === 'en' ? en : ru;
 
   return (
-      <Flex justifyContent='center' w='100%' py={{ md: '120px', sm: '40px' }} bg='#E5E5E5' pos='relative'>
-        <Flex w={{ '2xl': '55%', xl: '70%', lg: '70%', md: '70%' }} direction='column' alignItems='center' bg='#E5E5E5'>
+      <Flex justifyContent='center' w='100%' py={{ md: '120px', sm: '40px' }} bg='#F5F7FB' pos='relative'>
+        <Flex w={{ '2xl': '55%', xl: '70%', lg: '70%', md: '70%' }} direction='column' alignItems='center' bg='#F5F7FB'>
           <Text as='h2' fontWeight='600' fontSize='32px' letterSpacing='0.3px'>{tr.same_way.title}</Text>
           <Text w='300px' as='h3' mt='16px' fontWeight='400' fontSize='18px' opacity='0.6' textAlign='center'>
             {tr.same_way.description}

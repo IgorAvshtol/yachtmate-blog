@@ -23,8 +23,8 @@ export const Footer = (): JSX.Element => {
 
   return (
       <Flex direction='column' alignItems='center' w='100%' pos='relative'
-            bg={slug ? '#ffffff' : '#E5E5E5'}>
-        <Flex w='100%' h={{ '2xl': '760px', md: '560px', sm: '570px' }} pos='relative' justifyContent='center'>
+            bg={slug ? '#ffffff' : '#F5F7FB'}>
+        <Flex w='100%' h={{ '2xl': '760px', md: '600px', sm: '570px' }} pos='relative' justifyContent='center'>
           <Box zIndex='1'>
             <Image src={waveDown} layout='fill' objectFit='cover' alt='wave-cover'/>
           </Box>

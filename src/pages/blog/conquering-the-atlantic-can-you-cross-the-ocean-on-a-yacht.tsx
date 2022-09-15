@@ -7,11 +7,11 @@ import parse from 'html-react-parser';
 
 import conquering from 'public/conquering.png';
 import { SameArticles } from 'components/SameArticles/SameArticles';
-import { Sidebar } from 'components/Sidebar/Sidebar';
 import { PictureAuthorsBlock } from 'components/PictureAuthorsBlock';
 import { TimeBlock } from 'components/TimeBlock';
 import { eng, rus } from 'translations/fifthArticle';
 import { useAppContext } from 'hooks/useAppContext';
+import { Sidebar } from 'components/Sidebar/Sidebar';
 
 const imageAuthors = [
   { id: 1, name: 'Jayden Herr' },
@@ -51,7 +51,7 @@ const Fifth = (): JSX.Element => {
               <Image src={conquering} layout='responsive' width='1440px' height='547px' alt='conquering'/>
             </Box>
           </Box>
-          <Flex w='100%' direction='column' alignItems='center' bg='#E5E5E5'>
+          <Flex w='100%' direction='column' alignItems='center' bg='#F5F7FB'>
             <PictureAuthorsBlock authors={imageAuthors}/>
             <Flex direction='column' mb={{ md: '120px', sm: '80px' }}
                   w={{ xl: '800px', lg: '55%', md: '80%', sm: '90%' }}>

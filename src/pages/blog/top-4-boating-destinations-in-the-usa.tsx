@@ -56,7 +56,7 @@ const Third = (): JSX.Element => {
           <Box w='100%' pos='relative'>
             <Image src={preview} layout='responsive' width='1440px' height='547px' alt='yacht'/>
           </Box>
-          <Flex direction='column' alignItems='center' bg='#E5E5E5'>
+          <Flex direction='column' alignItems='center' bg='#F5F7FB'>
             <Flex direction='column' mb={{ md: '120px', sm: '80px' }}
                   w={{ xl: '40%', lg: '55%', md: '80%', sm: '90%' }}>
               <PictureAuthorsBlock authors={imageAuthors}/>
