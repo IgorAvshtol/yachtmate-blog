@@ -1,12 +1,10 @@
-import { IAuthorsName } from '../interfaces';
-
-export function authorsNameHandler(authorsName: IAuthorsName[]) {
+export function authorsNameHandler(authorsName: string[]) {
   const resultString = [];
   for (let i = 0; i < authorsName.length; i++) {
     if (i === authorsName.length - 1) {
-      resultString.push(<u>{authorsName[i].name}</u>);
+      resultString.push(<u>{authorsName[i]}</u>);
     } else {
-      resultString.push(<><u>{authorsName[i].name}</u> /&nbsp;</>);
+      resultString.push(<><u>{authorsName[i]}</u> /&nbsp;</>);
     }
   }
   return resultString;

@@ -7,13 +7,11 @@ import logoTitle from 'public/logoTitle.png';
 import login from 'public/login.png';
 import { Menu } from './Menu';
 import { SelectLang } from './SelectLang';
-import { eng, rus } from 'translations/translation';
-import { useAppContext } from 'hooks/useAppContext';
+import { eng, rus } from 'translation';
 
 export const Header = (): JSX.Element => {
-  const { currentLanguage } = useAppContext();
   const router = useRouter();
-  const t = router.locale === 'en' || currentLanguage === 'en' ? eng : rus;
+  const t = router.locale === 'en' ? eng : rus;
 
   return (
       <Flex w='100%' justifyContent='center' boxShadow='0px 8px 24px rgba(59, 69, 75, 0.04)'>
@@ -31,9 +29,9 @@ export const Header = (): JSX.Element => {
             <Menu/>
           </Flex>
           <Flex w='598px' justifyContent='end' display={{ md: 'flex', sm: 'none' }}>
-            <Button w='147px' h='44px' paddingX='10px' borderColor='transparent'
-                    borderRadius={22} bg='#F5F6F8' fontWeight='500' color='#001240' letterSpacing='0.02em'>
-              {t.header.search_btn}
+            <Button w='147px' h='44px' paddingX='10px' borderColor='transparent' borderRadius={22} bg='#F5F6F8'
+                    fontWeight='500' color='#001240' letterSpacing='0.02em'>
+              {t.header.input_placeholder}
             </Button>
             <Button mx='10px' display='flex' justifyContent='space-around' w='128px' h='44px' borderRadius='22px'
                     bg='#F5F6F8'>

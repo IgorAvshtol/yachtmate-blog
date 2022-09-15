@@ -3,8 +3,11 @@ import { Button, Flex, Text } from '@chakra-ui/react';
 
 import more from 'public/more.png';
 import share from 'public/share.png';
-import heart from 'public/heart.png';
+import dislike from 'public/heart.png';
+import like from 'public/like.png';
 import { ButtonMenu } from './ButtonMenu';
+import { useAppDispatch, useAppSelector } from 'store/store';
+import { setLike, setUnlike } from 'store/atricles/articlesThunk';
 
 const sideBarData = [
   { id: 1, items: ['Delete', 'Edit'], image: more },
@@ -12,21 +15,34 @@ const sideBarData = [
 ];
 
 export const Sidebar = (): JSX.Element => {
+  const dispatch = useAppDispatch();
+  const { userData } = useAppSelector(state => state.auth);
+  const { currentArticle: data } = useAppSelector(state => state.articles);
+
+  const arrayOfLikes = data?.attributes?.hasLiked;
+
+  const onLikeClickHandler = () => {
+    if (arrayOfLikes?.includes(userData.id)) {
+      dispatch(setUnlike(data?.id));
+    } else {
+      dispatch(setLike(data?.id));
+    }
+  };
+
   return (
-      <Flex w={{ md: 'auto', sm: '90%' }} justifyContent={{ md: 'end', sm: 'center' }} pos='fixed'
-            right={{ md: '50px' }} zIndex='10' top={{ md: '190px' }} bottom={{ sm: '-40px' }}>
-        <Flex direction={{ md: 'column', sm: 'row' }} w={{ md: '50px', sm: '180px' }} h='180px'
-              justifyContent='space-between' alignItems='center'>
+      <Flex display={{ md: 'flex', sm: 'none' }} w='90%' justifyContent='end' pos='fixed' right='50px' zIndex='10'
+            top='190px'>
+        <Flex direction='column' w='50px' h='180px' justifyContent='space-between' alignItems='center'>
           {
             sideBarData.map(data => <ButtonMenu key={data.id} image={data.image} menuItems={data.items}/>)
           }
-          <Flex direction={{ md: 'column', sm: 'row' }} alignItems='center'>
+          <Flex direction='column' alignItems='center'>
             <Button bg='transparent' w='48px' h='48px' border='2px solid #F5F6F8' borderRadius='50%' p='5px'>
-              <Flex pos='relative' color='#001240'>
-                <Image src={heart} alt='menu'/>
+              <Flex pos='relative' color='#001240' onClick={onLikeClickHandler}>
+                <Image src={arrayOfLikes?.includes(userData.id) ? like : dislike} alt='like'/>
               </Flex>
             </Button>
-            <Text ml={{ md: '0', sm: '10px' }} fontSize='16px' color='#777E90'>3</Text>
+            <Text fontSize='16px' color='#777E90'>{arrayOfLikes?.length}</Text>
           </Flex>
         </Flex>
       </Flex>

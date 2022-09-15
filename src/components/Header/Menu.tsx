@@ -1,25 +1,29 @@
+import React from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Button, Menu as MainBlock, MenuButton, MenuItem, MenuList, } from '@chakra-ui/react';
 
 import menuLogo from 'public/menu.png';
-import { setLangFromLocalStorage } from 'services/localStorage';
+import { useAppDispatch } from 'store/store';
+import { changeLanguage } from 'store/atricles/articlesSlice';
 
 export const Menu = (): JSX.Element => {
+  const dispatch = useAppDispatch();
   const router = useRouter();
 
-  const handleLanguageToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleLanguageToggle = async (e: React.MouseEvent<HTMLButtonElement>) => {
     switch (e.currentTarget.textContent) {
       case 'en':
-        router.push(`${router.pathname}`, `${router.pathname}`, { locale: 'en' });
-        setLangFromLocalStorage('en');
+        await router.push(`${router.asPath}`, `${router.asPath}`, { locale: 'en' });
+        dispatch(changeLanguage('en'));
         break;
       case 'ru':
-        router.push(`${router.pathname}`, `${router.pathname}`, { locale: 'ru' });
-        setLangFromLocalStorage('ru');
+        await router.push(`${router.asPath}`, `${router.asPath}`, { locale: 'ru' });
+        dispatch(changeLanguage('ru'));
         break;
     }
   };
+
   return (
       <MainBlock>
         <MenuButton as={Button} bg='transparent'>

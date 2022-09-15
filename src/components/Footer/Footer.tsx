@@ -1,6 +1,6 @@
-import { Box, Flex, Link, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { Box, Flex, Link, Text } from '@chakra-ui/react';
 
 import waveUp from 'public/waveUp.svg';
 import waveDown from 'public/waveDown.svg';
@@ -10,20 +10,15 @@ import instagramLogo from 'public/instagramLogo.png';
 import youtubeLogo from 'public/youtubeLogo.png';
 import { ResponseImage } from '../ResponseImage';
 import { PoweredBy } from './PoweredBy';
-import { eng, rus } from 'translations/translation';
-import { useAppContext } from 'hooks/useAppContext';
+import { eng, rus } from 'translation';
 
 export const Footer = (): JSX.Element => {
   const router = useRouter();
-  const { currentLanguage } = useAppContext();
-
   const slug = router.pathname.slice(1, router.pathname.length);
-
-  const t = router.locale === 'en' || currentLanguage === 'en' ? eng : rus;
+  const t = router.locale === 'en' ? eng : rus;
 
   return (
-      <Flex direction='column' alignItems='center' w='100%' pos='relative'
-            bg={slug ? '#ffffff' : '#F5F7FB'}>
+      <Flex direction='column' alignItems='center' w='100%' pos='relative' bg={slug ? '#ffffff' : '#F5F7FB'}>
         <Flex w='100%' h={{ '2xl': '760px', md: '600px', sm: '570px' }} pos='relative' justifyContent='center'>
           <Box zIndex='1'>
             <Image src={waveDown} layout='fill' objectFit='cover' alt='wave-cover'/>
@@ -54,7 +49,7 @@ export const Footer = (): JSX.Element => {
               <ResponseImage src={instagramLogo} alt='instagram' mx='20px' w='40px' h='40px'/>
               <ResponseImage src={youtubeLogo} alt='youtube' w='40px' h='40px'/>
             </Flex>
-            <Box w='100%' mt='40px' textAlign='center' display={{ md: 'none', sm: 'block' }}>
+            <Box mt='40px' textAlign='center' display={{ md: 'none', sm: 'block' }}>
               <PoweredBy/>
             </Box>
           </Flex>

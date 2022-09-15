@@ -1,7 +1,7 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['localhost'],
+    domains: ['adminblog.test.yachtmate.club'],
   },
   i18n: {
     locales: ['en', 'ru'],

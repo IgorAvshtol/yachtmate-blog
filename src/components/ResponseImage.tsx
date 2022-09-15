@@ -1,6 +1,5 @@
 import { ForwardedRef, forwardRef } from 'react';
 import Image, { ImageProps } from 'next/image';
-
 import { BoxProps, chakra, Flex } from '@chakra-ui/react';
 
 const ChakraNextUnwrappedImage = chakra(Image, {

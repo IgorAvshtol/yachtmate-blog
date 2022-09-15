@@ -2,9 +2,10 @@ import React from 'react';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import { Provider } from 'react-redux';
 
 import { Layout } from 'components/Layout';
-import { ProvideApp } from 'hooks/useAppContext';
+import { store } from 'store/store';
 
 const breakpoints = {
   sm: '320px',
@@ -51,7 +52,7 @@ const theme = extendTheme({
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   return (
-      <ProvideApp>
+      <Provider store={store}>
         <ChakraProvider theme={theme}>
           <Layout>
             <Head>
@@ -61,7 +62,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
             <Component {...pageProps} />
           </Layout>
         </ChakraProvider>
-      </ProvideApp>
+      </Provider>
   );
 };
 

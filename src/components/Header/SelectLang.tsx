@@ -1,30 +1,20 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Box, Flex, Select } from '@chakra-ui/react';
 
 import globe from 'public/globe.svg';
-import { getLangFromLocalStorage, setLangFromLocalStorage } from 'services/localStorage';
-import { useAppContext } from 'hooks/useAppContext';
 
 export const SelectLang = (): JSX.Element => {
-  const [lang, setLang] = useState<string>(getLangFromLocalStorage());
-  const { setCurrentLanguage } = useAppContext();
   const router = useRouter();
 
-  const handleLanguageToggle = (e: ChangeEvent<HTMLSelectElement>) => {
+  const handleLanguageToggle = async (e: ChangeEvent<HTMLSelectElement>) => {
     switch (e.currentTarget.value) {
       case 'en':
-        router.push(`${router.pathname}`, `${router.pathname}`, { locale: 'en' });
-        setLangFromLocalStorage('en');
-        setLang('en');
-        setCurrentLanguage('en');
+        await router.push(`${router.asPath}`, `${router.asPath}`, { locale: 'en' });
         break;
       case 'ru':
-        router.push(`${router.pathname}`, `${router.pathname}`, { locale: 'ru' });
-        setLangFromLocalStorage('ru');
-        setLang('ru');
-        setCurrentLanguage('ru');
+        await router.push(`${router.asPath}`, `${router.asPath}`, { locale: 'ru' });
         break;
     }
   };
@@ -36,7 +26,7 @@ export const SelectLang = (): JSX.Element => {
           <Image src={globe} width='20px' height='20px' alt='world-cover'/>
         </Box>
         <Select border='none' ml='-10px' maxW='max-content' _active={{ outline: 'none' }}
-                _focus={{ boxShadow: 'none' }} onChange={handleLanguageToggle} value={lang}>
+                _focus={{ boxShadow: 'none' }} onChange={handleLanguageToggle} value={router.locale}>
           <option value='en'>Eng</option>
           <option value='ru'>Ru</option>
         </Select>

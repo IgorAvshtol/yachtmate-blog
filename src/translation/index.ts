@@ -1,6 +1,6 @@
 export const eng = {
   header: {
-    search_btn: 'Yacht search',
+    input_placeholder: 'Yacht search',
     loginBtn: 'Log In',
     signUpBtn: 'Join'
   },
@@ -29,7 +29,7 @@ export const eng = {
 
 export const rus = {
   header: {
-    search_btn: 'Поиск яхт',
+    input_placeholder: 'Поиск яхт',
     loginBtn: 'Войти',
     signUpBtn: 'Присоединиться'
   },
@@ -53,5 +53,5 @@ export const rus = {
     time_for_reading: 'минут для прочтения',
     authors: 'Автор изображения'
   },
-  footer: 'Яхтмейт — объединение людей которые любят яхтинг, умеют ходить на своих яхтах, умею с ними обращаться, ценят ту особую атмосферу жизни на лодк'
+  footer: 'Яхтмейт — объединение людей которые любят яхтинг, умеют ходить на своих яхтах, умею с ними обращаться, ценят ту особую атмосферу жизни на лодке'
 };
