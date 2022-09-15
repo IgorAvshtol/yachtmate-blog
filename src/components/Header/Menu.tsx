@@ -5,7 +5,6 @@ import { Button, Menu as MainBlock, MenuButton, MenuItem, MenuList, } from '@cha
 
 import menuLogo from 'public/menu.png';
 import { useAppDispatch } from 'store/store';
-import { changeLanguage } from 'store/atricles/articlesSlice';
 
 export const Menu = (): JSX.Element => {
   const dispatch = useAppDispatch();
