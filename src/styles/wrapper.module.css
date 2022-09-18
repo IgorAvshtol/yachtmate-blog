@@ -1,0 +1,21 @@
+.card {
+    height: 100%;
+}
+
+.card img {
+    transition: transform .9s ease;
+    transform: scale(1);
+}
+
+.cardIsHover {
+    height: 100%;
+}
+
+.cardIsHover img {
+    transition: transform .9s ease;
+    transform: scale(1.1);
+}
+
+.cardIsHover h2 {
+    text-decoration: underline;
+}

@@ -26,7 +26,7 @@ export const SameArticles = (): JSX.Element => {
                                                                                                slug={article.attributes.slug}
                                                                                                title={article.attributes.main_title}
                                                                                                date={article.attributes.createdAt}
-                                                                                               image={article.attributes.main_image.url}/>)
+                                                                                               image={article.attributes.main_image_url}/>)
             }
           </Flex>
         </Flex>

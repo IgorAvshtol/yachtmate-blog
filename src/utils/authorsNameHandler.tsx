@@ -1,10 +1,11 @@
-export function authorsNameHandler(authorsName: string[]) {
+export function authorsNameHandler(authorsName: string) {
+  const arrayOfNames = authorsName.split(',');
   const resultString = [];
-  for (let i = 0; i < authorsName.length; i++) {
-    if (i === authorsName.length - 1) {
-      resultString.push(<u>{authorsName[i]}</u>);
+  for (let i = 0; i < arrayOfNames.length; i++) {
+    if (i === arrayOfNames.length - 1) {
+      resultString.push(<u>{arrayOfNames[i]}</u>);
     } else {
-      resultString.push(<><u>{authorsName[i]}</u> /&nbsp;</>);
+      resultString.push(<><u>{arrayOfNames[i]}</u> /&nbsp;</>);
     }
   }
   return resultString;

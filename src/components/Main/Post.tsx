@@ -1,7 +1,9 @@
 import Image from 'next/image';
 import { format } from 'date-fns';
-import { ru, enUS } from 'date-fns/locale';
-import { Box, GridItem, Link, Text } from '@chakra-ui/react';
+import { enUS, ru } from 'date-fns/locale';
+import { Box, Text } from '@chakra-ui/react';
+
+import { WrapperForHover } from '../WrapperForHover';
 
 interface IPost {
   slug: string;
@@ -15,22 +17,19 @@ export const Post = ({ image, title, date, slug, lang }: IPost): JSX.Element => 
   const correctDate = format(new Date(date), 'LLL d, yyy', { locale: lang === 'ru' ? ru : enUS });
 
   return (
-      <GridItem h='max-content' p='20px' bg='white' borderRadius='12px' _even={{ md: { mt: '30px', sm: '0' } }}
-                _odd={{ md: { mt: '-200px', sm: '0' } }} transition='all .25s ease'
-                _hover={{ transform: 'scale(1.1)' }}>
-        <Link href={`${lang}/blog/${slug}`}>
+      <Box h='max-content' p='20px' bg='white' borderRadius='12px' _even={{ xl: { mt: '30px' }, sm: { mt: '0' } }}
+           _odd={{ xl: { mt: '-200px' }, sm: { mt: '0' } }} _hover={{ boxShadow: 'md', cursor: 'pointer' }}>
+        <WrapperForHover slug={slug}>
           <Box borderRadius='8px' overflow='hidden'>
             <Image src={image} objectFit='cover' layout='responsive' width='400px' height='226px' alt='postCover'/>
           </Box>
           <Text mt='20px' mb='12px' fontSize='14px' letterSpacing='0.5px' opacity='0.5'>
             {correctDate}
           </Text>
-          <Link href={`${lang}/blog/${slug}`}>
-            <Text as='h2' fontSize={{ md: '26px', sm: '20px' }}>
-              {title}
-            </Text>
-          </Link>
-        </Link>
-      </GridItem>
+          <Text as='h2' fontSize={{ md: '26px', sm: '20px' }}>
+            {title}
+          </Text>
+        </WrapperForHover>
+      </Box>
   );
 };

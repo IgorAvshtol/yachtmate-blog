@@ -22,6 +22,7 @@
     "date-fns": "^2.29.2",
     "framer-motion": "^6.5.1",
     "html-react-parser": "^3.0.4",
+    "marked": "^4.1.0",
     "nanoid": "^4.0.0",
     "next": "^12.2.5",
     "react": "^18.2.0",
@@ -29,6 +30,7 @@
     "react-redux": "^8.0.2"
   },
   "devDependencies": {
+    "@types/marked": "^4.0.7",
     "@types/node": "^18.7.6",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",

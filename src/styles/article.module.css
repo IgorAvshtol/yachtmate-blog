@@ -1,0 +1,72 @@
+.description p {
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 180%;
+    letter-spacing: 0.02em;
+    color: #001240;
+}
+
+.paragraph h2 {
+    margin-top: 20px;
+    margin-bottom: 12px;
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 140%;
+    letter-spacing: 0.3px;
+    color: #001240;
+}
+
+.paragraph h6 {
+    margin-top: 16px;
+    margin-bottom: 30px;
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 140%;
+    text-align: center;
+    letter-spacing: 0.5px;
+    color: #001240;
+    opacity: 0.5;
+}
+
+.paragraph p {
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 180%;
+    letter-spacing: 0.02em;
+    color: #001240;
+}
+
+.paragraph img {
+    margin-top: 32px;
+    width: 100%;
+}
+
+.postscriptum h2 {
+    margin-top: 20px;
+    margin-bottom: 12px;
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 140%;
+    letter-spacing: 0.3px;
+    color: #001240;
+}
+
+.postscriptum p {
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 180%;
+    letter-spacing: 0.02em;
+    color: #001240;
+}

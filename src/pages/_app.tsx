@@ -17,6 +17,10 @@ const breakpoints = {
 
 const theme = extendTheme({
   breakpoints,
+  fonts: {
+    heading: `'Gilroy', sans-serif`,
+    body: `'Gilroy', sans-serif`,
+  },
   styles: {
     global: {
       body: {

@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import Image from 'next/image';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { nanoid } from 'nanoid';
 import parse from 'html-react-parser';
+import { marked } from 'marked';
 import { Box, Flex, Text } from '@chakra-ui/react';
 
 import { SameArticles } from 'components/SameArticles/SameArticles';
@@ -13,6 +13,7 @@ import { useAppDispatch, useAppSelector } from 'store/store';
 import { getCurrentArticle } from 'store/atricles/articlesThunk';
 import { TimeBlock } from 'components/TimeBlock';
 import { SidebarDown } from 'components/Sidebar/SidebarDown';
+import style from 'styles/article.module.css';
 
 const Article = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -51,68 +52,32 @@ const Article = (): JSX.Element => {
                   letterSpacing={{ md: '1.5px', sm: '0.3px' }} wordBreak='break-word'>
               {data?.attributes?.main_title}
             </Text>
-            {
-              data?.attributes?.main_description.map((description, index) => (
-                      <Text key={nanoid()} mt='20px' fontSize={{ md: '24px', sm: '20px' }} lineHeight='180%'>
-                        {description[index]}
-                      </Text>
-                  )
-              )
-            }
+            <Box mt='20px'>
+              <div className={style.description}>
+                {data?.attributes?.main_description && parse(marked(data?.attributes?.main_description))}
+              </div>
+            </Box>
           </Flex>
           <Box w='100%'>
-            {data?.attributes?.main_image?.url &&
-                <Image src={data?.attributes?.main_image.url} layout='responsive' width='1440px' height='547px'
+            {data?.attributes?.main_image_url &&
+                <Image src={data?.attributes?.main_image_url} layout='responsive' width='1440px' height='547px'
                        alt='cormack'/>
             }
           </Box>
           <Box w='100%'>
             <Flex direction='column' alignItems='center' bg='#F5F7FB' pb={{ md: '120px', sm: '80px' }}>
-              <PictureAuthorsBlock authors={data?.attributes?.main_image?.image_authors}/>
+              <PictureAuthorsBlock authors={data?.attributes?.main_image_authors}/>
               <Flex direction='column' mb={{ md: '56px', sm: '32px' }}
                     w={{ xl: '800px', lg: '55%', md: '80%', sm: '90%' }}>
-                {
-                  data?.attributes?.paragraphs.map(paragraph => (
-                      <Flex direction='column' key={nanoid()}>
-                        {
-                            paragraph.title &&
-                            <Text as='h2' mt={{ md: '80px', sm: '56px' }} fontWeight='600'
-                                  fontSize='32px'
-                                  lineHeight='140%'
-                                  letterSpacing='0.3px'>{paragraph.title}</Text>
-                        }
-                        {
-                            paragraph.image &&
-                            <>
-                              <Image src={paragraph.image} layout='responsive' width={800}
-                                     height={paragraph.image_height} alt={paragraph.image_alt}/>
-                              <Text mt='16px' textAlign='center' fontWeight='500' fontSize='14px' lineHeight='140%'
-                                    letterSpacing='0.5' opacity='0.5'>
-                                Author: Daniel Guerra
-                              </Text>
-                            </>
-                        }
-                        {
-                          paragraph.description.map((part, index) => (
-                                  <Text key={nanoid()} mt='32px' fontWeight='400' fontSize={{ md: '20px', sm: '18px' }}
-                                        lineHeight='180%'>
-                                    {part[index]}
-                                  </Text>
-                              )
-                          )
-                        }
-                      </Flex>
-                  ))
-                }
+                <Box mt={{ md: '56px', sm: '30px' }}>
+                  <div className={style.paragraph}>
+                    {data?.attributes?.paragraphs && parse(marked(data?.attributes?.paragraphs))}
+                  </div>
+                </Box>
                 <Box mt={{ md: '80px', sm: '30px' }}>
-                  {
-                    data?.attributes?.postscriptum.map((paragraph, index) => (
-                        <Text key={nanoid()} mt='60px' fontWeight='400' fontSize={{ md: '24px', sm: '20px' }}
-                              lineHeight='180%'>
-                          {parse(paragraph[index])}
-                        </Text>
-                    ))
-                  }
+                  <div className={style.postscriptum}>
+                    {data?.attributes?.postscriptum && parse(marked(data?.attributes?.postscriptum))}
+                  </div>
                 </Box>
               </Flex>
             </Flex>

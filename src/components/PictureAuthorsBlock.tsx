@@ -6,7 +6,7 @@ import { authorsNameHandler } from 'utils/authorsNameHandler';
 import { eng, rus } from '../translation';
 
 interface IPictureAuthorsBlock {
-  authors: string[];
+  authors: string;
 }
 
 export const PictureAuthorsBlock = ({ authors }: IPictureAuthorsBlock): JSX.Element => {
