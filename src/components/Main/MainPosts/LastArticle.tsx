@@ -5,7 +5,7 @@ import { enUS, ru } from 'date-fns/locale';
 import { Box, Flex, Text } from '@chakra-ui/react';
 
 import { useAppSelector } from 'store/store';
-import { WrapperForHover } from '../../WrapperForHover';
+import { Wrapper } from '../../Wrapper';
 
 export const LastArticle = (): JSX.Element => {
   const router = useRouter();
@@ -13,7 +13,7 @@ export const LastArticle = (): JSX.Element => {
   const { articles } = useAppSelector(state => state.articles);
 
   return (
-      <WrapperForHover slug={articles[0]?.attributes.slug}>
+      <Wrapper slug={articles[0]?.attributes.slug} borderRadius={'12px'}>
         <Flex direction='column' maxW='690px' w={{ '2xl': '690px', xl: '690px', lg: '95%', md: '95%' }}
               borderRadius='12px' bg='#F5F7FB' p='20px'>
           <Box borderRadius='8px' overflow='hidden'>
@@ -32,6 +32,6 @@ export const LastArticle = (): JSX.Element => {
             {articles[0]?.attributes?.main_title}
           </Text>
         </Flex>
-      </WrapperForHover>
+      </Wrapper>
   );
 };
