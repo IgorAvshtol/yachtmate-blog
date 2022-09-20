@@ -43,7 +43,7 @@ const Article = (): JSX.Element => {
             <SidebarDown/>
             <Flex w='100%' justifyContent='start' alignItems='center'>
               <TimeBlock createdAt={data?.attributes?.createdAt} time_to_read={data?.attributes?.time_to_read}/>
-              <Text mx='15px'>·</Text>
+              <Text mx='15px' color='#001240' opacity='0.5'>·</Text>
               <Text fontWeight='500' fontSize='16px' color='#001240' lineHeight='180%' opacity='0.5'>
                 {data?.attributes?.view}
               </Text>

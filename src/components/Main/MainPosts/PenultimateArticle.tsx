@@ -14,7 +14,8 @@ export const PenultimateArticle = (): JSX.Element => {
   const indexOfLastArticle = articles.length - 1;
 
   return (
-      <Wrapper slug={articles[indexOfLastArticle]?.attributes?.slug} borderRadius={'12px'}>
+      <Wrapper slug={articles[indexOfLastArticle]?.attributes?.slug} borderRadius={'12px'}
+               _hover={{ textDecoration: 'none' }}>
         <Flex mt={{ md: '0', sm: '12px' }} w={{ md: '330px', sm: '100%' }} direction='column' bg='#F5F7FB'
               borderRadius='12px' p='20px' h='100%'>
           <Box w='100%' borderRadius='8px' overflow='hidden'>
