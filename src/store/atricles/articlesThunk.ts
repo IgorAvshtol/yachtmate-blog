@@ -4,7 +4,7 @@ import { instance } from 'api/instance';
 import { IGetCurrentArticle } from 'interfaces';
 
 export const getArticles = createAsyncThunk('articles/getArticles', async (lang: string) => {
-  const response = await instance.get(`articles?locale=${lang}`);
+  const response = await instance.get(`articles?locale=${lang}&sort=id%3Aasc`);
   return response.data;
 });
 
