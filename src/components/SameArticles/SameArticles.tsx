@@ -8,8 +8,8 @@ import { eng, rus } from 'translation';
 
 export const SameArticles = (): JSX.Element => {
   const router = useRouter();
-  const { articles } = useAppSelector(state => state.articles);
-  const currentArticleId = router.query.index;
+  const { articles, currentArticle } = useAppSelector(state => state.articles);
+  const currentArticleId = currentArticle?.id;
   const t = router.locale === 'en' ? eng : rus;
 
   return (
