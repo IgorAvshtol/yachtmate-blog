@@ -1,8 +1,127 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { instance } from 'api/instance';
+import { instanceForAuth } from 'services/httpService';
+import { ISendCodeForConfirmation, ISetNewPassword, ISignInData, ISignUpData, ITemporaryUserData } from 'interfaces';
+import axios, { AxiosError } from 'axios';
+import { getUserFromLocalStorage, setUserFromLocalStorage } from '../../services/localStorage';
 
 export const auth = createAsyncThunk('auth/me', async () => {
-  const response = await instance.get('/me');
-  return response.data;
+  const token = getUserFromLocalStorage();
+  const response = await instanceForAuth.get('user/token/refresh',{ params: { refreshToken: token }});
+  console.log(response);
+  // return response.data;
 });
+
+export const getRegistrationCode = createAsyncThunk(
+    'auth/getRegistrationCode',
+    async (userData: ITemporaryUserData, { rejectWithValue }) => {
+      try {
+        await instanceForAuth.post('user/code', { email: userData.email });
+        return userData;
+      } catch (e) {
+        if (e instanceof AxiosError) {
+          return e.response && rejectWithValue(e.response.data.message);
+        }
+      }
+    }
+);
+
+export const sendRegistrationCode = createAsyncThunk(
+    'auth/sendRegistrationCode',
+    async (codeData: ISendCodeForConfirmation, { rejectWithValue }) => {
+      try {
+        await instanceForAuth.post('user/code/compare', codeData);
+      } catch (e) {
+        if (e instanceof AxiosError) {
+          return e.response && rejectWithValue(e.response.data.message);
+        }
+      }
+    }
+);
+
+export const registration = createAsyncThunk(
+    'auth/registration',
+    async (signUpData: ISignUpData, { rejectWithValue }) => {
+      const user = {
+        name: signUpData.name,
+        email: signUpData.email,
+        password: signUpData.password,
+      };
+      try {
+        const response = await instanceForAuth.post('user/register', user);
+        setUserFromLocalStorage(response.data.accessToken);
+        return response.data.user;
+      } catch (e) {
+        if (e instanceof AxiosError) {
+          return e.response && rejectWithValue(e.response.data.message);
+        }
+      }
+    }
+);
+
+export const login = createAsyncThunk(
+    'auth/login',
+    async (signInData: ISignInData, { rejectWithValue }) => {
+      const user = {
+        email: signInData.email,
+        password: signInData.password,
+      };
+      try {
+        const response = await instanceForAuth.post('user/auth', user);
+        console.log(response.data.refreshToken);
+        setUserFromLocalStorage(response.data.refreshToken);
+        return response.data.user;
+      } catch (e) {
+        if (e instanceof AxiosError) {
+          return e.response && rejectWithValue(e.response.data.message);
+        }
+      }
+    }
+);
+
+export const sendEmailForRecoveryPassword = createAsyncThunk(
+    'auth/recoveryPassword',
+    async (email: string, { rejectWithValue }) => {
+      const resetEmail = {
+        email: email
+      };
+      try {
+        await instanceForAuth.post('user/reset/code', resetEmail);
+        return resetEmail.email;
+      } catch (e) {
+        if (e instanceof AxiosError) {
+          return e.response && rejectWithValue(e.response.data.message);
+        }
+      }
+    }
+);
+
+export const sendConfirmationCode = createAsyncThunk(
+    'auth/receivedCode',
+    async (codeData: ISendCodeForConfirmation, { rejectWithValue }) => {
+      const receivedCode = {
+        code: codeData.code,
+        email: codeData.email
+      };
+      try {
+        await instanceForAuth.post('user/reset/compare', receivedCode);
+      } catch (e) {
+        return rejectWithValue('Code error');
+      }
+    }
+);
+
+export const setNewPassword = createAsyncThunk(
+    'auth/setNewPassword',
+    async (newPasswordData: ISetNewPassword, { rejectWithValue }) => {
+      const newPassword = {
+        password: newPasswordData.password,
+        email: newPasswordData.email
+      };
+      try {
+        await instanceForAuth.put('user/reset', newPassword);
+      } catch (e) {
+        return rejectWithValue('Error 500');
+      }
+    }
+);

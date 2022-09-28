@@ -4,21 +4,23 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import parse from 'html-react-parser';
 import { marked } from 'marked';
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, Skeleton, Text } from '@chakra-ui/react';
 
 import { SameArticles } from 'components/SameArticles/SameArticles';
 import { Sidebar } from 'components/Sidebar/Sidebar';
 import { PictureAuthorsBlock } from 'components/PictureAuthorsBlock';
 import { useAppDispatch, useAppSelector } from 'store/store';
-import { getCurrentArticle } from 'store/atricles/articlesThunk';
+import { getCurrentArticle, setOneViewForArticle } from 'store/atricles/articlesThunk';
 import { TimeBlock } from 'components/TimeBlock';
 import { SidebarDown } from 'components/Sidebar/SidebarDown';
 import style from 'styles/article.module.css';
+import { TypeLoadingStatus } from '../../interfaces';
+import { ArticlePageWithSkeleton } from '../../components/Skeleton/ArticlePageWithSkeleton';
 
 const Article = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const { query, locale } = useRouter();
-  const { currentArticle: data } = useAppSelector(state => state.articles);
+  const { currentArticle: data, loading } = useAppSelector(state => state.articles);
 
   useEffect(() => {
     const currentArticleURLData = {
@@ -27,7 +29,16 @@ const Article = (): JSX.Element => {
       id: data?.id
     };
     dispatch(getCurrentArticle(currentArticleURLData));
+    dispatch(setOneViewForArticle(data?.id));
   }, [locale, dispatch, query, data?.id]);
+
+  if (loading !== TypeLoadingStatus.IS_RESOLVED) {
+    return (
+        <>
+          <ArticlePageWithSkeleton/>
+        </>
+    );
+  }
 
   return (
       <>

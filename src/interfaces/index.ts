@@ -47,7 +47,46 @@ export interface IUserData {
   name: string,
 }
 
+export interface ISignUpData {
+  email: string;
+  name: string;
+  password: string;
+}
+
+export interface ISignInData {
+  email: string;
+  password: string;
+}
+
+export interface ISendCodeForConfirmation {
+  code: string;
+  email: string;
+}
+
+export interface ISetNewPassword {
+  password: string;
+  email: string;
+}
+
+export interface ITemporaryUserData {
+  password: string;
+  email: string;
+  name: string
+}
+
 export interface IAuthState {
   userData: IUserData;
+  temporaryUserData: ITemporaryUserData;
   loading: TypeLoadingStatus;
+  signInModalOpen: boolean;
+  signUpModalOpen: boolean;
+  recoveryPasswordModalOpen: boolean;
+  closeAllModals: boolean;
+  setReceivedCodeModalOpen: boolean;
+  setReceivedCodeForRegistrationModalOpen: boolean;
+  setNewPasswordModalOpen: boolean;
+  recoveryPasswordIsSuccessModalOpen: boolean;
+  registrationIsSuccessModalOpen: boolean;
+  emailForRecoveryPassword: string;
+  error: string;
 }

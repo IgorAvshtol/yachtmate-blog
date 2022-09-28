@@ -34,9 +34,6 @@ const theme = extendTheme({
       baseStyle: {
         fontWeight: 500,
         letterSpacing: '0.02em',
-        _hover: {
-          bgColor: 'white'
-        },
         color: 'white',
         _focus: {
           boxShadow: 'none',

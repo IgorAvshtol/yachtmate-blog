@@ -13,7 +13,7 @@ export const LastArticle = (): JSX.Element => {
   const { articles } = useAppSelector(state => state.articles);
 
   return (
-      <Wrapper slug={articles[0]?.attributes.slug} borderRadius={'12px'}>
+      <Wrapper slug={articles[0]?.attributes.slug} borderRadius='12px' _hover={{ textDecoration: 'none' }}>
         <Flex h='100%' direction='column' maxW='690px' w={{ '2xl': '690px', xl: '690px', lg: '95%', md: '95%' }}
               borderRadius='12px' bg='#F5F7FB' p='20px'>
           <Box borderRadius='8px' overflow='hidden'>
