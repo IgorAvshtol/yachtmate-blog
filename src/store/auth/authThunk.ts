@@ -1,15 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
 
-import { instanceForAuth } from 'services/httpService';
+import { instanceForAuth } from 'api';
 import { ISendCodeForConfirmation, ISetNewPassword, ISignInData, ISignUpData, ITemporaryUserData } from 'interfaces';
-import axios, { AxiosError } from 'axios';
-import { getUserFromLocalStorage, setUserFromLocalStorage } from '../../services/localStorage';
+import { setUserFromLocalStorage } from 'services/localStorage';
 
 export const auth = createAsyncThunk('auth/me', async () => {
-  const token = getUserFromLocalStorage();
-  const response = await instanceForAuth.get('user/token/refresh',{ params: { refreshToken: token }});
-  console.log(response);
-  // return response.data;
+  const response = await instanceForAuth.get('user/token/refresh');
+  return response.data.user;
 });
 
 export const getRegistrationCode = createAsyncThunk(
@@ -68,8 +66,7 @@ export const login = createAsyncThunk(
       };
       try {
         const response = await instanceForAuth.post('user/auth', user);
-        console.log(response.data.refreshToken);
-        setUserFromLocalStorage(response.data.refreshToken);
+        setUserFromLocalStorage(response.data.accessToken);
         return response.data.user;
       } catch (e) {
         if (e instanceof AxiosError) {

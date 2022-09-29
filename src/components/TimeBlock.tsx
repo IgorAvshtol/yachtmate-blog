@@ -3,7 +3,7 @@ import { Flex, Text } from '@chakra-ui/react';
 import { format } from 'date-fns';
 import { enUS, ru } from 'date-fns/locale';
 
-import { eng, rus } from '../translation';
+import { eng, rus } from 'translation';
 
 interface ITimeBlock {
   createdAt: string;

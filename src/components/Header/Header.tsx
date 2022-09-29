@@ -46,7 +46,7 @@ export const Header = (): JSX.Element => {
           <Flex w='598px' justifyContent='end' display={{ md: 'flex', sm: 'none' }}>
             <Button w='147px' h='44px' paddingX='10px' borderColor='transparent' borderRadius={22} bg='#F5F6F8'
                     fontWeight='500' color='#001240' letterSpacing='0.02em' onClick={onSearchYachtBtnClickHandler}>
-              {t.header.input_placeholder}
+              {t.header.search_button}
             </Button>
             {
                 userData?.email &&
@@ -56,16 +56,12 @@ export const Header = (): JSX.Element => {
                     <Image src={bell} alt='bell'/>
                   </Button>
                   <Link href='/' mx='26px' h='44px' w='44px' rounded='full'>
-
-                      <Image src={avatar} alt='avatar'/>
-
+                    <Image src={avatar} alt='avatar'/>
                   </Link>
-                  {/*<UserMenu/>*/}
                   <Button justifyContent='center' alignItems='center' mr='26px' p='0' h='44px' w='44px' rounded='full'
                           bg='#F5F6F8'>
                     <Image src={message} alt='message'/>
                   </Button>
-
                 </Flex>
             }
             {

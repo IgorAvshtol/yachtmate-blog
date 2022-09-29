@@ -22,10 +22,14 @@ export const SidebarDown = (): JSX.Element => {
   const arrayOfLikes = data?.attributes?.hasLiked;
 
   const onLikeClickHandler = () => {
+    const likeData = {
+      articleId: data?.id,
+      userId: userData?.id
+    };
     if (arrayOfLikes?.includes(userData.id)) {
-      dispatch(setUnlike(data?.id));
+      dispatch(setUnlike(likeData));
     } else {
-      dispatch(setLike(data?.id));
+      dispatch(setLike(likeData));
     }
   };
 

@@ -46,29 +46,18 @@ export const articleReducer = createSlice({
         .addCase(getCurrentArticle.rejected, (state) => {
           state.loading = TypeLoadingStatus.IS_REJECTED;
         })
-        .addCase(setLike.pending, (state) => {
-          state.loading = TypeLoadingStatus.IS_PENDING;
-        })
         .addCase(setLike.fulfilled.type,
             (state, action: PayloadAction<IAttributes>) => {
               state.currentArticle.attributes = action.payload;
               state.loading = TypeLoadingStatus.IS_RESOLVED;
             }
         )
-        .addCase(setLike.rejected, (state) => {
-          state.loading = TypeLoadingStatus.IS_REJECTED;
-        })
-        .addCase(setUnlike.pending, (state) => {
-          state.loading = TypeLoadingStatus.IS_PENDING;
-        })
         .addCase(setUnlike.fulfilled.type,
             (state, action: PayloadAction<IAttributes>) => {
               state.currentArticle.attributes = action.payload;
               state.loading = TypeLoadingStatus.IS_RESOLVED;
             }
-        )
-        .addCase(setUnlike.rejected, (state) => {
-          state.loading = TypeLoadingStatus.IS_REJECTED;
-        });
+        );
+
   },
 });

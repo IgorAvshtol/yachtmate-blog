@@ -73,19 +73,19 @@ export const authReducer = createSlice({
   },
   extraReducers: (builder) => {
     builder
-        // .addCase(auth.pending, (state) => {
-        //   state.loading = TypeLoadingStatus.IS_PENDING;
-        // })
-        // .addCase(
-        //     auth.fulfilled.type,
-        //     (state, action: PayloadAction<IUserData>) => {
-        //       state.userData = action.payload;
-        //       state.loading = TypeLoadingStatus.IS_RESOLVED;
-        //     }
-        // )
-        // .addCase(auth.rejected, (state) => {
-        //   state.loading = TypeLoadingStatus.IS_REJECTED;
-        // })
+        .addCase(auth.pending, (state) => {
+          state.loading = TypeLoadingStatus.IS_PENDING;
+        })
+        .addCase(
+            auth.fulfilled.type,
+            (state, action: PayloadAction<IUserData>) => {
+              state.userData = action.payload;
+              state.loading = TypeLoadingStatus.IS_RESOLVED;
+            }
+        )
+        .addCase(auth.rejected, (state) => {
+          state.loading = TypeLoadingStatus.IS_REJECTED;
+        })
         .addCase(getRegistrationCode.pending, (state) => {
           state.loading = TypeLoadingStatus.IS_PENDING;
         })
@@ -194,8 +194,5 @@ export const {
   closeAllModals,
   recoveryPasswordModalIsOpen,
   confirmRegistrationUserModalIsOpen,
-  resetPasswordModalIsOpen,
-  setNewPasswordModalIsOpen,
-  recoveryPasswordIsSuccessModalIsOpen,
-  registrationIsSuccessModalIsOpen
+  resetPasswordModalIsOpen
 } = authReducer.actions;

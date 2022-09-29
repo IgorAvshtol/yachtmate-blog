@@ -30,9 +30,9 @@ export const SameArticles = (): JSX.Element => {
             }
           </Flex>
         </Flex>
-        <Button mt='48px' w='147px' h='56px' borderRadius='28px' bg='rgba(0, 111, 19, 0.05)' color='#001240'
+        <Button mt='48px' w='147px' h='56px' borderRadius='28px' bg='rgba(0, 111, 19, 0.04)' color='#001240'
                 zIndex='10'>
-          {t.readBtn}
+          {t.moreBtn}
         </Button>
       </Flex>
   );

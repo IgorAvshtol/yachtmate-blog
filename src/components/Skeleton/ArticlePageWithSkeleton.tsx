@@ -1,13 +1,10 @@
 import Head from 'next/head';
 import { Box, Flex, Skeleton } from '@chakra-ui/react';
 
-import { Sidebar } from '../Sidebar/Sidebar';
-import { SidebarDown } from '../Sidebar/SidebarDown';
-import { SameArticles } from '../SameArticles/SameArticles';
 import { useAppSelector } from 'store/store';
 
 export const ArticlePageWithSkeleton = (): JSX.Element => {
-  const { currentArticle: data, loading } = useAppSelector(state => state.articles);
+  const { currentArticle: data } = useAppSelector(state => state.articles);
 
   return (
       <>
@@ -19,8 +16,6 @@ export const ArticlePageWithSkeleton = (): JSX.Element => {
         <Flex direction='column' w='100%' alignItems='center' bg='#ffffff'>
           <Flex direction='column' alignItems='center' mt={{ md: '65px', sm: '24px' }} mb={{ md: '64px', sm: '32px' }}
                 w={{ xl: '800px', lg: '55%', md: '80%', sm: '90%' }}>
-            <Sidebar/>
-            <SidebarDown/>
             <Flex w='100%' justifyContent='start' alignItems='center'>
               <Skeleton w='400px' h='30px'/>
             </Flex>
@@ -40,7 +35,6 @@ export const ArticlePageWithSkeleton = (): JSX.Element => {
               </Flex>
             </Flex>
           </Box>
-          <SameArticles/>
         </Flex>
       </>
   );

@@ -2,7 +2,7 @@ import React, { ForwardedRef, forwardRef, ReactNode, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Box, Link, LinkProps } from '@chakra-ui/react';
 
-import style from '../styles/wrapper.module.css';
+import style from 'styles/wrapper.module.css';
 
 interface IWrapper extends LinkProps {
   children: ReactNode,

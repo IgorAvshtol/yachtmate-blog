@@ -19,8 +19,8 @@ export const FormCustomInput = forwardRef<HTMLInputElement, InputProps>((props, 
       <InputGroup>
         {
           label === 'password' ?
-              <Flex pos='relative' mt='12px' w='100%' h='64px'>
-                <Input label={label} ref={ref} {...inputProps} w='100%' h='64px' p='20px 24px'
+              <Flex pos='relative' mt='12px' w='100%' h='58px'>
+                <Input label={label} ref={ref} {...inputProps} w='100%' h='58px' p='20px 24px'
                        bg='rgba(0, 18, 64, 0.04)'
                        borderRadius='32px' borderColor='transparent' focusBorderColor='transparent'
                        _hover={{ borderColor: 'transparent' }}
@@ -31,7 +31,7 @@ export const FormCustomInput = forwardRef<HTMLInputElement, InputProps>((props, 
                 </InputRightElement>
               </Flex>
               :
-              <Input label={label} ref={ref}{...inputProps} w='100%' h='64px' p='20px 24px' bg='rgba(0, 18, 64, 0.04)'
+              <Input label={label} ref={ref}{...inputProps} w='100%' h='58px' p='20px 24px' bg='rgba(0, 18, 64, 0.04)'
                      borderRadius='32px' borderColor='transparent' focusBorderColor='transparent'
                      _hover={{ borderColor: 'transparent' }}
               />

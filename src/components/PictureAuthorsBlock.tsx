@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import { Flex, Text } from '@chakra-ui/react';
 
 import { authorsNameHandler } from 'utils/authorsNameHandler';
-import { eng, rus } from '../translation';
+import { eng, rus } from 'translation';
 
 interface IPictureAuthorsBlock {
   authors: string;

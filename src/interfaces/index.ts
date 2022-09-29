@@ -38,7 +38,6 @@ export interface IArticlesState {
 export interface IGetCurrentArticle {
   slug: string;
   lang: string;
-  id: number;
 }
 
 export interface IUserData {
@@ -72,6 +71,11 @@ export interface ITemporaryUserData {
   password: string;
   email: string;
   name: string
+}
+
+export interface ILikeData {
+  articleId: number;
+  userId: string;
 }
 
 export interface IAuthState {

@@ -1,8 +1,8 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
-import { Provider } from 'react-redux';
 
 import { Layout } from 'components/Layout';
 import { store } from 'store/store';
