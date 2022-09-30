@@ -56,7 +56,7 @@ export const SetNewPassword = (): JSX.Element => {
                 })}
                 label='password'
                 placeholder={t.placeholders.enter_pass}/>
-            <RepeatPasswordInput repeatPassword={repeatPassword} setRepeatPassword={setRepeatPassword}/>
+            <RepeatPasswordInput valueIsWrong={watch('password') !== repeatPassword} repeatPassword={repeatPassword} setRepeatPassword={setRepeatPassword}/>
             {errors?.password?.message && <Text color='red' textAlign='center'>{errors.password.message}</Text>}
             {errors.password && errors.password.type === 'minLength' &&
                 <Text color='red' textAlign='center'>{t.set_new_pas.pass_length_error}</Text>

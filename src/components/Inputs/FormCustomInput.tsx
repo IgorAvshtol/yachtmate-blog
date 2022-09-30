@@ -1,17 +1,18 @@
 import { forwardRef, useState } from 'react';
 import Image from 'next/image';
 import { InputElementProps, InputGroup, InputRightElement } from '@chakra-ui/input';
-import { Flex, Input } from '@chakra-ui/react';
+import { Flex, Input, Text, Box } from '@chakra-ui/react';
 
 import eye from 'public/eye.png';
 import eyeOff from 'public/eye-off.png';
 
 interface InputProps extends InputElementProps {
   label: string;
+  isInvalid?: boolean;
 }
 
 export const FormCustomInput = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const { label, ...inputProps } = props;
+  const { label,isInvalid, ...inputProps } = props;
   const [show, setShow] = useState<boolean>(false);
   const handleClick = () => setShow(!show);
 
@@ -31,10 +32,14 @@ export const FormCustomInput = forwardRef<HTMLInputElement, InputProps>((props, 
                 </InputRightElement>
               </Flex>
               :
-              <Input label={label} ref={ref}{...inputProps} w='100%' h='58px' p='20px 24px' bg='rgba(0, 18, 64, 0.04)'
-                     borderRadius='32px' borderColor='transparent' focusBorderColor='transparent'
-                     _hover={{ borderColor: 'transparent' }}
-              />
+              <Box w='100%'>
+                <Input label={label} ref={ref} {...inputProps} w='100%' h='58px' p='20px 24px'
+                       bg='rgba(0, 18, 64, 0.04)'
+                       borderRadius='32px' borderColor='transparent' focusBorderColor='transparent'
+                       _hover={{ borderColor: 'transparent' }} isInvalid={isInvalid} errorBorderColor='#FF5353'
+                />
+                {isInvalid && <Text ml='20px' mt='5px' fontSize='12px' color='#FF5353'>Code is wrong</Text>}
+              </Box>
         }
       </InputGroup>
   );

@@ -6,7 +6,7 @@ import {
   login,
   registration,
   sendConfirmationCode,
-  sendEmailForRecoveryPassword,
+  sendEmailForRecoveryPassword, sendRegistrationCode,
   setNewPassword
 } from './authThunk';
 
@@ -117,6 +117,22 @@ export const authReducer = createSlice({
             }
         )
         .addCase(registration.rejected.type, (state, action: PayloadAction<string>) => {
+          state.loading = TypeLoadingStatus.IS_REJECTED;
+          state.error = action.payload;
+        })
+        .addCase(sendRegistrationCode.pending, (state) => {
+          state.loading = TypeLoadingStatus.IS_PENDING;
+        })
+        .addCase(
+            sendRegistrationCode.fulfilled.type,
+            (state) => {
+              state.loading = TypeLoadingStatus.IS_RESOLVED;
+              state.setReceivedCodeForRegistrationModalOpen = false;
+              state.registrationIsSuccessModalOpen = true;
+              state.error = '';
+            }
+        )
+        .addCase(sendRegistrationCode.rejected.type, (state, action: PayloadAction<string>) => {
           state.loading = TypeLoadingStatus.IS_REJECTED;
           state.error = action.payload;
         })

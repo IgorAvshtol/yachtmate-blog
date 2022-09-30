@@ -21,10 +21,16 @@ export const SignUpForm = (): JSX.Element => {
   const { loading } = useAppSelector(state => state.auth);
   const [acceptConditions, setAcceptConditions] = useState<boolean>(false);
   const [repeatPassword, setRepeatPassword] = useState<string>('');
+  const [wrongValue, setWrongValue] = useState<boolean>(false);
   const { register, handleSubmit } = useForm<ISignUpData>();
 
   const onSubmit: SubmitHandler<ISignUpData> = data => {
-    dispatch(getRegistrationCode(data));
+    if (data.password === repeatPassword) {
+      setWrongValue(false);
+      dispatch(getRegistrationCode(data));
+    } else {
+      setWrongValue(true);
+    }
   };
 
   const acceptTermHandler = () => setAcceptConditions(!acceptConditions);
@@ -51,7 +57,8 @@ export const SignUpForm = (): JSX.Element => {
           <FormCustomInput label='email' {...register('email')} mt='32px' placeholder={t.placeholders.email}/>
           <FormCustomInput label='name' {...register('name')} mt='12px' placeholder={t.placeholders.name}/>
           <FormCustomInput label='password' {...register('password')} placeholder={t.placeholders.enter_pass}/>
-          <RepeatPasswordInput repeatPassword={repeatPassword} setRepeatPassword={setRepeatPassword}/>
+          <RepeatPasswordInput valueIsWrong={wrongValue} repeatPassword={repeatPassword}
+                               setRepeatPassword={setRepeatPassword}/>
           <Flex w='80%' mt='30px'>
             <Checkbox fontSize='16px' lineHeight='20px' color='#00124080'
                       isChecked={acceptConditions} onChange={acceptTermHandler}>

@@ -21,7 +21,7 @@ export const EnterReceivedCodeForRegistration = (): JSX.Element => {
   const t = router.locale === 'en' ? eng : rus;
   const dispatch = useAppDispatch();
   const [seconds, setSeconds] = useState<number>(45);
-  const { emailForRecoveryPassword, temporaryUserData, } = useAppSelector(state => state.auth);
+  const { emailForRecoveryPassword, temporaryUserData, error } = useAppSelector(state => state.auth);
   const { register, handleSubmit } = useForm<IResetPassword>();
 
   const onSubmit: SubmitHandler<IResetPassword> = data => {
@@ -30,8 +30,8 @@ export const EnterReceivedCodeForRegistration = (): JSX.Element => {
         code: data.code,
         email: temporaryUserData?.email
       };
-      dispatch(sendRegistrationCode(recoveryCodeData));
-      temporaryUserData && dispatch(registration(temporaryUserData));
+     dispatch(sendRegistrationCode(recoveryCodeData));
+     temporaryUserData && dispatch(registration(temporaryUserData));
     } catch (e) {
       dispatch(isError('Code is wrong'));
     }
@@ -69,7 +69,7 @@ export const EnterReceivedCodeForRegistration = (): JSX.Element => {
           {t.enter_code_for_signup.description}: {emailForRecoveryPassword}
         </Text>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <FormCustomInput label='code' {...register('code')} mt='32px' placeholder={t.placeholders.enter_code}/>
+          <FormCustomInput label='code' isInvalid={!!error} {...register('code')} mt='32px' placeholder={t.placeholders.enter_code}/>
           <Flex alignItems='flex-end'>
             <Text mt='12px' fontWeight='500' fontSize='14px' lineHeight='140%' letterSpacing='0.7px'
                   color='rgba(0, 18, 64, 0.6)'>

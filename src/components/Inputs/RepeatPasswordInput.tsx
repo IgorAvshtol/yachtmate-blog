@@ -11,9 +11,10 @@ import { eng, rus } from 'translation';
 interface IRepeatPasswordInput {
   repeatPassword: string;
   setRepeatPassword: (value: string) => void;
+  valueIsWrong?: boolean;
 }
 
-export const RepeatPasswordInput = ({ repeatPassword, setRepeatPassword }: IRepeatPasswordInput): JSX.Element => {
+export const RepeatPasswordInput = ({ repeatPassword, setRepeatPassword, valueIsWrong }: IRepeatPasswordInput): JSX.Element => {
   const router = useRouter();
   const t = router.locale === 'en' ? eng : rus;
   const [show, setShow] = useState<boolean>(false);
@@ -25,7 +26,7 @@ export const RepeatPasswordInput = ({ repeatPassword, setRepeatPassword }: IRepe
       <>
         <InputGroup pos='relative' mt='12px' w='100%' h='58px'>
           <Input w='100%' h='58px' p='20px 24px' bg='rgba(0, 18, 64, 0.04)' borderRadius='32px'
-                 borderColor='transparent'
+                 borderColor='transparent' isInvalid={valueIsWrong} errorBorderColor='#FF5353'
                  placeholder={t.placeholders.enter_pass_again} value={repeatPassword} focusBorderColor='transparent'
                  _hover={{ borderColor: 'transparent' }} type={show ? 'text' : 'password'}
                  onChange={repeatPasswordFieldHandler}
