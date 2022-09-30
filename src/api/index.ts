@@ -13,6 +13,7 @@ export const instanceForAuth = axios.create({
   headers: {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Credentials':true,
     'Access-Control-Allow-Headers': 'Authorization, X-Custom-Header',
     'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT',
     mode: 'cors',
