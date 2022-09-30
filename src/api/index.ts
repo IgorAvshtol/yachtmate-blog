@@ -12,7 +12,7 @@ export const instanceForAuth = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL_FOR_AUTH,
   headers: {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_BASE_URL_FOR_AUTH as string,
+    'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Authorization, X-Custom-Header',
     'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT',
     mode: 'cors',
