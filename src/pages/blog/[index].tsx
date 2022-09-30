@@ -14,6 +14,7 @@ import { TimeBlock } from 'components/TimeBlock';
 import style from 'styles/article.module.css';
 import { TypeLoadingStatus } from 'interfaces';
 import { ArticlePageWithSkeleton } from 'components/Skeleton/ArticlePageWithSkeleton';
+import { Sidebar } from 'components/Sidebar/Sidebar';
 
 const Article = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -49,6 +50,7 @@ const Article = (): JSX.Element => {
                 w={{ xl: '800px', lg: '55%', md: '80%', sm: '90%' }}>
             <Flex w='100%' justifyContent='start' alignItems='center'>
               <TimeBlock createdAt={data?.attributes?.createdAt} time_to_read={data?.attributes?.time_to_read}/>
+              <Sidebar/>
               <Text mx='15px' color='#001240' opacity='0.5'>·</Text>
               <Text fontWeight='500' fontSize='16px' color='#001240' lineHeight='180%' opacity='0.5'>
                 {data?.attributes?.view}

@@ -11,12 +11,11 @@ interface IButton {
 export const ButtonMenu = ({ image, menuItems, label }: IButton): JSX.Element => {
   return (
       <MainBlock>
-        <MenuButton as={Button} justifyContent='space-between' alignItems='center' bg='transparent' h='90px'>
-          <Flex pos='relative' alignItems='center' justifyContent='center' color='#001240' w='48px' h='48px'
-                border='2px solid #F5F6F8' borderRadius='50%'>
-            <Flex>
-              <Image src={image} alt='menu'/>
-            </Flex>
+        <MenuButton as={Button} pos='relative' display='flex' alignItems='center' justifyContent='center' bg='#ffffff'
+                    border='2px solid #F5F6F8' borderRadius='50%' w='48px' minH='48px'
+                    _focus={{ border: '2px solid #F5F6F8' }}>
+          <Flex w='24px' pos='absolute' right='11px' top='10px'>
+            <Image src={image} alt='menu'/>
           </Flex>
           <Text mt='5px' fontSize='16px' opacity='0.5'>{label}</Text>
         </MenuButton>
