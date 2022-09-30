@@ -7,4 +7,12 @@ module.exports = {
     locales: ['en', 'ru'],
     defaultLocale: 'en',
   },
+  async rewrites() {
+    return [
+      {
+        source: '/api',
+        destination: 'https://backend.test.yachtmate.club/api'
+      },
+    ];
+  },
 };
