@@ -4,8 +4,7 @@ export const getUserFromLocalStorage = () => {
   const isServer = typeof window === "undefined";
   if (!isServer) {
     try {
-      const data = localStorage.getItem(NEXT_APP_LOCALSTORAGE_KEY);
-      return data && JSON.parse(data);
+      return localStorage.getItem(NEXT_APP_LOCALSTORAGE_KEY);
     } catch (e) {
       console.log('JSON is not valid');
     }
@@ -13,5 +12,5 @@ export const getUserFromLocalStorage = () => {
 };
 
 export const setUserFromLocalStorage = (token: string) => {
-  return localStorage.setItem(NEXT_APP_LOCALSTORAGE_KEY, JSON.stringify(token));
+  return localStorage.setItem(NEXT_APP_LOCALSTORAGE_KEY, token);
 };

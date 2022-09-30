@@ -6,13 +6,5 @@ module.exports = {
   i18n: {
     locales: ['en', 'ru'],
     defaultLocale: 'en',
-  },
-  async rewrites() {
-    return [
-      {
-        source: 'https://blog.test.yachtmate.club',
-        destination: 'http://localhost:3000'
-      },
-    ];
-  },
+  }
 };
