@@ -3,8 +3,7 @@ import { useRouter } from 'next/router';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Button, Checkbox, Flex, Text } from '@chakra-ui/react';
 
-import { FormCustomInput } from 'components/Inputs/FormCustomInput';
-import { RepeatPasswordInput } from '../Inputs/RepeatPasswordInput';
+import { FormCustomInput } from 'components/Input/FormCustomInput';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import { signInModalIsOpen, signUpModalIsOpen } from 'store/auth/authSlice';
 import { PrivacyAndConditions } from '../PrivacyAndConditions';
@@ -18,19 +17,17 @@ export const SignUpForm = (): JSX.Element => {
   const router = useRouter();
   const t = router.locale === 'en' ? eng : rus;
   const dispatch = useAppDispatch();
-  const { loading } = useAppSelector(state => state.auth);
+  const { loading, error } = useAppSelector(state => state.auth);
   const [acceptConditions, setAcceptConditions] = useState<boolean>(false);
-  const [repeatPassword, setRepeatPassword] = useState<string>('');
-  const [wrongValue, setWrongValue] = useState<boolean>(false);
-  const { register, handleSubmit } = useForm<ISignUpData>();
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<ISignUpData>();
 
   const onSubmit: SubmitHandler<ISignUpData> = data => {
-    if (data.password === repeatPassword) {
-      setWrongValue(false);
-      dispatch(getRegistrationCode(data));
-    } else {
-      setWrongValue(true);
-    }
+    const registerData: ISignUpData = {
+      email: data.email,
+      name: data.name,
+      password: data.password
+    };
+    dispatch(getRegistrationCode(registerData));
   };
 
   const acceptTermHandler = () => setAcceptConditions(!acceptConditions);
@@ -56,15 +53,36 @@ export const SignUpForm = (): JSX.Element => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormCustomInput label='email' {...register('email')} mt='32px' placeholder={t.placeholders.email}/>
           <FormCustomInput label='name' {...register('name')} mt='12px' placeholder={t.placeholders.name}/>
-          <FormCustomInput label='password' {...register('password')} placeholder={t.placeholders.enter_pass}/>
-          <RepeatPasswordInput valueIsWrong={wrongValue} repeatPassword={repeatPassword}
-                               setRepeatPassword={setRepeatPassword}/>
+          <FormCustomInput
+              {...register('password', {
+                minLength: {
+                  value: 8,
+                  message: `${t.set_new_pas.pass_length_error}`
+                }
+              })}
+              label='password'
+              isInvalid={!!errors.password}
+              placeholder={t.placeholders.enter_pass}/>
+          {errors.password && <Text mt='px' color='red' textAlign='center'>{errors.password.message}</Text>}
+          <FormCustomInput
+              {...register('password_repeat', {
+                validate: value =>
+                    value === watch('password') || `${t.set_new_pas.dont_match_error}`
+              })}
+              label='password'
+              isInvalid={!!errors.password_repeat}
+              placeholder={t.placeholders.enter_pass_again}/>
+          {errors.password_repeat &&
+              <Text mt='px' color='red' textAlign='center'>{errors.password_repeat.message}</Text>}
           <Flex w='80%' mt='30px'>
             <Checkbox fontSize='16px' lineHeight='20px' color='#00124080'
                       isChecked={acceptConditions} onChange={acceptTermHandler}>
               {t.registration_modal.accept_conditions}
             </Checkbox>
           </Flex>
+          <Text ml='20px' mt='5px' fontSize='12px' color='#FF5353' textAlign='center'>
+            {error}
+          </Text>
           {
               loading !== TypeLoadingStatus.IS_PENDING &&
               <Button disabled={!acceptConditions} type='submit' mt='20px' w='100%' h='56px' p='20px 24px' bg='#0250C8'

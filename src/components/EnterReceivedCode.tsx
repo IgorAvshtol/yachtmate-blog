@@ -5,7 +5,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { Button, Flex, Text } from '@chakra-ui/react';
 
 import { useAppDispatch, useAppSelector } from 'store/store';
-import { FormCustomInput } from './Inputs/FormCustomInput';
+import { FormCustomInput } from './Input/FormCustomInput';
 import { isError, recoveryPasswordModalIsOpen, resetPasswordModalIsOpen, } from 'store/auth/authSlice';
 import back from 'public/back.png';
 import { Timer } from './Timer';
@@ -21,7 +21,7 @@ export const EnterReceivedCode = (): JSX.Element => {
   const t = router.locale === 'en' ? eng : rus;
   const dispatch = useAppDispatch();
   const [seconds, setSeconds] = useState<number>(45);
-  const { emailForRecoveryPassword, userData, } = useAppSelector(state => state.auth);
+  const { emailForRecoveryPassword, userData, error } = useAppSelector(state => state.auth);
   const { register, handleSubmit } = useForm<IResetPassword>();
 
   const onSubmit: SubmitHandler<IResetPassword> = data => {
@@ -39,6 +39,7 @@ export const EnterReceivedCode = (): JSX.Element => {
   const onBackBtnClickHandler = () => {
     dispatch(resetPasswordModalIsOpen());
     dispatch(recoveryPasswordModalIsOpen());
+    dispatch(isError(''));
   };
 
   const onSendAgainBtnClickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -67,7 +68,8 @@ export const EnterReceivedCode = (): JSX.Element => {
           {t.enter_code_for_recovery_pas.description}
         </Text>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <FormCustomInput label='code' {...register('code')} mt='32px' placeholder={t.placeholders.enter_code}/>
+          <FormCustomInput label='code' isInvalid={!!error} {...register('code')} mt='32px'
+                           placeholder={t.placeholders.enter_code}/>
           <Flex alignItems='flex-end'>
             <Text mt='12px' fontWeight='500' fontSize='14px' lineHeight='140%' letterSpacing='0.7px'
                   color='rgba(0, 18, 64, 0.6)'>

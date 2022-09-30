@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Button, Flex, Text } from '@chakra-ui/react';
 
-import { FormCustomInput } from 'components/Inputs/FormCustomInput';
+import { FormCustomInput } from 'components/Input/FormCustomInput';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import { recoveryPasswordModalIsOpen, signInModalIsOpen, signUpModalIsOpen } from 'store/auth/authSlice';
 import { PrivacyAndConditions } from '../PrivacyAndConditions';

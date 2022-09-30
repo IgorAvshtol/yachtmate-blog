@@ -70,7 +70,8 @@ export const eng = {
   recovery_pas: {
     title: 'Restore password',
     description: 'Enter your email to recover your password.We will send you an email with recovery instructions',
-    send_btn: 'Send'
+    send_btn: 'Send',
+    required: 'Required'
   },
   enter_code_for_recovery_pas: {
     go_back_btn: 'Go back',
@@ -80,14 +81,15 @@ export const eng = {
     send_again_btn: 'Send again',
     send_again: 'Send again in',
     seconds: 'sec',
-    send_btn: 'Send'
+    send_btn: 'Send',
+    wrong_code: 'Wrong code'
   },
   set_new_pas: {
     title: 'Enter new password',
     description: 'Enter a new and strong password of at least 8 characters',
     save_btn: 'Save',
     dont_match_error: `Passwords don't match`,
-    pass_length_error: 'Password length password'
+    pass_length_error: 'Password length is wrong'
   },
   recovery_pas_is_success: {
     congratulations: 'Success!',
@@ -168,7 +170,8 @@ export const rus = {
   recovery_pas: {
     title: 'Восстановить пароль',
     description: 'Введите адрес электронной почты, чтобы восстановить пароль. Мы отправим вам электронное письмо с инструкциями по восстановлению',
-    send_btn: 'Отправить'
+    send_btn: 'Отправить',
+    required: 'Обязательное поле'
   },
   enter_code_for_recovery_pas: {
     go_back_btn: 'Вернуться',
@@ -178,7 +181,8 @@ export const rus = {
     send_again_btn: 'Отправить повторно',
     send_again: 'Отправить снова через',
     seconds: 'сек.',
-    send_btn: 'Отправить'
+    send_btn: 'Отправить',
+    wrong_code: 'Неверный код'
   },
   set_new_pas: {
     title: 'Новый пароль',

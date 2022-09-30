@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Button, Flex, Text } from '@chakra-ui/react';
+import { Button, Flex, Skeleton, Text } from '@chakra-ui/react';
 
 import share from 'public/share.png';
 import dislike from 'public/heart.png';
@@ -7,16 +7,16 @@ import like from 'public/like.png';
 import { ButtonMenu } from './ButtonMenu';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import { setLike, setUnlike } from 'store/atricles/articlesThunk';
+import { TypeLoadingStatus } from 'interfaces';
 
 const sideBarData = [
-  // { id: 1, items: ['Delete', 'Edit'], image: more },
   { id: 2, items: ['vk', 'instagram'], image: share },
 ];
 
 export const Sidebar = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const { userData } = useAppSelector(state => state.auth);
-  const { currentArticle: data } = useAppSelector(state => state.articles);
+  const { currentArticle: data, loading } = useAppSelector(state => state.articles);
 
   const arrayOfLikes = data?.attributes?.hasLiked;
 
@@ -45,6 +45,7 @@ export const Sidebar = (): JSX.Element => {
                 <Image src={arrayOfLikes?.includes(userData.id) ? like : dislike} alt='like'/>
               </Flex>
             </Button>
+            {loading === TypeLoadingStatus.IS_PENDING && <Skeleton mt='5px' w='20px' h='20px'/>}
             <Text fontSize='16px' color='#777E90'>{arrayOfLikes?.length}</Text>
           </Flex>
         </Flex>

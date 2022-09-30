@@ -1,12 +1,10 @@
-import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Box, Button, Flex, Text } from '@chakra-ui/react';
 
 import { useAppDispatch, useAppSelector } from 'store/store';
-import { FormCustomInput } from './Inputs/FormCustomInput';
+import { FormCustomInput } from './Input/FormCustomInput';
 import { isError } from 'store/auth/authSlice';
-import { RepeatPasswordInput } from './Inputs/RepeatPasswordInput';
 import { TypeLoadingStatus } from '../interfaces';
 import { Spinner } from './Spinner';
 import { setNewPassword } from 'store/auth/authThunk';
@@ -14,16 +12,17 @@ import { eng, rus } from 'translation';
 
 interface ISetNewPassword {
   password: string;
+  password_repeat: string;
 }
 
 export const SetNewPassword = (): JSX.Element => {
   const router = useRouter();
   const t = router.locale === 'en' ? eng : rus;
   const dispatch = useAppDispatch();
-  const [repeatPassword, setRepeatPassword] = useState<string>('');
 
   const { loading, emailForRecoveryPassword } = useAppSelector(state => state.auth);
   const { register, handleSubmit, watch, formState: { errors } } = useForm<ISetNewPassword>();
+
   const onSubmit: SubmitHandler<ISetNewPassword> = data => {
     try {
       const newPasswordData = {
@@ -43,28 +42,33 @@ export const SetNewPassword = (): JSX.Element => {
               color='rgba(0, 18, 64, 0.6)'>
           {t.set_new_pas.description}
         </Text>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={e => e.preventDefault()}>
           <Box mt='32px'>
             <FormCustomInput
                 {...register('password', {
-                  minLength: 8,
-                  validate: () => {
-                    if (watch('password') !== repeatPassword) {
-                      return `${t.set_new_pas.dont_match_error}`;
-                    }
+                  minLength: {
+                    value: 8,
+                    message: `${t.set_new_pas.pass_length_error}`
                   }
                 })}
                 label='password'
                 placeholder={t.placeholders.enter_pass}/>
-            <RepeatPasswordInput valueIsWrong={watch('password') !== repeatPassword} repeatPassword={repeatPassword} setRepeatPassword={setRepeatPassword}/>
-            {errors?.password?.message && <Text color='red' textAlign='center'>{errors.password.message}</Text>}
-            {errors.password && errors.password.type === 'minLength' &&
-                <Text color='red' textAlign='center'>{t.set_new_pas.pass_length_error}</Text>
-            }
+            {errors.password && <Text mt='px' color='red' textAlign='center'>{errors.password.message}</Text>}
+            <FormCustomInput
+                {...register('password_repeat', {
+                  validate: value =>
+                      value === watch('password') || `${t.set_new_pas.dont_match_error}`
+                })}
+                label='password'
+                isInvalid={!!errors.password_repeat}
+                placeholder={t.placeholders.enter_pass_again}/>
+            {errors.password_repeat &&
+                <Text mt='px' color='red' textAlign='center'>{errors.password_repeat.message}</Text>}
           </Box>
           {
               loading !== TypeLoadingStatus.IS_PENDING &&
               <Button type='submit' my='32px' w='100%' h='56px' p='20px 24px' bg='#0250C8' borderRadius='32px'
+                      onClick={handleSubmit(onSubmit)}
                       _hover={{ bgColor: '#0250C8' }}>
                 {t.set_new_pas.save_btn}
               </Button>

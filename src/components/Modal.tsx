@@ -1,6 +1,6 @@
 import { ReactNode, useRef } from 'react';
 import Image from 'next/image';
-import { Box, Flex, Modal, ModalCloseButton, ModalContent, ModalOverlay, Text } from '@chakra-ui/react';
+import { Box, Flex, Modal, ModalCloseButton, ModalContent, ModalOverlay } from '@chakra-ui/react';
 
 import { useAppDispatch, useAppSelector } from 'store/store';
 import { closeAllModals, isError } from 'store/auth/authSlice';
@@ -15,7 +15,6 @@ export const ModalWindow = ({ children }: IModalWindow): JSX.Element => {
   const {
     signInModalOpen,
     signUpModalOpen,
-    error,
     recoveryPasswordModalOpen,
     setReceivedCodeModalOpen,
     setReceivedCodeForRegistrationModalOpen,
@@ -56,7 +55,6 @@ export const ModalWindow = ({ children }: IModalWindow): JSX.Element => {
                 <ModalCloseButton size='lg' color='rgba(0, 18, 64, 0.4)'/>
                 <Box mt='26px' w='95%'>
                   {children}
-                  {error && <Text color='red' textAlign='center'>{error}</Text>}
                 </Box>
               </Flex>
             </Flex>

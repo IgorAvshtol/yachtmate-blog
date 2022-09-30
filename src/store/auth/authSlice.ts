@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IAuthState, ITemporaryUserData, IUserData, TypeLoadingStatus, } from 'interfaces';
+import { IAuthState, ISignUpData, IUserData, TypeLoadingStatus, } from 'interfaces';
 import {
   auth, getRegistrationCode,
   login,
@@ -12,7 +12,7 @@ import {
 
 export const initialState: IAuthState = {
   userData: {} as IUserData,
-  temporaryUserData: {} as ITemporaryUserData,
+  temporaryUserData: {} as ISignUpData,
   loading: TypeLoadingStatus.IS_RESOLVED,
   signInModalOpen: false,
   signUpModalOpen: false,
@@ -91,7 +91,7 @@ export const authReducer = createSlice({
         })
         .addCase(
             getRegistrationCode.fulfilled.type,
-            (state, action: PayloadAction<ITemporaryUserData>) => {
+            (state, action: PayloadAction<ISignUpData>) => {
               state.temporaryUserData = action.payload;
               state.loading = TypeLoadingStatus.IS_RESOLVED;
               state.error = '';
@@ -110,10 +110,9 @@ export const authReducer = createSlice({
             registration.fulfilled.type,
             (state, action: PayloadAction<IUserData>) => {
               state.userData = action.payload;
+              state.temporaryUserData = {} as ISignUpData;
               state.loading = TypeLoadingStatus.IS_RESOLVED;
               state.error = '';
-              state.setReceivedCodeForRegistrationModalOpen = false;
-              state.registrationIsSuccessModalOpen = true;
             }
         )
         .addCase(registration.rejected.type, (state, action: PayloadAction<string>) => {

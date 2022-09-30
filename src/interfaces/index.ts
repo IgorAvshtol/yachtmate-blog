@@ -50,6 +50,7 @@ export interface ISignUpData {
   email: string;
   name: string;
   password: string;
+  password_repeat?: string;
 }
 
 export interface ISignInData {
@@ -67,12 +68,6 @@ export interface ISetNewPassword {
   email: string;
 }
 
-export interface ITemporaryUserData {
-  password: string;
-  email: string;
-  name: string
-}
-
 export interface ILikeData {
   articleId: number;
   userId: string;
@@ -80,7 +75,7 @@ export interface ILikeData {
 
 export interface IAuthState {
   userData: IUserData;
-  temporaryUserData: ITemporaryUserData;
+  temporaryUserData: ISignUpData;
   loading: TypeLoadingStatus;
   signInModalOpen: boolean;
   signUpModalOpen: boolean;

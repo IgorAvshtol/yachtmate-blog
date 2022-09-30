@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { instanceForAuth } from 'api';
-import { ISendCodeForConfirmation, ISetNewPassword, ISignInData, ISignUpData, ITemporaryUserData } from 'interfaces';
+import { ISendCodeForConfirmation, ISetNewPassword, ISignInData, ISignUpData } from 'interfaces';
 import { setUserFromLocalStorage } from 'services/localStorage';
 
 export const auth = createAsyncThunk('auth/me', async () => {
@@ -12,7 +12,7 @@ export const auth = createAsyncThunk('auth/me', async () => {
 
 export const getRegistrationCode = createAsyncThunk(
     'auth/getRegistrationCode',
-    async (userData: ITemporaryUserData, { rejectWithValue }) => {
+    async (userData: ISignUpData, { rejectWithValue }) => {
       try {
         await instanceForAuth.post('user/code', { email: userData.email });
         return userData;
@@ -28,7 +28,8 @@ export const sendRegistrationCode = createAsyncThunk(
     'auth/sendRegistrationCode',
     async (codeData: ISendCodeForConfirmation, { rejectWithValue }) => {
       try {
-        await instanceForAuth.post('user/code/compare', codeData);
+        const response = await instanceForAuth.post('user/code/compare', codeData);
+        return response.data.status;
       } catch (e) {
         if (e instanceof AxiosError) {
           return e.response && rejectWithValue(e.response.data.message);

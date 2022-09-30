@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { Button, Flex, Text } from '@chakra-ui/react';
 
 import { useAppDispatch } from 'store/store';
-import { FormCustomInput } from './Inputs/FormCustomInput';
+import { FormCustomInput } from './Input/FormCustomInput';
 import { recoveryPasswordModalIsOpen, resetPasswordModalIsOpen } from 'store/auth/authSlice';
 import { sendEmailForRecoveryPassword } from 'store/auth/authThunk';
 import { eng, rus } from 'translation';
@@ -16,7 +16,7 @@ export const RecoveryPassword = (): JSX.Element => {
   const router = useRouter();
   const t = router.locale === 'en' ? eng : rus;
   const dispatch = useAppDispatch();
-  const { register, handleSubmit } = useForm<IRecoveryPassword>();
+  const { register, handleSubmit, formState: { errors } } = useForm<IRecoveryPassword>();
 
   const onSubmit: SubmitHandler<IRecoveryPassword> = data => {
     dispatch(sendEmailForRecoveryPassword(data.email));
@@ -32,7 +32,15 @@ export const RecoveryPassword = (): JSX.Element => {
           {t.recovery_pas.description}
         </Text>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <FormCustomInput label='email' {...register('email')} mt='32px' placeholder={t.placeholders.email}/>
+          <FormCustomInput
+              {...register('email', {
+                required: 'Required'
+              })}
+              label='email'
+              isInvalid={!!errors.email}
+              mt='32px'
+              placeholder={t.placeholders.email}/>
+          {/*{errors.email && <Text mt='px' color='red' textAlign='center'>{errors.email.message}</Text>}*/}
           <Button type='submit' my='32px' w='100%' h='56px' p='20px 24px' bg='#0250C8' borderRadius='32px'
                   _hover={{ bgColor: '#0250C8' }}>
             {t.recovery_pas.send_btn}
