@@ -10,8 +10,8 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: '/api/:slug*',
-        destination: 'https://backend.test.yachtmate.club'
+        source: 'http://localhost:3000',
+        destination: 'https://blog.test.yachtmate.club'
       },
     ];
   },
