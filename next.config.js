@@ -11,7 +11,7 @@ module.exports = {
     return [
       {
         source: '/api/:slug*',
-        destination: 'https://backend.test.yachtmate.club/api/:slug*'
+        destination: 'https://backend.test.yachtmate.club'
       },
     ];
   },
