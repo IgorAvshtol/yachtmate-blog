@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useLayoutEffect } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Flex } from '@chakra-ui/react';
 
@@ -26,6 +26,8 @@ interface ILayout {
 
 export const Layout = ({ children }: ILayout) => {
   const dispatch = useAppDispatch();
+  const [showChild, setShowChild] = useState(false);
+
   const {
     signUpModalOpen,
     signInModalOpen,
@@ -38,20 +40,20 @@ export const Layout = ({ children }: ILayout) => {
   } = useAppSelector(state => state.auth);
   const router = useRouter();
   const language = router.locale as string;
-
-  useLayoutEffect(()=>{
+  useEffect(() => {
+    dispatch(getArticles(language));
+    setShowChild(true);
     const currentUser = getUserFromLocalStorage();
     if (!currentUser) {
       dispatch(auth());
     } else {
       dispatch(getCurrentUser(currentUser));
     }
-  },[dispatch]);
-
-  useEffect(() => {
-    dispatch(getArticles(language));
-
   }, [dispatch, language]);
+
+  if (!showChild) {
+    return null;
+  }
 
   return (
       <Flex minH='100vh' w='100%' h='100%' alignItems='center' flexDirection='column'>

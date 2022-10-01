@@ -11,7 +11,6 @@ import { ISignInData, TypeLoadingStatus } from 'interfaces';
 import { login } from 'store/auth/authThunk';
 import { eng, rus } from 'translation';
 
-
 export const SignInForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const router = useRouter();

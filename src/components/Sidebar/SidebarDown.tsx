@@ -29,7 +29,7 @@ export const SidebarDown = (): JSX.Element => {
     if (arrayOfLikes?.includes(userData._id)) {
       dispatch(setUnlike(likeData));
     } else {
-      dispatch(setLike(likeData));
+      userData._id && dispatch(setLike(likeData));
     }
   };
 
