@@ -18,7 +18,7 @@ export const Header = (): JSX.Element => {
   const router = useRouter();
   const t = router.locale === 'en' ? eng : rus;
   const { userData } = useAppSelector(state => state.auth);
-  console.log(userData);
+
   const onSignUpBtnHandler = () => {
     dispatch(signUpModalIsOpen());
   };
