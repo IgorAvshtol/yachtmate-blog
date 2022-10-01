@@ -24,9 +24,9 @@ export const SidebarDown = (): JSX.Element => {
   const onLikeClickHandler = () => {
     const likeData = {
       articleId: data?.id,
-      userId: userData?.id
+      userId: userData?._id
     };
-    if (arrayOfLikes?.includes(userData.id)) {
+    if (arrayOfLikes?.includes(userData._id)) {
       dispatch(setUnlike(likeData));
     } else {
       dispatch(setLike(likeData));
@@ -40,7 +40,7 @@ export const SidebarDown = (): JSX.Element => {
           <Flex h='90px' w='80px' direction='column' alignItems='center' justifyContent='center'>
             <Button bg='transparent' w='48px' h='48px' border='2px solid #F5F6F8' borderRadius='50%' p='5px'
                     onClick={onLikeClickHandler}>
-              <Image src={arrayOfLikes?.includes(userData.id) ? like : dislike} alt='menu'/>
+              <Image src={arrayOfLikes?.includes(userData._id) ? like : dislike} alt='menu'/>
             </Button>
             <Text mt='2px' fontSize='16px' opacity='0.5'>{arrayOfLikes?.length}</Text>
           </Flex>
