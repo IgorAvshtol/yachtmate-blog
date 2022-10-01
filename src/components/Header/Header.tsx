@@ -18,7 +18,7 @@ export const Header = (): JSX.Element => {
   const router = useRouter();
   const t = router.locale === 'en' ? eng : rus;
   const { userData } = useAppSelector(state => state.auth);
-
+  console.log(userData);
   const onSignUpBtnHandler = () => {
     dispatch(signUpModalIsOpen());
   };
@@ -55,7 +55,8 @@ export const Header = (): JSX.Element => {
                           bg='#F5F6F8'>
                     <Image src={bell} alt='bell'/>
                   </Button>
-                  <Link href='/' mx='26px' h='44px' w='44px' rounded='full'>
+                  <Link href={process.env.NEXT_PUBLIC_BASE_URL_FOR_PERSONAL_CABINET} mx='26px' h='44px' w='44px'
+                        rounded='full'>
                     <Image src={avatar} alt='avatar'/>
                   </Link>
                   <Button justifyContent='center' alignItems='center' mr='26px' p='0' h='44px' w='44px' rounded='full'
