@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { getUserFromLocalStorage } from '../services/localStorage';
+import { getTokenFromLocalStorage } from '../services/localStorage';
 
 const instance = axios.create({
   withCredentials: true,
@@ -12,7 +12,7 @@ instance.interceptors.request.use((config: AxiosRequestConfig) => {
     'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_BASE_URL_FOR_AUTH as string,
     'Access-Control-Allow-Credentials': true,
   };
-  const data = getUserFromLocalStorage();
+  const data = getTokenFromLocalStorage();
   config.headers.Authorization = `Bearer ${data}`;
   console.log(config);
   return config;

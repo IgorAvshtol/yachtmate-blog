@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-import { getUserFromLocalStorage, setUserFromLocalStorage } from 'services/localStorage';
+import { getTokenFromLocalStorage, setTokenToLocalStorage } from 'services/localStorage';
 
 export const instance = axios.create({
   withCredentials: false,
@@ -37,7 +37,7 @@ instanceForAuth.interceptors.request.use((config: AxiosRequestConfig) => {
     'Access-Control-Allow-Credentials': true,
   };
 
-  const token = getUserFromLocalStorage();
+  const token = getTokenFromLocalStorage();
   config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
@@ -67,7 +67,7 @@ instanceForAuth.interceptors.response.use(
               `${process.env.NEXT_PUBLIC_BASE_URL_FOR_AUTH as string}/user/token/refresh`, HttpConfig
           );
 
-          setUserFromLocalStorage(response.data.accessToken);
+          setTokenToLocalStorage(response.data.accessToken);
           // localStorage.setItem('token', response.data.accessToken);
           return instanceForAuth.request(originalRequest);
         } catch (e) {

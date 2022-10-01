@@ -3,7 +3,7 @@ import { AxiosError } from 'axios';
 
 import { instanceForAuth } from 'api';
 import { ISendCodeForConfirmation, ISetNewPassword, ISignInData, ISignUpData } from 'interfaces';
-import { setUserFromLocalStorage } from 'services/localStorage';
+import { setTokenToLocalStorage, setUserToLocalStorage } from 'services/localStorage';
 
 export const auth = createAsyncThunk('auth/me', async () => {
   const response = await instanceForAuth.get('user/token/refresh');
@@ -48,7 +48,9 @@ export const registration = createAsyncThunk(
       };
       try {
         const response = await instanceForAuth.post('user/register', user);
-        setUserFromLocalStorage(response.data.accessToken);
+        setTokenToLocalStorage(response.data.accessToken);
+        const { _id, email, name } = response.data.user;
+        setUserToLocalStorage({ _id: _id, email: email, name: name });
         return response.data.user;
       } catch (e) {
         if (e instanceof AxiosError) {
@@ -67,7 +69,9 @@ export const login = createAsyncThunk(
       };
       try {
         const response = await instanceForAuth.post('user/auth', user);
-        setUserFromLocalStorage(response.data.accessToken);
+        setTokenToLocalStorage(response.data.accessToken);
+        const { _id, email, name } = response.data.user;
+        setUserToLocalStorage({ _id: _id, email: email, name: name });
         return response.data.user;
       } catch (e) {
         if (e instanceof AxiosError) {

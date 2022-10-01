@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect, useLayoutEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Flex } from '@chakra-ui/react';
 
@@ -7,6 +7,7 @@ import { TabsBlock } from './TabsBlock';
 import { Footer } from './Footer/Footer';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import { getArticles } from 'store/atricles/articlesThunk';
+import { auth } from 'store/auth/authThunk';
 import { ModalWindow } from './Modal';
 import { SignUpForm } from './SignUpForm/SignUpForm';
 import { SignInForm } from './SignInForm/SignInForm';
@@ -16,6 +17,8 @@ import { SetNewPassword } from './SetNewPassword';
 import { RecoveryPasswordIsSuccess } from './RecoveryPasswordIsSuccess';
 import { RegistrationIsSuccess } from './RegistrationIsSuccess';
 import { EnterReceivedCodeForRegistration } from './EnterReceivedCodeForRegistration';
+import { getUserFromLocalStorage } from 'services/localStorage';
+import { getCurrentUser } from 'store/auth/authSlice';
 
 interface ILayout {
   children: ReactNode;
@@ -36,8 +39,18 @@ export const Layout = ({ children }: ILayout) => {
   const router = useRouter();
   const language = router.locale as string;
 
+  useLayoutEffect(()=>{
+    const currentUser = getUserFromLocalStorage();
+    if (!currentUser) {
+      dispatch(auth());
+    } else {
+      dispatch(getCurrentUser(currentUser));
+    }
+  },[dispatch]);
+
   useEffect(() => {
     dispatch(getArticles(language));
+
   }, [dispatch, language]);
 
   return (
