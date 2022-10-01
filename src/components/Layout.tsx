@@ -7,7 +7,6 @@ import { TabsBlock } from './TabsBlock';
 import { Footer } from './Footer/Footer';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import { getArticles } from 'store/atricles/articlesThunk';
-import { auth } from 'store/auth/authThunk';
 import { ModalWindow } from './Modal';
 import { SignUpForm } from './SignUpForm/SignUpForm';
 import { SignInForm } from './SignInForm/SignInForm';
@@ -39,7 +38,6 @@ export const Layout = ({ children }: ILayout) => {
 
   useEffect(() => {
     dispatch(getArticles(language));
-    dispatch(auth());
   }, [dispatch, language]);
 
   return (
