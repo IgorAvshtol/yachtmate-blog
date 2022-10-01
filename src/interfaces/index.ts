@@ -41,7 +41,7 @@ export interface IGetCurrentArticle {
 }
 
 export interface IUserData {
-  id: string,
+  _id: string,
   email: string,
   name: string,
 }
