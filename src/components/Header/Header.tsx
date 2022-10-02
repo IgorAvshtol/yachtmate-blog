@@ -56,7 +56,7 @@ export const Header = (): JSX.Element => {
                     <Image src={bell} alt='bell'/>
                   </Button>
                   <Link href={process.env.NEXT_PUBLIC_BASE_URL_FOR_PERSONAL_CABINET} mx='26px' h='44px' w='44px'
-                        rounded='full'>
+                        border='1px #0250c8 solid' rounded='full'>
                     <Image src={avatar} alt='avatar'/>
                   </Link>
                   <Button justifyContent='center' alignItems='center' mr='26px' p='0' h='44px' w='44px' rounded='full'
