@@ -12,6 +12,7 @@ import { SelectLang } from './SelectLang';
 import { eng, rus } from 'translation';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import { signInModalIsOpen, signUpModalIsOpen } from 'store/auth/authSlice';
+import { logout } from '../../store/auth/authThunk';
 
 export const Header = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -28,7 +29,8 @@ export const Header = (): JSX.Element => {
   };
 
   const onSearchYachtBtnClickHandler = async () => {
-    await router.push(process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE as string);
+    dispatch(logout());
+    // await router.push(process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE as string);
   };
 
   return (

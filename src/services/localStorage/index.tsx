@@ -32,3 +32,7 @@ export const setTokenToLocalStorage = (token: string) => {
 export const setUserToLocalStorage = (userData: IUserData) => {
   return localStorage.setItem(NEXT_APP_USERDATA_KEY, JSON.stringify(userData));
 };
+
+export const removeUserFromLocalStorage = () => {
+  return localStorage.removeItem(NEXT_APP_USERDATA_KEY);
+}

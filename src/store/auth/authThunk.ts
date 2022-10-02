@@ -3,13 +3,18 @@ import { AxiosError } from 'axios';
 
 import { instanceForAuth } from 'api';
 import { ISendCodeForConfirmation, ISetNewPassword, ISignInData, ISignUpData } from 'interfaces';
-import { setTokenToLocalStorage, setUserToLocalStorage } from 'services/localStorage';
+import { removeUserFromLocalStorage, setTokenToLocalStorage, setUserToLocalStorage } from 'services/localStorage';
 
 export const auth = createAsyncThunk('auth/me', async () => {
   const response = await instanceForAuth.get('user/token/refresh');
   const { _id, email, name } = response.data.user;
   setUserToLocalStorage({ _id: _id, email: email, name: name });
   return response.data.user;
+});
+
+export const logout = createAsyncThunk('auth/logout', async () => {
+  await instanceForAuth.post('user/logout');
+  removeUserFromLocalStorage();
 });
 
 export const getRegistrationCode = createAsyncThunk(
@@ -50,7 +55,7 @@ export const registration = createAsyncThunk(
       };
       try {
         const response = await instanceForAuth.post('user/register', user);
-        setTokenToLocalStorage(response.data.accessToken);
+        // setTokenToLocalStorage(response.data.accessToken);
         const { _id, email, name } = response.data.user;
         setUserToLocalStorage({ _id: _id, email: email, name: name });
         return response.data.user;
@@ -71,7 +76,7 @@ export const login = createAsyncThunk(
       };
       try {
         const response = await instanceForAuth.post('user/auth', user);
-        setTokenToLocalStorage(response.data.accessToken);
+        // setTokenToLocalStorage(response.data.accessToken);
         const { _id, email, name } = response.data.user;
         setUserToLocalStorage({ _id: _id, email: email, name: name });
         return response.data.user;
