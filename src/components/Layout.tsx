@@ -12,11 +12,11 @@ import { ModalWindow } from './Modal';
 import { SignUpForm } from './SignUpForm/SignUpForm';
 import { SignInForm } from './SignInForm/SignInForm';
 import { RecoveryPassword } from './RecoveryPassword';
-import { EnterReceivedCode } from './EnterReceivedCode';
+import { EnterReceivedCode } from './EnterCode/EnterReceivedCode';
 import { SetNewPassword } from './SetNewPassword';
 import { RecoveryPasswordIsSuccess } from './RecoveryPasswordIsSuccess';
 import { RegistrationIsSuccess } from './RegistrationIsSuccess';
-import { EnterReceivedCodeForRegistration } from './EnterReceivedCodeForRegistration';
+import { EnterReceivedCodeForRegistration } from './EnterCode/EnterReceivedCodeForRegistration';
 import { getUserFromLocalStorage } from 'services/localStorage';
 import { getCurrentUser } from 'store/auth/authSlice';
 

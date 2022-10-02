@@ -3,10 +3,11 @@ import { AxiosError } from 'axios';
 
 import { instanceForAuth } from 'api';
 import { ISendCodeForConfirmation, ISetNewPassword, ISignInData, ISignUpData } from 'interfaces';
-import { setTokenToLocalStorage, setUserToLocalStorage } from 'services/localStorage';
+import { getUserFromLocalStorage, setTokenToLocalStorage, setUserToLocalStorage } from 'services/localStorage';
 
 export const auth = createAsyncThunk('auth/me', async () => {
-  const response = await instanceForAuth.get('user/token/refresh');
+  // const response = await instanceForAuth.get('user/token/refresh');
+  const response = getUserFromLocalStorage();
   // const { _id, email, name } = response.data.user;
   // setUserToLocalStorage({ _id: _id, email: email, name: name });
   return response.data.user;
