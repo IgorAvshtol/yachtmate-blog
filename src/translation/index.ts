@@ -65,7 +65,8 @@ export const eng = {
     forgot_pas: 'Forgot password?',
     recovery_pas: 'Recovery',
     login_btn: 'Login',
-    register_btn: 'Register'
+    register_btn: 'Register',
+    error: 'Invalid email or password'
   },
   recovery_pas: {
     title: 'Restore password',
@@ -165,7 +166,8 @@ export const rus = {
     forgot_pas: 'Забыли пароль?',
     recovery_pas: 'Восстановить',
     login_btn: 'Войти',
-    register_btn: 'Присоединиться'
+    register_btn: 'Присоединиться',
+    error: 'Неверный адрес почты или пароль'
   },
   recovery_pas: {
     title: 'Восстановить пароль',
