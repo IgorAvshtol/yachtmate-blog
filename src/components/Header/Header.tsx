@@ -28,7 +28,6 @@ export const Header = (): JSX.Element => {
   };
 
   const onSearchYachtBtnClickHandler = async () => {
-    dispatch(logout());
     await router.push(process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE as string);
   };
 
