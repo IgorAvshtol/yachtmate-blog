@@ -68,7 +68,6 @@ instanceForAuth.interceptors.response.use(
           );
 
           setTokenToLocalStorage(response.data.accessToken);
-          // localStorage.setItem('token', response.data.accessToken);
           return instanceForAuth.request(originalRequest);
         } catch (e) {
           console.log('Non auth');
