@@ -6,12 +6,16 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 
 import { useAppSelector } from 'store/store';
 import { Wrapper } from '../../Wrapper';
+import { TypeLoadingStatus } from 'interfaces';
+import { PenultimateArticleWithSkeleton } from '../../Skeleton/PenultimateArticleWithSkeleton';
 
 export const PenultimateArticle = (): JSX.Element => {
   const router = useRouter();
   const language = router.locale as string;
-  const { articles } = useAppSelector(state => state.articles);
+  const { articles, loading } = useAppSelector(state => state.articles);
   const indexOfLastArticle = articles.length - 1;
+
+  if (loading === TypeLoadingStatus.IS_PENDING) return <PenultimateArticleWithSkeleton/>;
 
   return (
       <Wrapper slug={articles[indexOfLastArticle]?.attributes?.slug} borderRadius='12px'

@@ -22,21 +22,15 @@ const Article = (): JSX.Element => {
   const { currentArticle: data, loading } = useAppSelector(state => state.articles);
 
   useEffect(() => {
-      const currentArticleURLData = {
-        slug: query['index'] as string,
-        lang: locale as string,
-      };
-     currentArticleURLData.slug && dispatch(getCurrentArticle(currentArticleURLData));
-     data?.id && dispatch(setOneViewForArticle(data?.id));
+    const currentArticleURLData = {
+      slug: query['index'] as string,
+      lang: locale as string,
+    };
+    currentArticleURLData.slug && dispatch(getCurrentArticle(currentArticleURLData));
+    data?.id && dispatch(setOneViewForArticle(data?.id));
   }, [data?.id, dispatch, locale, query]);
 
-  if (loading === TypeLoadingStatus.IS_PENDING) {
-    return (
-        <>
-          <ArticlePageWithSkeleton/>
-        </>
-    );
-  }
+  if (loading === TypeLoadingStatus.IS_PENDING) return <ArticlePageWithSkeleton/>;
 
   return (
       <>
