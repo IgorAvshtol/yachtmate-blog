@@ -34,7 +34,7 @@ export const Header = (): JSX.Element => {
   return (
       <Flex w='100%' justifyContent='center' boxShadow='0px 8px 24px rgba(59, 69, 75, 0.04)'>
         <Flex h='92px' w='95%' bgColor='white' justifyContent='space-between' alignItems='center'>
-          <Link href={process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE}>
+          <Link href={process.env.NEXT_PUBLIC_BASE_URL_FOR_HOME_PAGE}>
             <Image src={logoNew} alt='logo'/>
           </Link>
           <Flex display={{ md: 'none', sm: 'block' }}>
