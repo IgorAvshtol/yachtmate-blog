@@ -22,7 +22,9 @@ export const eng = {
   generalArticlesData: {
     date: 'Apr',
     time_for_reading: 'min for reading',
-    authors: 'Author'
+    authors: 'Author',
+    views: 'views',
+    view: 'views'
   },
   footer: 'Yachtmate an association of people who love yachting know how to sail on their yachts know how to handle them appreciate that special atmosphere of life on a boat',
   registration_modal: {
@@ -123,7 +125,9 @@ export const rus = {
   generalArticlesData: {
     date: 'Апр',
     time_for_reading: 'минут на чтение',
-    authors: 'Автор изображения'
+    authors: 'Автор изображения',
+    views: 'просмотров',
+    view: 'просмотра'
   },
   footer: 'Яхтмейт — объединение людей которые любят яхтинг, умеют ходить на своих яхтах, умею с ними обращаться, ценят ту особую атмосферу жизни на лодке',
   registration_modal: {

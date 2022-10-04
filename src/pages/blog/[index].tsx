@@ -15,10 +15,12 @@ import style from 'styles/article.module.css';
 import { TypeLoadingStatus } from 'interfaces';
 import { ArticlePageWithSkeleton } from 'components/Skeleton/ArticlePageWithSkeleton';
 import { Sidebar } from 'components/Sidebar/Sidebar';
+import { eng, rus } from '../../translation';
 
 const Article = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const { query, locale } = useRouter();
+  const t = locale === 'en' ? eng : rus;
   const { currentArticle: data, loading } = useAppSelector(state => state.articles);
 
   useEffect(() => {
@@ -47,7 +49,7 @@ const Article = (): JSX.Element => {
               <Sidebar/>
               <Text mx='15px' color='#001240' opacity='0.5'>·</Text>
               <Text fontWeight='500' fontSize='16px' color='#001240' lineHeight='180%' opacity='0.5'>
-                {data?.attributes?.view}
+                {data?.attributes?.view} { data?.attributes?.view < 4 ? t.generalArticlesData.view : t.generalArticlesData.views}
               </Text>
             </Flex>
             <Flex w='100%'>
