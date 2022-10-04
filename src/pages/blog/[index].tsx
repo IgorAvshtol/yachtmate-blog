@@ -15,7 +15,7 @@ import style from 'styles/article.module.css';
 import { TypeLoadingStatus } from 'interfaces';
 import { ArticlePageWithSkeleton } from 'components/Skeleton/ArticlePageWithSkeleton';
 import { Sidebar } from 'components/Sidebar/Sidebar';
-import { eng, rus } from '../../translation';
+import { eng, rus } from 'translation';
 
 const Article = (): JSX.Element => {
   const dispatch = useAppDispatch();
