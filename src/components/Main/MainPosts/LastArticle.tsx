@@ -13,27 +13,30 @@ export const LastArticle = (): JSX.Element => {
   const router = useRouter();
   const language = router.locale as string;
   const { articles, loading } = useAppSelector(state => state.articles);
+  const indexOfLastArticle = articles.length - 1;
 
   if (loading === TypeLoadingStatus.IS_PENDING) return <LastArticleWithSkeleton/>;
 
   return (
-      <Wrapper slug={articles[0]?.attributes.slug} borderRadius='12px' _hover={{ textDecoration: 'none' }}>
+      <Wrapper slug={articles[indexOfLastArticle]?.attributes.slug} borderRadius='12px'
+               _hover={{ textDecoration: 'none' }}>
         <Flex h='100%' direction='column' maxW='690px' w={{ '2xl': '690px', xl: '690px', lg: '95%', md: '95%' }}
               borderRadius='12px' bg='#F5F7FB' p='20px'>
           <Box borderRadius='8px' overflow='hidden'>
             {
-                articles[0]?.attributes?.main_image_url &&
-                <Image src={articles[0]?.attributes?.main_image_url} layout='responsive' width='650px' height='313px'
+                articles[indexOfLastArticle]?.attributes?.main_image_url &&
+                <Image src={articles[indexOfLastArticle]?.attributes?.main_image_url} layout='responsive' width='650px'
+                       height='313px'
                        objectFit='cover' alt='cover'/>
             }
           </Box>
           <Text my='16px' fontSize='14px' letterSpacing='0.5px' opacity='0.5'>
-            {articles[0]?.attributes?.createdAt &&
-                format(new Date(articles[0]?.attributes?.createdAt), 'LLL d, yyy', { locale: language === 'ru' ? ru : enUS })
+            {articles[indexOfLastArticle]?.attributes?.createdAt &&
+                format(new Date(articles[indexOfLastArticle]?.attributes?.createdAt), 'LLL d, yyy', { locale: language === 'ru' ? ru : enUS })
             }
           </Text>
           <Text as='h2' fontSize='26px'>
-            {articles[0]?.attributes?.main_title}
+            {articles[indexOfLastArticle]?.attributes?.main_title}
           </Text>
         </Flex>
       </Wrapper>

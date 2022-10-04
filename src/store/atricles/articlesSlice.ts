@@ -25,8 +25,10 @@ export const articleReducer = createSlice({
         .addCase(
             getArticles.fulfilled.type,
             (state, action: PayloadAction<AxiosResponse<IArticleData[]>>) => {
+              const end = action.payload.data.length - 2;
+              const start = action.payload.data.length - 5;
               state.articles = action.payload.data;
-              state.sameArticles = action.payload.data.slice(1, -1);
+              state.sameArticles = action.payload.data.slice(start, end).reverse();
               state.loading = TypeLoadingStatus.IS_RESOLVED;
             }
         )
