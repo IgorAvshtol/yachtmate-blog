@@ -2,10 +2,10 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { format } from 'date-fns';
-import { Flex, Link, Text } from '@chakra-ui/react';
+import { Flex, Link, Text, Box } from '@chakra-ui/react';
 import { enUS, ru } from 'date-fns/locale';
 
-import { eng, rus } from 'translation';
+import style from 'styles/wrapper.module.css';
 
 interface ISameArticle {
   slug: string;
@@ -17,41 +17,37 @@ interface ISameArticle {
 export const SameArticle = ({ image, date, title, slug }: ISameArticle): JSX.Element => {
   const router = useRouter();
   const language = router.locale as string;
-  const t = router.locale === 'en' ? eng : rus;
-  const [showReadBtn, setShowReadBtn] = useState<boolean>(false);
   const correctDate = format(new Date(date), 'LLL d, yyy', { locale: language === 'ru' ? ru : enUS });
 
-  const onMouseOverArticle = () => {
-    setShowReadBtn(true);
+  const [hoverCard, setHoverCard] = useState<string>('');
+
+  const cardIsHover = () => {
+    setHoverCard(slug);
   };
 
-  const onMouseOutArticle = () => {
-    setShowReadBtn(false);
+  const cardIsNoHover = () => {
+    setHoverCard('');
   };
 
   return (
-      <Flex direction='column' w={{ md: '330px', sm: '280px' }} m='20px 20px 0' onMouseOver={onMouseOverArticle}
-            onMouseOut={onMouseOutArticle} zIndex='10'>
+      <Link href={`/blog/${slug}`} display='flex' flexDirection='column' w={{ md: '330px', sm: '280px' }}
+            m='20px 20px 0' zIndex='10' onMouseEnter={cardIsHover} onMouseLeave={cardIsNoHover}
+            _hover={{ textDecoration: 'none' }}>
         <Flex pos='relative' w='100%' h='220px' justifyContent='center' alignItems='center' borderRadius='12px'
-              overflow='hidden'>
+              overflow='hidden' className={hoverCard ? style.cardIsHover : style.card}>
           <Image src={image} layout='fill' objectFit='cover' width='330px' height='220px' alt='same-yacht'/>
-          <Link href={`/blog/${slug}`} pos='absolute' display='flex' justifyContent='center' alignItems='center'
-                opacity={showReadBtn ? '1' : '0'} w='96px' h='44px' borderRadius='21px' bg='white'
-                fontSize='14px' letterSpacing='0.5px' color='#0250C8' _hover={{ textDecoration: 'none' }}>
-            {t.readBtn}
-          </Link>
         </Flex>
         <Text display={{ md: 'none', sm: 'block' }} mt='12px' fontSize='14px' lineHeight='140%' letterSpacing='0.5px'
               opacity='0.5'>
           {correctDate}
         </Text>
-        <Link href={`/blog/${slug}`} w={{ md: '330px', sm: '280px' }} whiteSpace='pre-line'>
+        <Box w={{ md: '330px', sm: '280px' }} whiteSpace='pre-line' textDecoration={hoverCard ? 'underline' : 'none'}>
           <Text mt='12px' fontSize='20px' lineHeight='148%' noOfLines={2}>{title}</Text>
-        </Link>
+        </Box>
         <Text display={{ md: 'block', sm: 'none' }} mt='12px' fontSize='14px' lineHeight='140%' letterSpacing='0.5px'
               opacity='0.5'>
           {correctDate}
         </Text>
-      </Flex>
+      </Link>
   );
 };
