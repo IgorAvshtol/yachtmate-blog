@@ -38,8 +38,12 @@ const Article = (): JSX.Element => {
       <>
         <Head>
           <title>
-            {data?.attributes?.meta_title}
+            {data?.attributes?.main_title}
           </title>
+          <meta
+              name='description'
+              content={data?.attributes?.meta_title}
+          />
         </Head>
         <Flex direction='column' w='100%' alignItems='center' bg='#ffffff'>
           <Flex direction='column' alignItems='center' mt={{ md: '65px', sm: '24px' }} mb={{ md: '64px', sm: '32px' }}
@@ -51,8 +55,9 @@ const Article = (): JSX.Element => {
               <Text fontWeight='500' fontSize='16px' color='#001240' lineHeight='180%' opacity='0.5'>
                 {data?.attributes?.view}
               </Text>
-              <Text display={{md: 'block', sm: 'none'}} ml='5px' fontWeight='500' fontSize='16px' color='#001240' lineHeight='180%' opacity='0.5'>
-                { data?.attributes?.view < 4 ? t.generalArticlesData.view : t.generalArticlesData.views}
+              <Text display={{ md: 'block', sm: 'none' }} ml='5px' fontWeight='500' fontSize='16px' color='#001240'
+                    lineHeight='180%' opacity='0.5'>
+                {data?.attributes?.view < 4 ? t.generalArticlesData.view : t.generalArticlesData.views}
               </Text>
             </Flex>
             <Flex w='100%'>
