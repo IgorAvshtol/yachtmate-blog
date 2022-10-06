@@ -1,11 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AxiosResponse } from 'axios';
 
-import { IArticleData, IArticlesState, IAttributes, TypeLoadingStatus, } from 'interfaces';
+import { IArticleData, IArticlesState, IAttributes, IResponseArticles, TypeLoadingStatus, } from 'interfaces';
 import { getArticles, getCurrentArticle, setLike, setUnlike } from './articlesThunk';
 
 export const initialState: IArticlesState = {
   articles: [],
+  articlesCount: 5,
+  totalArticlesCount: 10,
   currentArticle: {} as IArticleData,
   sameArticles: [],
   currentTag: '',
@@ -16,7 +18,11 @@ export const initialState: IArticlesState = {
 export const articleReducer = createSlice({
   name: 'articles',
   initialState,
-  reducers: {},
+  reducers: {
+    incrementArticlesCount: (state) => {
+      state.articlesCount = state.articlesCount + 5;
+    }
+  },
   extraReducers: (builder) => {
     builder
         .addCase(getArticles.pending, (state) => {
@@ -24,10 +30,11 @@ export const articleReducer = createSlice({
         })
         .addCase(
             getArticles.fulfilled.type,
-            (state, action: PayloadAction<AxiosResponse<IArticleData[]>>) => {
+            (state, action: PayloadAction<IResponseArticles>) => {
               const end = action.payload.data.length - 2;
               const start = action.payload.data.length - 5;
               state.articles = action.payload.data;
+              state.totalArticlesCount = action.payload.meta.pagination.total;
               state.sameArticles = action.payload.data.slice(start, end).reverse();
               state.loading = TypeLoadingStatus.IS_RESOLVED;
             }
@@ -60,6 +67,7 @@ export const articleReducer = createSlice({
               state.loading = TypeLoadingStatus.IS_RESOLVED;
             }
         );
-
   },
 });
+
+export const { incrementArticlesCount } = articleReducer.actions;

@@ -26,6 +26,8 @@ interface ILayout {
 
 export const Layout = ({ children }: ILayout) => {
   const dispatch = useAppDispatch();
+  const router = useRouter();
+  const language = router.locale as string;
   const [showChild, setShowChild] = useState(false);
 
   const {
@@ -38,18 +40,19 @@ export const Layout = ({ children }: ILayout) => {
     recoveryPasswordIsSuccessModalOpen,
     registrationIsSuccessModalOpen
   } = useAppSelector(state => state.auth);
-  const router = useRouter();
-  const language = router.locale as string;
+
+  const { articlesCount } = useAppSelector(state => state.articles);
+
   useEffect(() => {
-    dispatch(getArticles(language));
     setShowChild(true);
+    dispatch(getArticles({ lang: language, pageSize: articlesCount }));
     const currentUser = getUserFromLocalStorage();
     if (!currentUser) {
       dispatch(auth());
     } else {
       dispatch(getCurrentUser(currentUser));
     }
-  }, [dispatch, language]);
+  }, [articlesCount, dispatch, language]);
 
   if (!showChild) {
     return null;

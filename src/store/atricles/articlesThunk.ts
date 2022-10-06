@@ -1,10 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { instance } from 'api';
-import { IGetCurrentArticle, ILikeData } from 'interfaces';
+import { IGetArticles, IGetCurrentArticle, ILikeData } from 'interfaces';
 
-export const getArticles = createAsyncThunk('articles/getArticles', async (lang: string) => {
-  const response = await instance.get(`articles?locale=${lang}&sort=id%3Aasc`);
+export const getArticles = createAsyncThunk('articles/getNextArticles', async (data: IGetArticles) => {
+  const response = await instance.get(`articles?locale=${data.lang}&pagination[page]=1&pagination[pageSize]=${data.pageSize}&sort=id%3Aasc`);
   return response.data;
 });
 

@@ -12,6 +12,10 @@ export const SameArticles = (): JSX.Element => {
   const currentArticleId = currentArticle?.id;
   const t = router.locale === 'en' ? eng : rus;
 
+  const onReadMoreBtnClickHandler = async () => {
+    await router.push('/');
+  };
+
   return (
       <Flex direction='column' alignItems='center' maxW='1200px' w='100%' mt={{ md: '104px', sm: '52px' }} mb='80px'>
         <Text w={{ lg: '90%', md: '80%', sm: '90%' }} fontWeight='600' fontSize='26px' lineHeight='110%'
@@ -30,8 +34,8 @@ export const SameArticles = (): JSX.Element => {
             }
           </Flex>
         </Flex>
-        <Button mt='48px' w='147px' h='56px' borderRadius='28px' bg='rgba(0, 111, 19, 0.04)' color='#001240'
-                zIndex='10'>
+        <Button mt='48px' w='147px' h='56px' borderRadius='28px' bg='rgba(0, 111, 19, 0.04)' color='#001240' zIndex='10'
+                onClick={onReadMoreBtnClickHandler}>
           {t.moreBtn}
         </Button>
       </Flex>

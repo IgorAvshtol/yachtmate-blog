@@ -1,12 +1,10 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { Button, Flex, Text, Link } from '@chakra-ui/react';
+import { Button, Flex, Link, Text } from '@chakra-ui/react';
 
 import logoNew from 'public/logoNew.png';
 import login from 'public/login.png';
 import avatar from 'public/avatar.svg';
-import bell from 'public/bell.png';
-import message from 'public/message.png';
 import { Menu } from './Menu';
 import { SelectLang } from './SelectLang';
 import { eng, rus } from 'translation';
@@ -51,18 +49,10 @@ export const Header = (): JSX.Element => {
             {
                 userData?.email &&
                 <Flex>
-                  <Button justifyContent='center' alignItems='center' ml='26px' p='0' h='44px' w='44px' rounded='full'
-                          bg='#F5F6F8'>
-                    <Image src={bell} alt='bell'/>
-                  </Button>
                   <Link href={process.env.NEXT_PUBLIC_BASE_URL_FOR_PERSONAL_CABINET} mx='26px' h='44px' w='44px'
                         border='1px #0250c8 solid' rounded='full'>
                     <Image src={avatar} alt='avatar'/>
                   </Link>
-                  <Button justifyContent='center' alignItems='center' mr='26px' p='0' h='44px' w='44px' rounded='full'
-                          bg='#F5F6F8'>
-                    <Image src={message} alt='message'/>
-                  </Button>
                 </Flex>
             }
             {

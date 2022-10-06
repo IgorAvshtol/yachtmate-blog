@@ -21,18 +21,37 @@ export interface IAttributes {
   hasLiked: string[],
 }
 
+export interface IResponseArticles {
+  data: IArticleData[],
+  meta: IMeta
+}
+
 export interface IArticleData {
   id: number,
   attributes: IAttributes
 }
 
+export interface IMeta {
+  pagination: {
+    page: number;
+    total: number;
+  };
+}
+
 export interface IArticlesState {
   articles: IArticleData[],
+  articlesCount: number,
+  totalArticlesCount: number,
   currentArticle: IArticleData,
   sameArticles: IArticleData[],
   currentTag: string,
   loading: TypeLoadingStatus,
   error: string,
+}
+
+export interface IGetArticles {
+  pageSize: number;
+  lang: string;
 }
 
 export interface IGetCurrentArticle {
