@@ -15,7 +15,6 @@ export const SelectLang = (): JSX.Element => {
   const onEngLanguageToggle = async () => {
     await router.push(`${router.asPath}`, `${router.asPath}`, { locale: 'en' });
     setDropDown(!dropDown);
-
   };
 
   const onRusLanguageToggle = async () => {
