@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { Button, Flex, Link, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Link, Text } from '@chakra-ui/react';
 
 import logoNew from 'public/logoNew.png';
 import login from 'public/login.png';
@@ -49,9 +49,10 @@ export const Header = (): JSX.Element => {
             {
                 userData?.email &&
                 <Flex>
-                  <Link href={process.env.NEXT_PUBLIC_BASE_URL_FOR_PERSONAL_CABINET} mx='26px' h='44px' w='44px'
-                        border='1px #0250c8 solid' rounded='full'>
-                    <Image src={avatar} alt='avatar'/>
+                  <Link href={process.env.NEXT_PUBLIC_BASE_URL_FOR_PERSONAL_CABINET} mx='26px'>
+                    <Box h='44px' w='44px' border='1px #0250c8 solid' rounded='full' pos='relative' overflow='hidden'>
+                      <Image src={userData?.photo || avatar} layout='fill' alt='avatar'/>
+                    </Box>
                   </Link>
                 </Flex>
             }

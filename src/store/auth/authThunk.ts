@@ -8,8 +8,8 @@ import { setTokenToLocalStorage, setUserToLocalStorage } from 'services/localSto
 export const auth = createAsyncThunk('auth/me', async () => {
   // const response = await instanceForAuth.get('user/token/refresh');
   const response = await instanceForAuth.get('user/token/ref');
-  const { _id, email, name } = response.data.user;
-  setUserToLocalStorage({ _id: _id, email: email, name: name });
+  const { _id, email, name, photo } = response.data.user;
+  setUserToLocalStorage({ _id: _id, email: email, name: name, photo: photo });
   return response.data.user;
 });
 
@@ -73,8 +73,8 @@ export const login = createAsyncThunk(
       try {
         const response = await instanceForAuth.post('user/auth', user);
         // setTokenToLocalStorage(response.data.accessToken);
-        const { _id, email, name } = response.data.user;
-        setUserToLocalStorage({ _id: _id, email: email, name: name });
+        const { _id, email, name, photo } = response.data.user;
+        setUserToLocalStorage({ _id: _id, email: email, name: name, photo: photo });
         return response.data.user;
       } catch (e) {
         if (e instanceof AxiosError) {

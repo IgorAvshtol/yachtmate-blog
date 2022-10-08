@@ -63,6 +63,7 @@ export interface IUserData {
   _id: string,
   email: string,
   name: string,
+  photo?: string
 }
 
 export interface ISignUpData {

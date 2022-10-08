@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { Button, Flex, Menu, MenuButton, MenuItem, MenuList, Text } from '@chakra-ui/react';
@@ -12,13 +12,8 @@ export const SelectLang = (): JSX.Element => {
   const router = useRouter();
   const [dropDown, setDropDown] = useState<boolean>(false);
 
-  const onEngLanguageToggle = async () => {
-    await router.push(`${router.asPath}`, `${router.asPath}`, { locale: 'en' });
-    setDropDown(!dropDown);
-  };
-
-  const onRusLanguageToggle = async () => {
-    await router.push(`${router.asPath}`, `${router.asPath}`, { locale: 'ru' });
+  const onLanguageToggleClick = async (e:  React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    await router.push(`${router.asPath}`, `${router.asPath}`, { locale: e.currentTarget.value });
     setDropDown(!dropDown);
   };
 
@@ -40,11 +35,11 @@ export const SelectLang = (): JSX.Element => {
           </Flex>
         </MenuButton>
         <MenuList w='215px' borderRadius='10px' p='0'>
-          <MenuItem minH='48px' pl='24px' onClick={onEngLanguageToggle}>
+          <MenuItem minH='48px' pl='24px' value='en' onClick={onLanguageToggleClick}>
             <Image src={englandFlag} alt='eng'/>
             <Text ml='10px'>English</Text>
           </MenuItem>
-          <MenuItem minH='48px' pl='24px' onClick={onRusLanguageToggle}>
+          <MenuItem minH='48px' pl='24px' value='ru' onClick={onLanguageToggleClick}>
             <Image src={russiaFlag} alt='rus'/>
             <Text ml='10px'>Русский</Text>
           </MenuItem>
