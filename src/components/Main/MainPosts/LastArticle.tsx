@@ -17,16 +17,14 @@ export const LastArticle = (): JSX.Element => {
   if (loading === TypeLoadingStatus.IS_PENDING) return <LastArticleWithSkeleton/>;
 
   return (
-      <Wrapper slug={articles[0]?.attributes.slug} borderRadius='12px'
-               _hover={{ textDecoration: 'none' }}>
+      <Wrapper slug={articles[0]?.attributes.slug} borderRadius='12px' _hover={{ textDecoration: 'none' }}>
         <Flex h='100%' direction='column' maxW='690px' w={{ '2xl': '690px', xl: '690px', lg: '95%', md: '95%' }}
               borderRadius='12px' bg='#F5F7FB' p='20px'>
           <Box borderRadius='8px' overflow='hidden'>
             {
                 articles[0]?.attributes?.main_image_url &&
-                <Image src={articles[0]?.attributes?.main_image_url} layout='responsive' width='650px'
-                       height='313px'
-                       objectFit='cover' alt='cover'/>
+                <Image src={process.env.NEXT_PUBLIC_BASE_IMAGE_URL + articles[0]?.attributes?.main_image_url}
+                       layout='responsive' width='650px' height='313px' objectFit='cover' alt='cover'/>
             }
           </Box>
           <Text my='16px' fontSize='14px' letterSpacing='0.5px' opacity='0.5'>

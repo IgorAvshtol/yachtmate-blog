@@ -35,7 +35,7 @@ export const Posts = (): JSX.Element => {
                                                                    lang={language}
                                                                    slug={post.attributes.slug}
                                                                    date={post.attributes.createdAt}
-                                                                   image={post.attributes.main_image_url}/>)
+                                                                   image={process.env.NEXT_PUBLIC_BASE_IMAGE_URL + post.attributes.main_image_url}/>)
             }
           </Grid>
           {loading === TypeLoadingStatus.IS_PENDING && <PostsPageWithSkeleton/>}

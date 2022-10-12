@@ -1,9 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import parse from 'html-react-parser';
-import { marked } from 'marked';
 import { Box, Flex, Text } from '@chakra-ui/react';
 
 import { SameArticles } from 'components/SameArticles/SameArticles';
@@ -22,6 +20,12 @@ const Article = (): JSX.Element => {
   const { query, locale } = useRouter();
   const t = locale === 'en' ? eng : rus;
   const { currentArticle: data, loading } = useAppSelector(state => state.articles);
+  const [html, setHtml] = useState('');
+  const articleBody = useRef(null);
+
+  function getStrapiUrl(path: string | undefined | null = '') {
+    return `${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${path}`;
+  }
 
   useEffect(() => {
     const currentArticleURLData = {
@@ -31,6 +35,19 @@ const Article = (): JSX.Element => {
     currentArticleURLData.slug && dispatch(getCurrentArticle(currentArticleURLData));
     data?.id && dispatch(setOneViewForArticle(data?.id));
   }, [data?.id, dispatch, locale, query]);
+
+  useEffect(() => {
+    const fragment = document.createElement('div');
+    fragment.innerHTML = data?.attributes?.paragraphs;
+    const images = fragment.querySelectorAll('img');
+
+    images.forEach(image => {
+      image.src = getStrapiUrl(image.getAttribute('src'));
+      image.removeAttribute('srcset');
+    });
+
+    setHtml(fragment.innerHTML);
+  }, [data]);
 
   if (loading === TypeLoadingStatus.IS_PENDING) return <ArticlePageWithSkeleton/>;
 
@@ -67,15 +84,13 @@ const Article = (): JSX.Element => {
               </Text>
             </Flex>
             <Box mt='20px'>
-              <div className={style.description}>
-                {data?.attributes?.main_description && parse(marked(data?.attributes?.main_description))}
-              </div>
+              <div className={style.description} dangerouslySetInnerHTML={{ __html: data?.attributes?.main_description }}/>
             </Box>
           </Flex>
           <Box w='100%'>
             {data?.attributes?.main_image_url &&
-                <Image src={data?.attributes?.main_image_url} layout='responsive' width='1440px' height='547px'
-                       alt='cormack'/>
+                <Image src={process.env.NEXT_PUBLIC_BASE_IMAGE_URL + data?.attributes?.main_image_url}
+                       layout='responsive' width='1440px' height='547px' alt='cormack'/>
             }
           </Box>
           <Box w='100%'>
@@ -84,13 +99,14 @@ const Article = (): JSX.Element => {
               <Flex direction='column' mb={{ md: '56px', sm: '32px' }}
                     w={{ xl: '800px', lg: '55%', md: '80%', sm: '90%' }}>
                 <Box mt={{ md: '56px', sm: '30px' }}>
-                  <div className={style.paragraph}>
-                    {data?.attributes?.paragraphs && parse(marked(data?.attributes?.paragraphs))}
-                  </div>
+                  {
+                      html &&
+                      <div className={style.paragraph} ref={articleBody} dangerouslySetInnerHTML={{ __html: html }}/>
+                  }
                 </Box>
                 <Box mt={{ md: '80px', sm: '30px' }}>
-                  <div className={style.postscriptum}>
-                    {data?.attributes?.postscriptum && parse(marked(data?.attributes?.postscriptum))}
+                  <div className={style.postscriptum}
+                       dangerouslySetInnerHTML={{ __html: data?.attributes?.postscriptum }}>
                   </div>
                 </Box>
               </Flex>

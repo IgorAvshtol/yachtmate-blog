@@ -17,15 +17,14 @@ export const PenultimateArticle = (): JSX.Element => {
   if (loading === TypeLoadingStatus.IS_PENDING) return <PenultimateArticleWithSkeleton/>;
 
   return (
-      <Wrapper slug={articles[1]?.attributes?.slug} borderRadius='12px'
-               _hover={{ textDecoration: 'none' }}>
+      <Wrapper slug={articles[1]?.attributes?.slug} borderRadius='12px' _hover={{ textDecoration: 'none' }}>
         <Flex mt={{ md: '0', sm: '12px' }} w={{ md: '330px', sm: '100%' }} direction='column' bg='#F5F7FB'
               borderRadius='12px' p='20px' h='100%'>
           <Box borderRadius='8px' overflow='hidden'>
             {
                 articles[1]?.attributes?.main_image_url &&
-                <Image src={articles[1]?.attributes?.main_image_url} alt='cover' layout='responsive'
-                       width='290px' height='192px' objectFit='cover'/>
+                <Image src={process.env.NEXT_PUBLIC_BASE_IMAGE_URL + articles[1]?.attributes?.main_image_url}
+                       alt='cover' layout='responsive' width='290px' height='192px' objectFit='cover'/>
             }
           </Box>
           <Text my='16px' fontSize='14px' letterSpacing='0.5px' opacity='0.5'>
@@ -35,9 +34,8 @@ export const PenultimateArticle = (): JSX.Element => {
             }
           </Text>
           <Text as='h2' fontSize='20px'>{articles[1]?.attributes?.main_title}</Text>
-          <Text as='h3' mt='8px' fontWeight='400' fontSize='18px' opacity='0.6' noOfLines={3}>
-            {articles[1]?.attributes?.main_description}
-          </Text>
+          <Text as='h3' mt='8px' fontWeight='400' fontSize='18px' opacity='0.6' noOfLines={3}
+                dangerouslySetInnerHTML={{ __html: articles[1]?.attributes?.main_description }}/>
         </Flex>
       </Wrapper>
   );
