@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Box, Button, Flex, Link, Text } from '@chakra-ui/react';
 
-import logoNew from 'public/logoNew.png';
+import logoNew from 'public/IconLogo.svg';
 import login from 'public/login.png';
 import avatar from 'public/avatar.svg';
 import { Menu } from './Menu';
@@ -33,7 +33,7 @@ export const Header = (): JSX.Element => {
       <Flex w='100%' justifyContent='center' boxShadow='0px 8px 24px rgba(59, 69, 75, 0.04)'>
         <Flex h='92px' w='95%' bgColor='white' justifyContent='space-between' alignItems='center'>
           <Link href={process.env.NEXT_PUBLIC_BASE_URL_FOR_HOME_PAGE}>
-            <Image src={logoNew} alt='logo'/>
+              <Image src={logoNew} alt='logo'/>
           </Link>
           <Flex display={{ md: 'none', sm: 'block' }}>
             <Button w='79px' h='44px' borderRadius='28px' bg='rgba(0, 111, 19, 0.05)' fontSize='16px'>

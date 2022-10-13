@@ -44,6 +44,30 @@
     letter-spacing: 0.02em;
     color: #001240;
 }
+.paragraph blockquote {
+    padding: 32px;
+    background: #ECEFF5;
+}
+
+.paragraph blockquote p {
+    font-family: 'Gilroy', sans-serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 180%;
+    letter-spacing: 0.04em;
+    color: #001240;
+}
+
+.paragraph li {
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 180%;
+    letter-spacing: 0.04em;
+    color: #001240;
+}
 
 .paragraph img {
     margin-top: 32px;

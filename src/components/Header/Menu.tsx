@@ -21,7 +21,7 @@ export const Menu = (): JSX.Element => {
 
   return (
       <MainBlock>
-        <MenuButton as={Button} bg='transparent'>
+        <MenuButton as={Button} bg='transparent' p='0'>
           <Image src={menuLogo} width={24} height={24} alt='menu'/>
         </MenuButton>
         <MenuList minW='0' w='50px'>
