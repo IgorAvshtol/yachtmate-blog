@@ -24,7 +24,7 @@ export const LastArticle = (): JSX.Element => {
             {
                 articles[0]?.attributes?.main_image_url &&
                 <Image src={process.env.NEXT_PUBLIC_BASE_IMAGE_URL + articles[0]?.attributes?.main_image_url}
-                       layout='responsive' width='650px' height='313px' objectFit='cover' alt='cover'/>
+                       layout='responsive' width='650px' height='313px' objectFit='cover' alt='cover' priority/>
             }
           </Box>
           <Text my='16px' fontSize='14px' letterSpacing='0.5px' opacity='0.5'>

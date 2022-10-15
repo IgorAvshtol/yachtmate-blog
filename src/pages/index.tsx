@@ -7,6 +7,10 @@ const Home = (): JSX.Element => {
       <>
         <Head>
           <title>Yachtmate</title>
+          <meta
+              name='description'
+              content='Yachtmate'
+          />
         </Head>
         <Main/>
       </>
