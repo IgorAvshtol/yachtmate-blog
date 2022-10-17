@@ -14,7 +14,7 @@ interface IPost {
 }
 
 export const Post = ({ image, title, date, slug, lang }: IPost): JSX.Element => {
-  const correctDate = format(new Date(date), 'LLL d, yyy', { locale: lang === 'ru' ? ru : enUS });
+  const correctDate = format(new Date(date), lang === 'en' ? 'LLL d, yyy' : 'd MMMM yyy', { locale: lang === 'ru' ? ru : enUS }).toLocaleLowerCase();
 
   return (
       <Wrapper slug={slug} h={'max-content'} p={'20px'} bg={'white'} borderRadius={'12px'}

@@ -16,8 +16,11 @@ export const TimeBlock = ({ time_to_read, createdAt }: ITimeBlock): JSX.Element 
 
   return (
       <Flex fontWeight='500' fontSize='16px' color='#001240' lineHeight='180%' opacity='0.5'>
-        <Text>
-          {createdAt && format(new Date(createdAt), 'd LLL, yyy', { locale: router.locale === 'ru' ? ru : enUS })}
+        <Text display={{ md: 'block', sm: 'none' }}>
+          {createdAt && format(new Date(createdAt), router.locale === 'ru' ? 'd MMMM yyy' : 'd MMM yyy', { locale: router.locale === 'ru' ? ru : enUS }).toLocaleLowerCase()}
+        </Text>
+        <Text display={{ md: 'none', sm: 'block' }}>
+          {createdAt && format(new Date(createdAt), router.locale === 'ru' ? 'd MMM yyy' : 'd MMM yyy', { locale: router.locale === 'ru' ? ru : enUS }).toLocaleLowerCase()}
         </Text>
         <Text mx='15px'>·</Text>
         <Text>{time_to_read} {t.generalArticlesData.time_for_reading}</Text>

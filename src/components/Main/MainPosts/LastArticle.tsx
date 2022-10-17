@@ -29,7 +29,7 @@ export const LastArticle = (): JSX.Element => {
           </Box>
           <Text my='16px' fontSize='14px' letterSpacing='0.5px' opacity='0.5'>
             {articles[0]?.attributes?.createdAt &&
-                format(new Date(articles[0]?.attributes?.createdAt), 'LLL d, yyy', { locale: language === 'ru' ? ru : enUS })
+                format(new Date(articles[0]?.attributes?.createdAt), language === 'ru' ? 'd MMMM yyy' : 'LLL d, yyy', { locale: language === 'ru' ? ru : enUS }).toLocaleLowerCase()
             }
           </Text>
           <Text as='h2' fontSize='26px'>
