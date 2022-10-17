@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -10,7 +10,6 @@ import { useAppDispatch, useAppSelector } from 'store/store';
 import { getCurrentArticle, setOneViewForArticle } from 'store/atricles/articlesThunk';
 import { TimeBlock } from 'components/TimeBlock';
 import style from 'styles/article.module.css';
-import { TypeLoadingStatus } from 'interfaces';
 import { ArticlePageWithSkeleton } from 'components/Skeleton/ArticlePageWithSkeleton';
 import { Sidebar } from 'components/Sidebar/Sidebar';
 import { eng, rus } from 'translation';
@@ -19,19 +18,24 @@ const Article = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const { query, locale } = useRouter();
   const t = locale === 'en' ? eng : rus;
-  const { currentArticle: data, loading } = useAppSelector(state => state.articles);
-  const [html, setHtml] = useState<string | null>(null);
+  const { currentArticle: data } = useAppSelector(state => state.articles);
+
+  const dataFetchedRef = useRef(false);
+  const [html, setHtml] = useState<string>('');
   const [showChild, setShowChild] = useState(false);
 
   useEffect(() => {
+    if (dataFetchedRef.current) return;
     const currentArticleURLData = {
       slug: query['index'] as string,
       lang: locale as string,
     };
-    currentArticleURLData.slug && dispatch(getCurrentArticle(currentArticleURLData));
+    if (currentArticleURLData.slug) {
+      dispatch(getCurrentArticle(currentArticleURLData));
+      setShowChild(true);
+      dataFetchedRef.current = true;
+    }
     data?.id && dispatch(setOneViewForArticle(data?.id));
-    setShowChild(true);
-
   }, [data?.id, dispatch, locale, query]);
 
   useEffect(() => {
@@ -47,11 +51,7 @@ const Article = (): JSX.Element => {
     setHtml(fragment.innerHTML);
   }, [data]);
 
-  if (!showChild) {
-    return <ArticlePageWithSkeleton/>;
-  }
-
-  if (loading === TypeLoadingStatus.IS_PENDING) return <ArticlePageWithSkeleton/>;
+  if (!showChild) return <ArticlePageWithSkeleton/>;
 
   return (
       <>
