@@ -21,6 +21,7 @@ const Article = (): JSX.Element => {
   const t = locale === 'en' ? eng : rus;
   const { currentArticle: data, loading } = useAppSelector(state => state.articles);
   const [html, setHtml] = useState<string | null>(null);
+  const [showChild, setShowChild] = useState(false);
 
   useEffect(() => {
     const currentArticleURLData = {
@@ -29,6 +30,8 @@ const Article = (): JSX.Element => {
     };
     currentArticleURLData.slug && dispatch(getCurrentArticle(currentArticleURLData));
     data?.id && dispatch(setOneViewForArticle(data?.id));
+    setShowChild(true);
+
   }, [data?.id, dispatch, locale, query]);
 
   useEffect(() => {
@@ -43,6 +46,10 @@ const Article = (): JSX.Element => {
 
     setHtml(fragment.innerHTML);
   }, [data]);
+
+  if (!showChild) {
+    return <ArticlePageWithSkeleton/>;
+  }
 
   if (loading === TypeLoadingStatus.IS_PENDING) return <ArticlePageWithSkeleton/>;
 
