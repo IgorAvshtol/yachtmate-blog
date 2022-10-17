@@ -50,7 +50,7 @@ const Article = (): JSX.Element => {
 
     setHtml(fragment.innerHTML);
   }, [data]);
-
+  console.log(showChild);
   if (!showChild) return <ArticlePageWithSkeleton/>;
 
   return (

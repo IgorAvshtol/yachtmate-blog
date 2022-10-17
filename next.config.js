@@ -1,5 +1,5 @@
 module.exports = {
-  reactStrictMode: false,
+  reactStrictMode: true,
   images: {
     domains: ['adminblog.test.yachtmate.club', 'backend.test.yachtmate.club', 'localhost'],
   },
