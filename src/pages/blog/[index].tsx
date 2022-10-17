@@ -13,7 +13,7 @@ import style from 'styles/article.module.css';
 import { ArticlePageWithSkeleton } from 'components/Skeleton/ArticlePageWithSkeleton';
 import { Sidebar } from 'components/Sidebar/Sidebar';
 import { eng, rus } from 'translation';
-import { TypeLoadingStatus } from '../../interfaces';
+import { TypeLoadingStatus } from 'interfaces';
 
 const Article = (): JSX.Element => {
   const dispatch = useAppDispatch();

@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Flex } from '@chakra-ui/react';
 
