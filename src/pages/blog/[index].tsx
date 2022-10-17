@@ -13,12 +13,13 @@ import style from 'styles/article.module.css';
 import { ArticlePageWithSkeleton } from 'components/Skeleton/ArticlePageWithSkeleton';
 import { Sidebar } from 'components/Sidebar/Sidebar';
 import { eng, rus } from 'translation';
+import { TypeLoadingStatus } from '../../interfaces';
 
 const Article = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const { query, locale } = useRouter();
   const t = locale === 'en' ? eng : rus;
-  const { currentArticle: data } = useAppSelector(state => state.articles);
+  const { currentArticle: data, loading } = useAppSelector(state => state.articles);
 
   const dataFetchedRef = useRef(false);
   const [html, setHtml] = useState<string>('');
@@ -50,8 +51,8 @@ const Article = (): JSX.Element => {
 
     setHtml(fragment.innerHTML);
   }, [data]);
-  console.log(showChild);
-  if (!showChild) return <ArticlePageWithSkeleton/>;
+
+  if (!showChild || loading !== TypeLoadingStatus.IS_RESOLVED) return <ArticlePageWithSkeleton/>;
 
   return (
       <>

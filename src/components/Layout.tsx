@@ -28,7 +28,6 @@ export const Layout = ({ children }: ILayout) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const language = router.locale as string;
-  const [showChild, setShowChild] = useState(false);
 
   const {
     signUpModalOpen,
@@ -44,7 +43,6 @@ export const Layout = ({ children }: ILayout) => {
   const { articlesCount } = useAppSelector(state => state.articles);
 
   useEffect(() => {
-    setShowChild(true);
     dispatch(getArticles({ lang: language, pageSize: articlesCount }));
     const currentUser = getUserFromLocalStorage();
     if (!currentUser) {
@@ -53,10 +51,6 @@ export const Layout = ({ children }: ILayout) => {
       dispatch(getCurrentUser(currentUser));
     }
   }, [articlesCount, dispatch, language]);
-
-  if (!showChild) {
-    return null;
-  }
 
   return (
       <Flex minH='100vh' w='100%' h='100%' alignItems='center' flexDirection='column'>
