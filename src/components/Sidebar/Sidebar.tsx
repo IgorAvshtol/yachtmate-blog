@@ -27,8 +27,7 @@ export const Sidebar = (): JSX.Element => {
   };
 
   return (
-      <Flex display={{ md: 'flex', sm: 'none' }} w='90%' justifyContent='end' pos='fixed' right='50px' zIndex='10'
-            top='290px'>
+      <Flex display={{ md: 'flex', sm: 'none' }} justifyContent='end' pos='fixed' right='50px' zIndex='10' top='290px'>
         <Flex direction='column' h='100px' justifyContent='space-between' alignItems='center'>
           <Flex mt='10px' direction='column' alignItems='center'>
             <Button w='48px' h='48px' border='2px solid #F5F6F8' bg='#ffffff' borderRadius='50%' p='5px'>

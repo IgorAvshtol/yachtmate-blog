@@ -35,8 +35,7 @@ export const SameArticle = ({ image, date, title, slug }: ISameArticle): JSX.Ele
             _hover={{ textDecoration: 'none' }}>
         <Flex pos='relative' w='100%' h='220px' justifyContent='center' alignItems='center' borderRadius='12px'
               overflow='hidden' className={hoverCard ? style.cardIsHover : style.card}>
-          <Image src={process.env.NEXT_PUBLIC_BASE_IMAGE_URL + image} layout='fill' objectFit='cover' width='330px'
-                 height='220px' alt='same-yacht'/>
+          <Image src={process.env.NEXT_PUBLIC_BASE_IMAGE_URL + image} layout='fill' objectFit='cover' alt='same-yacht'/>
         </Flex>
         <Text display={{ md: 'none', sm: 'block' }} mt='12px' fontSize='14px' lineHeight='140%' letterSpacing='0.5px'
               opacity='0.5'>

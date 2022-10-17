@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -20,12 +20,7 @@ const Article = (): JSX.Element => {
   const { query, locale } = useRouter();
   const t = locale === 'en' ? eng : rus;
   const { currentArticle: data, loading } = useAppSelector(state => state.articles);
-  const [html, setHtml] = useState('');
-  const articleBody = useRef(null);
-
-  function getStrapiUrl(path: string | undefined | null = '') {
-    return `${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${path}`;
-  }
+  const [html, setHtml] = useState<string | null>(null);
 
   useEffect(() => {
     const currentArticleURLData = {
@@ -42,7 +37,7 @@ const Article = (): JSX.Element => {
     const images = fragment.querySelectorAll('img');
 
     images.forEach(image => {
-      image.src = getStrapiUrl(image.getAttribute('src'));
+      image.src = `${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${image.getAttribute('src')}`;
       image.removeAttribute('srcset');
     });
 
@@ -84,13 +79,14 @@ const Article = (): JSX.Element => {
               </Text>
             </Flex>
             <Box mt='20px'>
-              <div className={style.description} dangerouslySetInnerHTML={{ __html: data?.attributes?.main_description }}/>
+              <div className={style.description}
+                   dangerouslySetInnerHTML={{ __html: data?.attributes?.main_description }}/>
             </Box>
           </Flex>
           <Box w='100%'>
             {data?.attributes?.main_image_url &&
                 <Image src={process.env.NEXT_PUBLIC_BASE_IMAGE_URL + data?.attributes?.main_image_url}
-                       layout='responsive' width='1440px' height='547px' alt='cormack'/>
+                       layout='responsive' width='1440px' height='547px' alt='cormack' priority/>
             }
           </Box>
           <Box w='100%'>
@@ -100,8 +96,7 @@ const Article = (): JSX.Element => {
                     w={{ xl: '800px', lg: '55%', md: '80%', sm: '90%' }}>
                 <Box mt={{ md: '56px', sm: '30px' }}>
                   {
-                      html &&
-                      <div className={style.paragraph} ref={articleBody} dangerouslySetInnerHTML={{ __html: html }}/>
+                      html && <div className={style.paragraph} dangerouslySetInnerHTML={{ __html: html }}/>
                   }
                 </Box>
                 <Box mt={{ md: '80px', sm: '30px' }}>
