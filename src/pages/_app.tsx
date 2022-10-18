@@ -43,6 +43,7 @@ const theme = extendTheme({
     },
     Text: {
       baseStyle: {
+        fontFamily: `'Gilroy', sans-serif`,
         fontWeight: 500,
         color: '#001240',
         letterSpacing: '0.02em'

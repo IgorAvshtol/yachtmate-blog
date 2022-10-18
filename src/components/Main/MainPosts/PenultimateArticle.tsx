@@ -14,6 +14,8 @@ export const PenultimateArticle = (): JSX.Element => {
   const language = router.locale as string;
   const { articles, loading } = useAppSelector(state => state.articles);
 
+  const previewDescription = articles[1]?.attributes?.main_description.split('<p>')[1];
+
   if (loading === TypeLoadingStatus.IS_PENDING) return <PenultimateArticleWithSkeleton/>;
 
   return (
@@ -35,7 +37,7 @@ export const PenultimateArticle = (): JSX.Element => {
           </Text>
           <Text as='h2' fontSize='20px'>{articles[1]?.attributes?.main_title}</Text>
           <Text as='h3' mt='8px' fontWeight='400' fontSize='18px' opacity='0.6' noOfLines={3}
-                dangerouslySetInnerHTML={{ __html: articles[1]?.attributes?.main_description }}/>
+                dangerouslySetInnerHTML={{ __html: previewDescription }}/>
         </Flex>
       </Wrapper>
   );
