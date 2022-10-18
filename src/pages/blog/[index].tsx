@@ -26,7 +26,7 @@ const Article = (): JSX.Element => {
   const [showChild, setShowChild] = useState(false);
 
   useEffect(() => {
-    // if (dataFetchedRef.current) return;
+    if (dataFetchedRef.current) return;
     const currentArticleURLData = {
       slug: query['index'] as string,
       lang: locale as string,
@@ -34,7 +34,7 @@ const Article = (): JSX.Element => {
     if (currentArticleURLData.slug) {
       dispatch(getCurrentArticle(currentArticleURLData));
       setShowChild(true);
-      // dataFetchedRef.current = true;
+      dataFetchedRef.current = true;
     }
     data?.id && dispatch(setOneViewForArticle(data?.id));
   }, [data?.id, dispatch, locale, query]);
