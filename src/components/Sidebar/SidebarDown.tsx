@@ -1,20 +1,19 @@
 import Image from 'next/image';
-import { Button, Flex, Text } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import { Button, Flex, Link, Text } from '@chakra-ui/react';
 
-import more from 'public/more.png';
-import share from 'public/share.png';
 import like from 'public/like.png';
-import dislike from 'public/heart.png';
-import { ButtonMenu } from './ButtonMenu';
+import iconHome from 'public/iconHome.svg';
+import iconSearch from 'public/iconSearch.svg';
+import avatar from 'public/avatar.svg';
+import blackHeart from 'public/blackHeart.svg';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import { setLike, setUnlike } from 'store/atricles/articlesThunk';
-
-const sideBarData = [
-  { id: 1, items: ['Delete', 'Edit'], image: share, label: 'Share' },
-  { id: 2, items: ['vk', 'instagram'], image: more, label: 'Other' },
-];
+import { eng, rus } from 'translation';
 
 export const SidebarDown = (): JSX.Element => {
+  const router = useRouter();
+  const t = router.locale === 'en' ? eng : rus;
   const dispatch = useAppDispatch();
   const { userData } = useAppSelector(state => state.auth);
   const { currentArticle: data } = useAppSelector(state => state.articles);
@@ -34,22 +33,28 @@ export const SidebarDown = (): JSX.Element => {
   };
 
   return (
-      <Flex display={{ md: 'none', sm: 'flex' }} w='100%' justifyContent='center' pos='fixed' bottom='0' zIndex='20'
-            bg='#ffffff'>
-        <Flex w='100%' h='90px' justifyContent='space-around' alignItems='center'>
-          <Flex h='90px' w='80px' direction='column' alignItems='center' justifyContent='center'>
-            <Button bg='transparent' w='48px' h='48px' border='2px solid #F5F6F8' borderRadius='50%' p='5px'
-                    onClick={onLikeClickHandler}>
-              <Image src={arrayOfLikes?.includes(userData._id) ? like : dislike} alt='menu'/>
-            </Button>
-            <Text mt='2px' fontSize='16px' opacity='0.5'>{arrayOfLikes?.length}</Text>
-          </Flex>
-
-          {
-            sideBarData.map(data => <ButtonMenu key={data.id} image={data.image} menuItems={data.items}
-                                                label={data.label}/>
-            )
-          }
+      <Flex display={{ md: 'none', sm: 'flex' }} w='100%' justifyContent='center' pos='fixed' left='0' bottom='0'
+            zIndex='20' bg='#ffffff'>
+        <Flex w='100%' h='50px' justifyContent='space-around' alignItems='center'>
+          <Link href='/' bg='transparent' display='flex' flexDirection='column' alignItems='center'>
+            <Image src={iconHome} alt='home'/>
+            <Text mt='2px' fontSize='10px'>{t.sidebar.home}</Text>
+          </Link>
+          <Link href={process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE} bg='transparent' display='flex'
+                flexDirection='column' alignItems='center'>
+            <Image src={iconSearch} alt='search'/>
+            <Text mt='2px' fontSize='10px'>{t.sidebar.search}</Text>
+          </Link>
+          <Button bg='transparent' display='flex' flexDirection='column' alignItems='center'
+                  onClick={onLikeClickHandler}>
+            <Image src={arrayOfLikes?.includes(userData._id) ? like : blackHeart} alt='like'/>
+            <Text mt='4px' fontSize='10px'>{arrayOfLikes?.length}</Text>
+          </Button>
+          <Link href={process.env.NEXT_PUBLIC_BASE_URL_FOR_PERSONAL_CABINET} bg='transparent' display='flex'
+                flexDirection='column' alignItems='center'>
+            <Image src={userData?.photo || avatar} width='24px' height='24px' alt='avatar'/>
+            <Text mt='2px' fontSize='10px'>{t.sidebar.profile}</Text>
+          </Link>
         </Flex>
       </Flex>
   );

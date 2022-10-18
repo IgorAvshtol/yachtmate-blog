@@ -27,6 +27,11 @@ export const eng = {
     view: 'views'
   },
   footer: 'Yachtmate an association of people who love yachting know how to sail on their yachts know how to handle them appreciate that special atmosphere of life on a boat',
+  sidebar: {
+    home: 'Home',
+    search: 'Search',
+    profile: 'Profile'
+  },
   registration_modal: {
     title: 'Registration',
     availability_account: 'Have an account?',
@@ -130,6 +135,11 @@ export const rus = {
     view: 'просмотра'
   },
   footer: 'Яхтмейт — объединение людей которые любят яхтинг, умеют ходить на своих яхтах, умею с ними обращаться, ценят ту особую атмосферу жизни на лодке',
+  sidebar: {
+    home: 'Домой',
+    search: 'Искать',
+    profile: 'Профиль'
+  },
   registration_modal: {
     title: 'Регистрация',
     availability_account: 'Есть аккаунт?',
