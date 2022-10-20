@@ -7,7 +7,7 @@ import { Button, Flex, Text } from '@chakra-ui/react';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import { FormCustomInput } from '../Input/FormCustomInput';
 import { confirmRegistrationUserModalIsOpen, isError, signUpModalIsOpen } from 'store/auth/authSlice';
-import back from 'public/back.png';
+import back from 'public/backBtn.svg';
 import { Timer } from '../Timer';
 import { getRegistrationCode, registration, sendRegistrationCode } from 'store/auth/authThunk';
 import { eng, rus } from 'translation';
@@ -57,9 +57,9 @@ export const EnterReceivedCodeForRegistration = (): JSX.Element => {
           <Flex justifyContent='center' alignItems='center' w='32px' h='32px' rounded='full' bg='rgba(0, 18, 64, 0.04)'>
             <Image src={back} width='7px' height='10px' alt='back'/>
           </Flex>
-          <Text ml='10px' fontWeight='600' fontSize='16px' lineHeight='24px' letterSpacing='0.4px'>
-            {t.enter_code_for_signup.go_back_btn}
-          </Text>
+          {/*<Text ml='10px' fontWeight='600' fontSize='16px' lineHeight='24px' letterSpacing='0.4px'>*/}
+          {/*  {t.enter_code_for_signup.go_back_btn}*/}
+          {/*</Text>*/}
         </Button>
         <Text mt='32px' fontWeight='600' fontSize='32px' lineHeight='110%' letterSpacing='0.3px'>
           {t.enter_code_for_signup.enter_code}

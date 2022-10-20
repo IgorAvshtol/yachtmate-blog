@@ -5,11 +5,11 @@ import { Box, Button, Flex, Link, Text } from '@chakra-ui/react';
 import logoNew from 'public/IconLogo.svg';
 import login from 'public/login.png';
 import avatar from 'public/avatar.svg';
-import { Menu } from './Menu';
 import { SelectLang } from './SelectLang';
 import { eng, rus } from 'translation';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import { signInModalIsOpen, signUpModalIsOpen } from 'store/auth/authSlice';
+import { SidePanel } from '../SidePanel';
 
 export const Header = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -36,10 +36,7 @@ export const Header = (): JSX.Element => {
               <Image src={logoNew} alt='logo'/>
           </Link>
           <Flex display={{ md: 'none', sm: 'block' }}>
-            <Button w='79px' h='44px' borderRadius='28px' bg='rgba(0, 111, 19, 0.05)' fontSize='16px'>
-              {t.header.loginBtn}
-            </Button>
-            <Menu/>
+            <SidePanel/>
           </Flex>
           <Flex w='598px' justifyContent='end' display={{ md: 'flex', sm: 'none' }}>
             <Button w='147px' h='44px' paddingX='10px' borderColor='transparent' borderRadius={22} bg='#F5F6F8'

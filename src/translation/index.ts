@@ -32,6 +32,13 @@ export const eng = {
     search: 'Search',
     profile: 'Profile'
   },
+  sidePanel: {
+    search: 'Yacht search',
+    signin: 'Login',
+    signup: 'Registration',
+    help: 'Help',
+    blog: 'Blog'
+  },
   registration_modal: {
     title: 'Registration',
     availability_account: 'Have an account?',
@@ -139,6 +146,13 @@ export const rus = {
     home: 'Домой',
     search: 'Искать',
     profile: 'Профиль'
+  },
+  sidePanel: {
+    search: 'Поиск яхт',
+    signin: 'Войти',
+    signup: 'Регистрация',
+    help: 'Помощь',
+    blog: 'Блог'
   },
   registration_modal: {
     title: 'Регистрация',

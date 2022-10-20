@@ -213,5 +213,6 @@ export const {
   closeAllModals,
   recoveryPasswordModalIsOpen,
   confirmRegistrationUserModalIsOpen,
+  setNewPasswordModalIsOpen,
   resetPasswordModalIsOpen
 } = authReducer.actions;

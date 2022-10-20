@@ -43,7 +43,8 @@ export const ModalWindow = ({ children }: IModalWindow): JSX.Element => {
                }
         >
           <ModalOverlay/>
-          <ModalContent maxW='690px' borderRadius='12px' tabIndex={-1} ref={initRef}>
+          <ModalContent maxW='690px' h={{ md: 'auto', sm: '100%' }} pos={{ sm: 'absolute' }}
+                        borderRadius={{ md: '12px', sm: '0' }} tabIndex={-1} ref={initRef}>
             <Flex>
               <Flex display={{ md: 'block', sm: 'none' }} minW='240px' p='20px' borderRadius='12px 0px 0px 12px'
                     bg='linear-gradient(180deg, #1974FE 0%, #05285C 121.08%)'>
@@ -52,8 +53,14 @@ export const ModalWindow = ({ children }: IModalWindow): JSX.Element => {
                 </Box>
               </Flex>
               <Flex w='100%' direction='column' alignItems='center' p='20px'>
-                <ModalCloseButton size='lg' color='rgba(0, 18, 64, 0.4)'/>
-                <Box mt='26px' w='95%'>
+                {(signInModalOpen || signUpModalOpen || recoveryPasswordIsSuccessModalOpen || registrationIsSuccessModalOpen)
+                    &&
+                    <Flex mb={{ md: '0', sm: '44px' }} w='100%' justifyContent='end'>
+                      <ModalCloseButton mt='24px' pos={{ md: 'static', sm: 'absolute' }} left={{ sm: '30px' }} size='md'
+                                        w='40px' h='40px' rounded='full' bgColor='rgba(0, 18, 64, 0.04)'/>
+                    </Flex>
+                }
+                <Box mt='24px' w='95%'>
                   {children}
                 </Box>
               </Flex>

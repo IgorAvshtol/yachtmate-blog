@@ -86,7 +86,7 @@ export const SignUpForm = (): JSX.Element => {
           {
               loading !== TypeLoadingStatus.IS_PENDING &&
               <Button disabled={!acceptConditions} type='submit' mt='20px' w='100%' h='56px' p='20px 24px' bg='#0250C8'
-                      borderRadius='32px' _hover={{ bgColor: '#0250C8' }}>
+                      borderRadius='32px' _hover={{ bgColor: '#0250C8' }} zIndex='20'>
                 {t.registration_modal.logup_btn}
               </Button>
           }
