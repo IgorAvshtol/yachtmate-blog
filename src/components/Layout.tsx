@@ -16,8 +16,9 @@ import { SetNewPassword } from './SetNewPassword';
 import { RecoveryPasswordIsSuccess } from './RecoveryPasswordIsSuccess';
 import { RegistrationIsSuccess } from './RegistrationIsSuccess';
 import { EnterReceivedCodeForRegistration } from './EnterCode/EnterReceivedCodeForRegistration';
-import { getLanguageLocalStorage, getUserFromLocalStorage } from 'services/localStorage';
+import { getUserFromLocalStorage } from 'services/localStorage';
 import { getCurrentUser } from 'store/auth/authSlice';
+import { changeLanguage } from 'store/atricles/articlesSlice';
 
 interface ILayout {
   children: ReactNode;
@@ -40,7 +41,8 @@ export const Layout = ({ children }: ILayout) => {
   const { articlesCount, currentLanguage } = useAppSelector(state => state.articles);
 
   useEffect(() => {
-    const lang = getLanguageLocalStorage();
+    dispatch(changeLanguage(localStorage.getItem('current_language') as string));
+    const lang = localStorage.getItem('current_language');
     dispatch(getArticles({ lang: currentLanguage || lang as string, pageSize: articlesCount }));
     const currentUser = getUserFromLocalStorage();
     if (!currentUser) {

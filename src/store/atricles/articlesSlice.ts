@@ -3,7 +3,6 @@ import { AxiosResponse } from 'axios';
 
 import { IArticleData, IArticlesState, IAttributes, IResponseArticles, TypeLoadingStatus, } from 'interfaces';
 import { getArticles, getCurrentArticle, setLike, setUnlike } from './articlesThunk';
-import { getLanguageLocalStorage } from 'services/localStorage';
 
 export const initialState: IArticlesState = {
   articles: [],
@@ -12,7 +11,7 @@ export const initialState: IArticlesState = {
   currentArticle: {} as IArticleData,
   sameArticles: [],
   currentTag: '',
-  currentLanguage: getLanguageLocalStorage() as string,
+  currentLanguage: '',
   loading: TypeLoadingStatus.IS_RESOLVED,
   error: '',
 };
