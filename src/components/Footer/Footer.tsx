@@ -43,10 +43,10 @@ export const Footer = (): JSX.Element => {
               </Link>
             </Flex>
             <Flex mt={{ md: '0', sm: '48px' }} w='100%' justifyContent={{ md: 'end', sm: 'center' }}>
-              <Link href={process.env.NEXT_PUBLIC_BASE_URL_FOR_FACEBOOK} w='40px' h='40px'>
+              <Link href={process.env.NEXT_PUBLIC_BASE_URL_FOR_FACEBOOK} target='blank' w='40px' h='40px'>
                 <Image src={facebookLogo} alt='facebook-logo'/>
               </Link>
-              <Link href={process.env.NEXT_PUBLIC_BASE_URL_FOR_INSTAGRAM} w='40px' h='40px' mx='20px'>
+              <Link href={process.env.NEXT_PUBLIC_BASE_URL_FOR_INSTAGRAM} target='blank' w='40px' h='40px' mx='20px'>
                 <Image src={instagramLogo} alt='instagram-logo'/>
               </Link>
             </Flex>
