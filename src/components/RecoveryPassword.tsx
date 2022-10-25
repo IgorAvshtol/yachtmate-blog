@@ -1,9 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Button, Flex, Text } from '@chakra-ui/react';
 
-import { useAppDispatch, useAppSelector } from 'store/store';
+import { useAppDispatch } from 'store/store';
 import { FormCustomInput } from './Input/FormCustomInput';
 import { recoveryPasswordModalIsOpen, resetPasswordModalIsOpen, signInModalIsOpen } from 'store/auth/authSlice';
 import { sendEmailForRecoveryPassword } from 'store/auth/authThunk';
@@ -15,8 +16,8 @@ interface IRecoveryPassword {
 }
 
 export const RecoveryPassword = (): JSX.Element => {
-  const { currentLanguage } = useAppSelector(state => state.articles);
-  const t = currentLanguage === 'en' ? eng : rus;
+  const router = useRouter();
+  const t = router.locale === 'en' ? eng : rus;
   const dispatch = useAppDispatch();
   const { register, handleSubmit, formState: { errors } } = useForm<IRecoveryPassword>();
 

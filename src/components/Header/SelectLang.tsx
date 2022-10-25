@@ -1,22 +1,20 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { Button, Flex, Menu, MenuButton, MenuItem, MenuList, Text } from '@chakra-ui/react';
 
 import globe from 'public/globe.svg';
 import englandFlag from 'public/IconFlagEngland.svg';
 import russiaFlag from 'public/IconFlagRussia.svg';
 import dropdown from 'public/dropdown.svg';
-import { useAppDispatch, useAppSelector } from 'store/store';
-import { changeLanguage } from 'store/atricles/articlesSlice';
 
 export const SelectLang = (): JSX.Element => {
-  const dispatch = useAppDispatch();
+  const router = useRouter();
   const [dropDown, setDropDown] = useState<boolean>(false);
-  const { currentLanguage } = useAppSelector(state => state.articles);
 
   const onLanguageToggleClick = async (e:  React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    localStorage.setItem('current_language', (e.target as HTMLInputElement).value);
-    dispatch(changeLanguage((e.target as HTMLInputElement).value));
+    await router.push(`${router.asPath}`, `${router.asPath}`, { locale: e.currentTarget.value });
+    localStorage.setItem('current_language', (router.locale as string));
     setDropDown(!dropDown);
   };
 
@@ -31,7 +29,7 @@ export const SelectLang = (): JSX.Element => {
                     bg='#ffffff' color='#001240' _focus={{ bg: '#ffffff' }} _hover={{ bg: '#ffffff' }}>
           <Flex justifyContent='space-between' alignItems='center'>
             <Image src={globe} alt='glob'/>
-            <Text>{currentLanguage === 'en' ? 'Eng' : 'Ru'}</Text>
+            <Text>{router.locale === 'en' ? 'Eng' : 'Ru'}</Text>
             <Flex transform={dropDown ? 'rotate(0deg)' : 'rotate(180deg)'} transition='.4s all'>
               <Image src={dropdown} alt='dropDown'/>
             </Flex>

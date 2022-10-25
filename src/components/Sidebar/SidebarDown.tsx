@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { Button, Fade, Flex, Link, Text } from '@chakra-ui/react';
 
 import iconHome from 'public/iconHome.svg';
@@ -12,8 +13,9 @@ import { eng, rus } from 'translation';
 import { signInModalIsOpen } from 'store/auth/authSlice';
 
 export const SidebarDown = (): JSX.Element => {
+  const router = useRouter();
   const { currentLanguage } = useAppSelector(state => state.articles);
-  const t = currentLanguage === 'en' ? eng : rus;
+  const t = currentLanguage || router.locale === 'en' ? eng : rus;
   const dispatch = useAppDispatch();
   const { userData } = useAppSelector(state => state.auth);
   const [purpose, setPurpose] = useState(false);

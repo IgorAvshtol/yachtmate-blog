@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { Button, Flex, Grid, Text } from '@chakra-ui/react';
 
 import { Post } from './Post';
@@ -8,9 +9,10 @@ import { TypeLoadingStatus } from 'interfaces';
 import { PostsPageWithSkeleton } from '../Skeleton/PostsPageWithSkeleton';
 
 export const Posts = (): JSX.Element => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
-  const { articles, articlesCount, totalArticlesCount, loading, currentLanguage } = useAppSelector(state => state.articles);
-  const t = currentLanguage === 'en' ? eng : rus;
+  const { articles, articlesCount, totalArticlesCount, loading } = useAppSelector(state => state.articles);
+  const t = router.locale === 'en' ? eng : rus;
 
   const onMoreBtnClickHandler = () => {
     dispatch(incrementArticlesCount());
@@ -29,7 +31,7 @@ export const Posts = (): JSX.Element => {
                 templateColumns='repeat(auto-fill, minmax(365px, 440px))' gap={{ xl: '100px', md: '50px', sm: '12px' }}>
             {
               articles.slice(2, articles.length).map(post => <Post key={post.id} title={post.attributes.main_title}
-                                                                   lang={currentLanguage}
+                                                                   lang={router.locale as string}
                                                                    slug={post.attributes.slug}
                                                                    date={post.attributes.createdAt}
                                                                    image={process.env.NEXT_PUBLIC_BASE_IMAGE_URL + post.attributes.main_image_url}/>)

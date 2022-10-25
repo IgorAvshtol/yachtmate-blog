@@ -1,4 +1,5 @@
 import { ReactNode, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { Flex } from '@chakra-ui/react';
 
 import { Header } from './Header/Header';
@@ -18,13 +19,14 @@ import { RegistrationIsSuccess } from './RegistrationIsSuccess';
 import { EnterReceivedCodeForRegistration } from './EnterCode/EnterReceivedCodeForRegistration';
 import { getUserFromLocalStorage } from 'services/localStorage';
 import { getCurrentUser } from 'store/auth/authSlice';
-import { changeLanguage } from 'store/atricles/articlesSlice';
 
 interface ILayout {
   children: ReactNode;
 }
 
 export const Layout = ({ children }: ILayout) => {
+  const router = useRouter();
+  const language = router.locale as string;
   const dispatch = useAppDispatch();
 
   const {
@@ -38,19 +40,17 @@ export const Layout = ({ children }: ILayout) => {
     registrationIsSuccessModalOpen
   } = useAppSelector(state => state.auth);
 
-  const { articlesCount, currentLanguage } = useAppSelector(state => state.articles);
+  const { articlesCount } = useAppSelector(state => state.articles);
 
   useEffect(() => {
-    dispatch(changeLanguage(localStorage.getItem('current_language') as string));
-    const lang = localStorage.getItem('current_language');
-    dispatch(getArticles({ lang: currentLanguage || lang as string, pageSize: articlesCount }));
+    dispatch(getArticles({ lang: language, pageSize: articlesCount }));
     const currentUser = getUserFromLocalStorage();
     if (!currentUser) {
       dispatch(auth());
     } else {
       dispatch(getCurrentUser(currentUser));
     }
-  }, [articlesCount, dispatch, currentLanguage]);
+  }, [articlesCount, dispatch, language]);
 
   return (
       <Flex minH='100vh' w='100%' h='100%' alignItems='center' flexDirection='column'>

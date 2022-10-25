@@ -1,12 +1,12 @@
 import { forwardRef, useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { InputElementProps, InputGroup, InputRightElement } from '@chakra-ui/input';
 import { Flex, Input, Text, Box } from '@chakra-ui/react';
 
 import eye from 'public/eye.png';
 import eyeOff from 'public/eye-off.png';
 import { eng, rus } from 'translation';
-import { useAppSelector } from 'store/store';
 
 interface InputProps extends InputElementProps {
   label: string;
@@ -14,8 +14,8 @@ interface InputProps extends InputElementProps {
 }
 
 export const FormCustomInput = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const { currentLanguage } = useAppSelector(state => state.articles);
-  const t = currentLanguage === 'en' ? eng : rus;
+  const router = useRouter();
+  const t = router.locale === 'en' ? eng : rus;
   const { label, isInvalid, ...inputProps } = props;
   const [show, setShow] = useState<boolean>(false);
   const handleClick = () => setShow(!show);

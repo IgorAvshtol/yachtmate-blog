@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { useDisclosure } from '@chakra-ui/hooks';
 import {
@@ -26,8 +27,8 @@ import { useAppDispatch, useAppSelector } from 'store/store';
 import { SelectLang } from './Header/SelectLang';
 
 export const SidePanel = (): JSX.Element => {
-  const { currentLanguage } = useAppSelector(state => state.articles);
-  const t = currentLanguage === 'en' ? eng : rus;
+  const router = useRouter();
+  const t = router.locale === 'en' ? eng : rus;
   const dispatch = useAppDispatch();
   const { userData } = useAppSelector(state => state.auth);
 

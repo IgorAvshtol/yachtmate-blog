@@ -1,8 +1,8 @@
 import React, { ForwardedRef, forwardRef, ReactNode, useState } from 'react';
+import { useRouter } from 'next/router';
 import { Box, Link, LinkProps } from '@chakra-ui/react';
 
 import style from 'styles/wrapper.module.css';
-import { useAppSelector } from 'store/store';
 
 interface IWrapper extends LinkProps {
   children: ReactNode,
@@ -11,8 +11,8 @@ interface IWrapper extends LinkProps {
 
 export const Wrapper = forwardRef((props: IWrapper, ref: ForwardedRef<HTMLAnchorElement>) => {
   const { slug, children, ...rest } = props;
+  const router = useRouter();
 
-  const { currentLanguage } = useAppSelector(state => state.articles);
   const [hoverCard, setHoverCard] = useState<string>('');
 
   const cardIsHover = () => {
@@ -24,7 +24,7 @@ export const Wrapper = forwardRef((props: IWrapper, ref: ForwardedRef<HTMLAnchor
   };
 
   return (
-      <Link ref={ref} href={`${currentLanguage}/blog/${slug}`} boxShadow={hoverCard === slug ? 'md' : 'none'}
+      <Link ref={ref} href={`${router.locale}/blog/${slug}`} boxShadow={hoverCard === slug ? 'md' : 'none'}
             onMouseEnter={cardIsHover} onMouseLeave={cardIsNoHover} {...rest}>
         <Box className={hoverCard === slug ? style.cardIsHover : style.card}>
           {children}

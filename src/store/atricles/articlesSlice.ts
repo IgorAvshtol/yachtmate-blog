@@ -11,7 +11,6 @@ export const initialState: IArticlesState = {
   currentArticle: {} as IArticleData,
   sameArticles: [],
   currentTag: '',
-  currentLanguage: '',
   loading: TypeLoadingStatus.IS_RESOLVED,
   error: '',
 };
@@ -23,9 +22,6 @@ export const articleReducer = createSlice({
     incrementArticlesCount: (state) => {
       state.articlesCount = state.articlesCount + 5;
     },
-    changeLanguage: (state, action: PayloadAction<string>) => {
-      state.currentLanguage = action.payload;
-    }
   },
   extraReducers: (builder) => {
     builder
@@ -74,4 +70,4 @@ export const articleReducer = createSlice({
   },
 });
 
-export const { incrementArticlesCount, changeLanguage } = articleReducer.actions;
+export const { incrementArticlesCount } = articleReducer.actions;

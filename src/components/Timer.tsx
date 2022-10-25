@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { Text } from '@chakra-ui/react';
 
 import { eng, rus } from 'translation';
-import { useAppSelector } from 'store/store';
 
 interface ITimer {
   seconds: number;
@@ -10,8 +10,8 @@ interface ITimer {
 }
 
 export const Timer = ({ seconds, setSeconds }: ITimer): JSX.Element => {
-  const { currentLanguage } = useAppSelector(state => state.articles);
-  const t = currentLanguage === 'en' ? eng : rus;
+  const router = useRouter();
+  const t = router.locale === 'en' ? eng : rus;
 
   useEffect(() => {
     const myInterval = setInterval(() => {

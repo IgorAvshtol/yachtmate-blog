@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Button, Flex, Text } from '@chakra-ui/react';
@@ -16,11 +17,11 @@ interface IResetPassword {
 }
 
 export const EnterReceivedCode = (): JSX.Element => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const [seconds, setSeconds] = useState<number>(45);
   const { emailForRecoveryPassword, userData, error } = useAppSelector(state => state.auth);
-  const { currentLanguage } = useAppSelector(state => state.articles);
-  const t = currentLanguage === 'en' ? eng : rus;
+  const t = router.locale === 'en' ? eng : rus;
 
   const { register, handleSubmit } = useForm<IResetPassword>();
 

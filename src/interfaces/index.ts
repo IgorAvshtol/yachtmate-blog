@@ -18,6 +18,7 @@ export interface IAttributes {
   paragraphs: string,
   postscriptum: string,
   view: number,
+  locale: string,
   hasLiked: string[],
 }
 
@@ -45,7 +46,6 @@ export interface IArticlesState {
   currentArticle: IArticleData,
   sameArticles: IArticleData[],
   currentTag: string,
-  currentLanguage: string,
   loading: TypeLoadingStatus,
   error: string,
 }

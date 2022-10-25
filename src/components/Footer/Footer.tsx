@@ -9,13 +9,11 @@ import facebookLogo from 'public/facebookLogo.png';
 import instagramLogo from 'public/instagramLogo.png';
 import { PoweredBy } from './PoweredBy';
 import { eng, rus } from 'translation';
-import { useAppSelector } from 'store/store';
 
 export const Footer = (): JSX.Element => {
   const router = useRouter();
   const slug = router.pathname.slice(1, router.pathname.length);
-  const { currentLanguage } = useAppSelector(state => state.articles);
-  const t = currentLanguage === 'en' ? eng : rus;
+  const t = router.locale === 'en' ? eng : rus;
 
   return (
       <Flex direction='column' alignItems='center' w='100%' pos='relative' bg={slug ? '#ffffff' : '#F5F7FB'}>

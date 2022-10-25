@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Box, Button, Flex, Text } from '@chakra-ui/react';
 
@@ -18,8 +19,8 @@ interface ISetNewPassword {
 }
 
 export const SetNewPassword = (): JSX.Element => {
-  const { currentLanguage } = useAppSelector(state => state.articles);
-  const t = currentLanguage === 'en' ? eng : rus;
+  const router = useRouter();
+  const t = router.locale === 'en' ? eng : rus;
   const dispatch = useAppDispatch();
 
   const { loading, emailForRecoveryPassword } = useAppSelector(state => state.auth);
