@@ -14,8 +14,7 @@ import { signInModalIsOpen } from 'store/auth/authSlice';
 
 export const SidebarDown = (): JSX.Element => {
   const router = useRouter();
-  const { currentLanguage } = useAppSelector(state => state.articles);
-  const t = currentLanguage || router.locale === 'en' ? eng : rus;
+  const t = router.locale === 'en' ? eng : rus;
   const dispatch = useAppDispatch();
   const { userData } = useAppSelector(state => state.auth);
   const [purpose, setPurpose] = useState(false);
