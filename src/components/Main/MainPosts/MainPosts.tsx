@@ -1,13 +1,13 @@
-import { useRouter } from 'next/router';
 import { Flex, Text } from '@chakra-ui/react';
 
 import { eng, rus } from 'translation';
 import { LastArticle } from './LastArticle';
 import { PenultimateArticle } from './PenultimateArticle';
+import { useAppSelector } from 'store/store';
 
 export const MainPosts = (): JSX.Element => {
-  const router = useRouter();
-  const t = router.locale === 'en' ? eng : rus;
+  const { currentLanguage } = useAppSelector(state => state.articles);
+  const t = currentLanguage === 'en' ? eng : rus;
 
   return (
       <Flex direction='column' mb={{ md: '124px', sm: '24px' }} maxW='1100px' w={{ lg: '75%', md: '85%', sm: '90%' }}>

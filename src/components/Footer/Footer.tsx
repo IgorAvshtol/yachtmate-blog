@@ -7,15 +7,15 @@ import waveDown from 'public/waveDown.svg';
 import yachtmateLogo from 'public/yachtmateLogo.png';
 import facebookLogo from 'public/facebookLogo.png';
 import instagramLogo from 'public/instagramLogo.png';
-import youtubeLogo from 'public/youtubeLogo.png';
-import { ResponseImage } from '../ResponseImage';
 import { PoweredBy } from './PoweredBy';
 import { eng, rus } from 'translation';
+import { useAppSelector } from 'store/store';
 
 export const Footer = (): JSX.Element => {
   const router = useRouter();
   const slug = router.pathname.slice(1, router.pathname.length);
-  const t = router.locale === 'en' ? eng : rus;
+  const { currentLanguage } = useAppSelector(state => state.articles);
+  const t = currentLanguage === 'en' ? eng : rus;
 
   return (
       <Flex direction='column' alignItems='center' w='100%' pos='relative' bg={slug ? '#ffffff' : '#F5F7FB'}>
@@ -45,9 +45,12 @@ export const Footer = (): JSX.Element => {
               </Link>
             </Flex>
             <Flex mt={{ md: '0', sm: '48px' }} w='100%' justifyContent={{ md: 'end', sm: 'center' }}>
-              <ResponseImage src={facebookLogo} alt='facebook' w='40px' h='40px'/>
-              <ResponseImage src={instagramLogo} alt='instagram' mx='20px' w='40px' h='40px'/>
-              <ResponseImage src={youtubeLogo} alt='youtube' w='40px' h='40px'/>
+              <Link href={process.env.NEXT_PUBLIC_BASE_URL_FOR_FACEBOOK} w='40px' h='40px'>
+                <Image src={facebookLogo} alt='facebook-logo'/>
+              </Link>
+              <Link href={process.env.NEXT_PUBLIC_BASE_URL_FOR_INSTAGRAM} w='40px' h='40px' mx='20px'>
+                <Image src={instagramLogo} alt='instagram-logo'/>
+              </Link>
             </Flex>
             <Box mt='40px' textAlign='center' display={{ md: 'none', sm: 'block' }} w='100%'>
               <PoweredBy/>

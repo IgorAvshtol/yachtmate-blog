@@ -1,17 +1,17 @@
-import { useRouter } from 'next/router';
 import { nanoid } from 'nanoid';
 import { Flex, Text } from '@chakra-ui/react';
 
 import { authorsNameHandler } from 'utils/authorsNameHandler';
 import { eng, rus } from 'translation';
+import { useAppSelector } from 'store/store';
 
 interface IPictureAuthorsBlock {
   authors: string;
 }
 
 export const PictureAuthorsBlock = ({ authors }: IPictureAuthorsBlock): JSX.Element => {
-  const router = useRouter();
-  const t = router.locale === 'en' ? eng : rus;
+  const { currentLanguage } = useAppSelector(state => state.articles);
+  const t = currentLanguage === 'en' ? eng : rus;
 
   return (
       <Flex justifyContent='center' flexWrap='wrap' mt='16px' w={{ md: '100%', sm: '90%' }} textAlign='center'

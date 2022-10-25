@@ -6,7 +6,6 @@ import { ISendCodeForConfirmation, ISetNewPassword, ISignInData, ISignUpData } f
 import { setTokenToLocalStorage, setUserToLocalStorage } from 'services/localStorage';
 
 export const auth = createAsyncThunk('auth/me', async () => {
-  // const response = await instanceForAuth.get('user/token/refresh');
   const response = await instanceForAuth.get('user/token/ref');
   const { _id, email, name, photo } = response.data.user;
   setUserToLocalStorage({ _id: _id, email: email, name: name, photo: photo });

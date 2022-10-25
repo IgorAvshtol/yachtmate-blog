@@ -30,7 +30,8 @@ export const eng = {
   sidebar: {
     home: 'Home',
     search: 'Search',
-    profile: 'Profile'
+    profile: 'Profile',
+    favorite: 'Favorite'
   },
   sidePanel: {
     search: 'Yacht search',
@@ -145,7 +146,8 @@ export const rus = {
   sidebar: {
     home: 'Домой',
     search: 'Искать',
-    profile: 'Профиль'
+    profile: 'Профиль',
+    favorite: 'Понравились'
   },
   sidePanel: {
     search: 'Поиск яхт',

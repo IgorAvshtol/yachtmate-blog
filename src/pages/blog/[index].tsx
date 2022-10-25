@@ -14,14 +14,13 @@ import { ArticlePageWithSkeleton } from 'components/Skeleton/ArticlePageWithSkel
 import { Sidebar } from 'components/Sidebar/Sidebar';
 import { eng, rus } from 'translation';
 import { TypeLoadingStatus } from 'interfaces';
-import { SidebarDown } from '../../components/Sidebar/SidebarDown';
+import { SidebarDown } from 'components/Sidebar/SidebarDown';
 
 const Article = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const { query, locale } = useRouter();
-  const t = locale === 'en' ? eng : rus;
-  const { currentArticle: data, loading } = useAppSelector(state => state.articles);
-
+  const { query } = useRouter();
+  const { currentArticle: data, loading, currentLanguage } = useAppSelector(state => state.articles);
+  const t = currentLanguage === 'en' ? eng : rus;
   const dataFetchedRef = useRef(false);
   const [html, setHtml] = useState<string>('');
   const [showChild, setShowChild] = useState(false);
@@ -30,7 +29,7 @@ const Article = (): JSX.Element => {
     if (dataFetchedRef.current) return;
     const currentArticleURLData = {
       slug: query['index'] as string,
-      lang: locale as string,
+      lang: currentLanguage as string,
     };
     if (currentArticleURLData.slug) {
       dispatch(getCurrentArticle(currentArticleURLData));
@@ -38,7 +37,7 @@ const Article = (): JSX.Element => {
       dataFetchedRef.current = true;
     }
     data?.id && dispatch(setOneViewForArticle(data?.id));
-  }, [data?.id, dispatch, locale, query]);
+  }, [data?.id, dispatch, currentLanguage, query]);
 
   useEffect(() => {
     const fragment = document.createElement('div');

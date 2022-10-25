@@ -3,6 +3,7 @@ import { AxiosResponse } from 'axios';
 
 import { IArticleData, IArticlesState, IAttributes, IResponseArticles, TypeLoadingStatus, } from 'interfaces';
 import { getArticles, getCurrentArticle, setLike, setUnlike } from './articlesThunk';
+import { getLanguageLocalStorage } from 'services/localStorage';
 
 export const initialState: IArticlesState = {
   articles: [],
@@ -11,6 +12,7 @@ export const initialState: IArticlesState = {
   currentArticle: {} as IArticleData,
   sameArticles: [],
   currentTag: '',
+  currentLanguage: getLanguageLocalStorage() as string,
   loading: TypeLoadingStatus.IS_RESOLVED,
   error: '',
 };
@@ -21,6 +23,9 @@ export const articleReducer = createSlice({
   reducers: {
     incrementArticlesCount: (state) => {
       state.articlesCount = state.articlesCount + 5;
+    },
+    changeLanguage: (state, action: PayloadAction<string>) => {
+      state.currentLanguage = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -70,4 +75,4 @@ export const articleReducer = createSlice({
   },
 });
 
-export const { incrementArticlesCount } = articleReducer.actions;
+export const { incrementArticlesCount, changeLanguage } = articleReducer.actions;

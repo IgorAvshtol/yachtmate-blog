@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import { format } from 'date-fns';
 import { Flex, Link, Text, Box } from '@chakra-ui/react';
 import { enUS, ru } from 'date-fns/locale';
 
 import style from 'styles/wrapper.module.css';
+import { useAppSelector } from 'store/store';
 
 interface ISameArticle {
   slug: string;
@@ -15,9 +15,8 @@ interface ISameArticle {
 }
 
 export const SameArticle = ({ image, date, title, slug }: ISameArticle): JSX.Element => {
-  const router = useRouter();
-  const language = router.locale as string;
-  const correctDate = format(new Date(date), 'LLL d, yyy', { locale: language === 'ru' ? ru : enUS });
+  const { currentLanguage } = useAppSelector(state => state.articles);
+  const correctDate = format(new Date(date), 'LLL d, yyy', { locale: currentLanguage === 'ru' ? ru : enUS });
 
   const [hoverCard, setHoverCard] = useState<string>('');
 

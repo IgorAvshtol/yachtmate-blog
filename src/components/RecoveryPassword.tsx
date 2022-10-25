@@ -1,10 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useRouter } from 'next/router';
 import { Button, Flex, Text } from '@chakra-ui/react';
 
-import { useAppDispatch } from 'store/store';
+import { useAppDispatch, useAppSelector } from 'store/store';
 import { FormCustomInput } from './Input/FormCustomInput';
 import { recoveryPasswordModalIsOpen, resetPasswordModalIsOpen, signInModalIsOpen } from 'store/auth/authSlice';
 import { sendEmailForRecoveryPassword } from 'store/auth/authThunk';
@@ -16,8 +15,8 @@ interface IRecoveryPassword {
 }
 
 export const RecoveryPassword = (): JSX.Element => {
-  const router = useRouter();
-  const t = router.locale === 'en' ? eng : rus;
+  const { currentLanguage } = useAppSelector(state => state.articles);
+  const t = currentLanguage === 'en' ? eng : rus;
   const dispatch = useAppDispatch();
   const { register, handleSubmit, formState: { errors } } = useForm<IRecoveryPassword>();
 
@@ -40,9 +39,6 @@ export const RecoveryPassword = (): JSX.Element => {
           <Flex justifyContent='center' alignItems='center' w='32px' h='32px' rounded='full' bg='rgba(0, 18, 64, 0.04)'>
             <Image src={back} width='7px' height='10px' alt='back'/>
           </Flex>
-          {/*<Text ml='10px' fontWeight='600' fontSize='16px' lineHeight='24px' letterSpacing='0.4px'>*/}
-          {/*  {t.enter_code_for_recovery_pas.go_back_btn}*/}
-          {/*</Text>*/}
         </Button>
         <Text mt='24px' fontWeight='600' fontSize='32px' lineHeight='110%'
               letterSpacing='0.3px'>{t.recovery_pas.title}</Text>

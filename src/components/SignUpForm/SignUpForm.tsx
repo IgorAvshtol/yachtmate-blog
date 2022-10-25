@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useRouter } from 'next/router';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Button, Checkbox, Flex, Text } from '@chakra-ui/react';
 
@@ -12,10 +11,9 @@ import { Spinner } from '../Spinner';
 import { getRegistrationCode } from 'store/auth/authThunk';
 import { eng, rus } from 'translation';
 
-
 export const SignUpForm = (): JSX.Element => {
-  const router = useRouter();
-  const t = router.locale === 'en' ? eng : rus;
+  const { currentLanguage } = useAppSelector(state => state.articles);
+  const t = currentLanguage === 'en' ? eng : rus;
   const dispatch = useAppDispatch();
   const { loading, error } = useAppSelector(state => state.auth);
   const [acceptConditions, setAcceptConditions] = useState<boolean>(false);

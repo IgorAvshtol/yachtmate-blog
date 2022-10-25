@@ -14,8 +14,9 @@ import { SidePanel } from '../SidePanel';
 export const Header = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const t = router.locale === 'en' ? eng : rus;
   const { userData } = useAppSelector(state => state.auth);
+  const { currentLanguage } = useAppSelector(state => state.articles);
+  const t = currentLanguage === 'en' ? eng : rus;
 
   const onSignUpBtnHandler = () => {
     dispatch(signUpModalIsOpen());

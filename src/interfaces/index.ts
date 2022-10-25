@@ -45,6 +45,7 @@ export interface IArticlesState {
   currentArticle: IArticleData,
   sameArticles: IArticleData[],
   currentTag: string,
+  currentLanguage: string,
   loading: TypeLoadingStatus,
   error: string,
 }

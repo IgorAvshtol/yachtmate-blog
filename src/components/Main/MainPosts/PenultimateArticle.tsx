@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import { format } from 'date-fns';
 import { enUS, ru } from 'date-fns/locale';
 import { Box, Flex, Text } from '@chakra-ui/react';
@@ -10,9 +9,7 @@ import { TypeLoadingStatus } from 'interfaces';
 import { PenultimateArticleWithSkeleton } from '../../Skeleton/PenultimateArticleWithSkeleton';
 
 export const PenultimateArticle = (): JSX.Element => {
-  const router = useRouter();
-  const language = router.locale as string;
-  const { articles, loading } = useAppSelector(state => state.articles);
+  const { articles, loading, currentLanguage } = useAppSelector(state => state.articles);
 
   const previewDescription = articles[1]?.attributes?.main_description.split('<p>')[1];
 
@@ -32,7 +29,7 @@ export const PenultimateArticle = (): JSX.Element => {
           <Text my='16px' fontSize='14px' letterSpacing='0.5px' opacity='0.5'>
             {
                 articles[1]?.attributes?.createdAt &&
-                format(new Date(articles[1]?.attributes?.createdAt), language === 'ru' ? 'd MMMM yyy' : 'LLL d, yyy', { locale: language === 'ru' ? ru : enUS }).toLocaleLowerCase()
+                format(new Date(articles[1]?.attributes?.createdAt), currentLanguage === 'ru' ? 'd MMMM yyy' : 'LLL d, yyy', { locale: currentLanguage === 'ru' ? ru : enUS }).toLocaleLowerCase()
             }
           </Text>
           <Text as='h2' fontSize='20px'>{articles[1]?.attributes?.main_title}</Text>

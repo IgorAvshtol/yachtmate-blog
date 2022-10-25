@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import { format } from 'date-fns';
 import { enUS, ru } from 'date-fns/locale';
 import { Box, Flex, Text } from '@chakra-ui/react';
@@ -10,8 +9,7 @@ import { TypeLoadingStatus } from 'interfaces';
 import { LastArticleWithSkeleton } from '../../Skeleton/LastArticleWithSkeleton';
 
 export const LastArticle = (): JSX.Element => {
-  const router = useRouter();
-  const language = router.locale as string;
+  const { currentLanguage } = useAppSelector(state => state.articles);
   const { articles, loading } = useAppSelector(state => state.articles);
 
   if (loading === TypeLoadingStatus.IS_PENDING) return <LastArticleWithSkeleton/>;
@@ -29,7 +27,7 @@ export const LastArticle = (): JSX.Element => {
           </Box>
           <Text my='16px' fontSize='14px' letterSpacing='0.5px' opacity='0.5'>
             {articles[0]?.attributes?.createdAt &&
-                format(new Date(articles[0]?.attributes?.createdAt), language === 'ru' ? 'd MMMM yyy' : 'LLL d, yyy', { locale: language === 'ru' ? ru : enUS }).toLocaleLowerCase()
+                format(new Date(articles[0]?.attributes?.createdAt), currentLanguage === 'ru' ? 'd MMMM yyy' : 'LLL d, yyy', { locale: currentLanguage === 'ru' ? ru : enUS }).toLocaleLowerCase()
             }
           </Text>
           <Text as='h2' fontSize='26px'>

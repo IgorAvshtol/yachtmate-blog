@@ -1,15 +1,14 @@
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import { Button, Flex, Text } from '@chakra-ui/react';
 
 import ok from 'public/ok.png';
-import { useAppDispatch } from 'store/store';
+import { useAppDispatch, useAppSelector } from 'store/store';
 import { closeAllModals } from 'store/auth/authSlice';
 import { eng, rus } from 'translation';
 
 export const RecoveryPasswordIsSuccess = (): JSX.Element => {
-  const router = useRouter();
-  const t = router.locale === 'en' ? eng : rus;
+  const { currentLanguage } = useAppSelector(state => state.articles);
+  const t = currentLanguage === 'en' ? eng : rus;
   const dispatch = useAppDispatch();
 
   const onEnterBtnClickHAndler = async () => {

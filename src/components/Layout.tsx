@@ -1,5 +1,4 @@
 import { ReactNode, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import { Flex } from '@chakra-ui/react';
 
 import { Header } from './Header/Header';
@@ -17,7 +16,7 @@ import { SetNewPassword } from './SetNewPassword';
 import { RecoveryPasswordIsSuccess } from './RecoveryPasswordIsSuccess';
 import { RegistrationIsSuccess } from './RegistrationIsSuccess';
 import { EnterReceivedCodeForRegistration } from './EnterCode/EnterReceivedCodeForRegistration';
-import { getUserFromLocalStorage } from 'services/localStorage';
+import { getLanguageLocalStorage, getUserFromLocalStorage } from 'services/localStorage';
 import { getCurrentUser } from 'store/auth/authSlice';
 
 interface ILayout {
@@ -26,8 +25,6 @@ interface ILayout {
 
 export const Layout = ({ children }: ILayout) => {
   const dispatch = useAppDispatch();
-  const router = useRouter();
-  const language = router.locale as string;
 
   const {
     signUpModalOpen,
@@ -40,17 +37,18 @@ export const Layout = ({ children }: ILayout) => {
     registrationIsSuccessModalOpen
   } = useAppSelector(state => state.auth);
 
-  const { articlesCount } = useAppSelector(state => state.articles);
+  const { articlesCount, currentLanguage } = useAppSelector(state => state.articles);
 
   useEffect(() => {
-    dispatch(getArticles({ lang: language, pageSize: articlesCount }));
+    const lang = getLanguageLocalStorage();
+    dispatch(getArticles({ lang: currentLanguage || lang as string, pageSize: articlesCount }));
     const currentUser = getUserFromLocalStorage();
     if (!currentUser) {
       dispatch(auth());
     } else {
       dispatch(getCurrentUser(currentUser));
     }
-  }, [articlesCount, dispatch, language]);
+  }, [articlesCount, dispatch, currentLanguage]);
 
   return (
       <Flex minH='100vh' w='100%' h='100%' alignItems='center' flexDirection='column'>

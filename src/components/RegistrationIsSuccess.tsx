@@ -4,10 +4,12 @@ import { Button, Flex, Text } from '@chakra-ui/react';
 
 import ok from 'public/ok.png';
 import { eng, rus } from 'translation';
+import { useAppSelector } from 'store/store';
 
 export const RegistrationIsSuccess = (): JSX.Element => {
+  const { currentLanguage } = useAppSelector(state => state.articles);
+  const t = currentLanguage === 'en' ? eng : rus;
   const router = useRouter();
-  const t = router.locale === 'en' ? eng : rus;
 
   const onEnterBtnClickHAndler = () => router.push(process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE as string);
 

@@ -8,9 +8,9 @@ import { eng, rus } from 'translation';
 
 export const SameArticles = (): JSX.Element => {
   const router = useRouter();
-  const { articles, currentArticle } = useAppSelector(state => state.articles);
+  const { articles, currentArticle, currentLanguage } = useAppSelector(state => state.articles);
   const currentArticleId = currentArticle?.id;
-  const t = router.locale === 'en' ? eng : rus;
+  const t = currentLanguage === 'en' ? eng : rus;
 
   const onReadMoreBtnClickHandler = async () => {
     await router.push('/');

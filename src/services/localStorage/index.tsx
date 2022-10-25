@@ -2,6 +2,7 @@ import { IUserData } from 'interfaces';
 
 const NEXT_APP_LOCALSTORAGE_KEY = 'token';
 const NEXT_APP_USERDATA_KEY = 'userData';
+const NEXT_APP_CURRENT_LANGUAGE_KEY = 'current_language';
 
 export const getTokenFromLocalStorage = () => {
   const isServer = typeof window === 'undefined';
@@ -21,6 +22,17 @@ export const getUserFromLocalStorage = () => {
       return JSON.parse(userData);
     } catch (e) {
       console.log('JSON is not valid');
+    }
+  }
+};
+
+export const getLanguageLocalStorage = () => {
+  const isServer = typeof window === 'undefined';
+  if (!isServer) {
+    try {
+      return localStorage.getItem(NEXT_APP_CURRENT_LANGUAGE_KEY);
+    } catch (e) {
+      console.log('axaxxaax');
     }
   }
 };
