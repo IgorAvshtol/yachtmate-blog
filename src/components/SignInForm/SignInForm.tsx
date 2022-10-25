@@ -13,9 +13,8 @@ import { eng, rus } from 'translation';
 
 export const SignInForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const { currentLanguage } = useAppSelector(state => state.articles);
   const router = useRouter();
-  const t = currentLanguage || router.locale === 'en' ? eng : rus;
+  const t = router.locale === 'en' ? eng : rus;
   const { loading, error } = useAppSelector(state => state.auth);
   const { register, handleSubmit } = useForm<ISignInData>();
 
