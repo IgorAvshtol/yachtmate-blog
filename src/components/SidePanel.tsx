@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react';
 
 import menu from 'public/menu.png';
-import menu2 from 'public/menu2.png';
+import menu2 from 'public/menu2.svg';
 import user from 'public/user.png';
 import login from 'public/login.png';
 import question from 'public/question.png';
@@ -45,7 +45,7 @@ export const SidePanel = (): JSX.Element => {
 
   return (
       <>
-        <Button as={Button} bg='transparent' p='0' onClick={onOpen}>
+        <Button as={Button} bg='transparent' p='0' pl='10px' onClick={onOpen}>
           <Image src={menu2} width={24} height={24} alt='menu'/>
         </Button>
         <Drawer

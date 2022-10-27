@@ -22,6 +22,9 @@ export const articleReducer = createSlice({
     incrementArticlesCount: (state) => {
       state.articlesCount = state.articlesCount + 5;
     },
+    clearCurrentTag: (state) => {
+      state.currentTag = '';
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -70,4 +73,4 @@ export const articleReducer = createSlice({
   },
 });
 
-export const { incrementArticlesCount } = articleReducer.actions;
+export const { incrementArticlesCount, clearCurrentTag } = articleReducer.actions;

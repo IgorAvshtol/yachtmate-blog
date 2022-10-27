@@ -1,6 +1,6 @@
 import { ReactNode, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Flex } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 
 import { Header } from './Header/Header';
 import { TabsBlock } from './TabsBlock';
@@ -19,6 +19,7 @@ import { RegistrationIsSuccess } from './RegistrationIsSuccess';
 import { EnterReceivedCodeForRegistration } from './EnterCode/EnterReceivedCodeForRegistration';
 import { getUserFromLocalStorage } from 'services/localStorage';
 import { getCurrentUser } from 'store/auth/authSlice';
+import { SidebarDown } from './Sidebar/SidebarDown';
 
 interface ILayout {
   children: ReactNode;
@@ -55,7 +56,9 @@ export const Layout = ({ children }: ILayout) => {
   return (
       <Flex minH='100vh' w='100%' h='100%' alignItems='center' flexDirection='column'>
         <Header/>
-        <TabsBlock/>
+        <Box w='100%'>
+          <TabsBlock/>
+        </Box>
         <ModalWindow>
           {signUpModalOpen && <SignUpForm/>}
           {signInModalOpen && <SignInForm/>}
@@ -69,6 +72,7 @@ export const Layout = ({ children }: ILayout) => {
         <Flex justifyContent='center' w='100%'>
           {children}
         </Flex>
+        <SidebarDown/>
         <Footer/>
       </Flex>
   );
