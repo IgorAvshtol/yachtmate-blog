@@ -31,7 +31,8 @@ export const Header = (): JSX.Element => {
 
   return (
       <Flex w='100%' justifyContent='center' boxShadow='0px 8px 24px rgba(59, 69, 75, 0.04)'>
-        <Flex h='92px' w={{ md: '95%', sm: '90%' }} bgColor='white' justifyContent='space-between' alignItems='center'>
+        <Flex h={{ md: '92px', sm: '66' }} w={{ md: '95%', sm: '90%' }} bgColor='white' justifyContent='space-between'
+              alignItems='center'>
           <Link href={process.env.NEXT_PUBLIC_BASE_URL_FOR_HOME_PAGE} w='180px'>
             <Image src={logoNew} alt='logo'/>
           </Link>
