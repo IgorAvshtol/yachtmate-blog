@@ -19,16 +19,16 @@ import { SidebarDown } from 'components/Sidebar/SidebarDown';
 const Article = (): JSX.Element => {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const { query } = useRouter();
   const { currentArticle: data, loading } = useAppSelector(state => state.articles);
   const t = router.locale === 'en' ? eng : rus;
   const dataFetchedRef = useRef(false);
   const [html, setHtml] = useState<string>('');
   const [showChild, setShowChild] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
     const currentArticleURLData = {
-      slug: query['index'] as string,
+      slug: router.query['index'] as string,
       lang: router.locale as string,
     };
     if (currentArticleURLData.slug) {
@@ -37,7 +37,7 @@ const Article = (): JSX.Element => {
       dataFetchedRef.current = true;
     }
     data?.id && dispatch(setOneViewForArticle(data?.id));
-  }, [data?.id, dispatch, query, router.locale]);
+  }, [data?.id, dispatch, router.query, router.locale]);
 
   useEffect(() => {
     const fragment = document.createElement('div');
@@ -52,9 +52,20 @@ const Article = (): JSX.Element => {
     setHtml(fragment.innerHTML);
   }, [data]);
 
+  useEffect(() => {
+    if (!data?.attributes?.locale && showChild) {
+      setShowToast(true);
+    }
+  }, [data?.attributes, showChild]);
+
+  const onCloseTranslationModal = () => {
+    setShowToast(!showToast);
+    router.push('/');
+  };
+
   if (!showChild || loading !== TypeLoadingStatus.IS_RESOLVED) return <ArticlePageWithSkeleton/>;
 
-  if (!data?.attributes) return <ArticlePageWithSkeleton/>;
+  if (!data?.attributes) return <ArticlePageWithSkeleton showToast={showToast} setShowToast={onCloseTranslationModal}/>;
 
   return (
       <>

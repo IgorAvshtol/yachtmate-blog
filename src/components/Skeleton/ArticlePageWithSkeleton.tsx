@@ -2,8 +2,14 @@ import Head from 'next/head';
 import { Box, Flex, Skeleton } from '@chakra-ui/react';
 
 import { useAppSelector } from 'store/store';
+import { NoTranslationModal } from '../NoTranslationModal';
 
-export const ArticlePageWithSkeleton = (): JSX.Element => {
+interface IArticlePageWithSkeleton {
+  showToast?: boolean;
+  setShowToast?: () => void;
+}
+
+export const ArticlePageWithSkeleton = ({ showToast, setShowToast }: IArticlePageWithSkeleton): JSX.Element => {
   const { currentArticle: data } = useAppSelector(state => state.articles);
 
   return (
@@ -13,6 +19,7 @@ export const ArticlePageWithSkeleton = (): JSX.Element => {
             {data?.attributes?.meta_title}
           </title>
         </Head>
+        {showToast && !data?.attributes && setShowToast && <NoTranslationModal isShow={showToast} onClose={setShowToast}/>}
         <Flex direction='column' w='100%' alignItems='center' bg='#ffffff'>
           <Flex direction='column' alignItems='center' mt={{ md: '65px', sm: '24px' }} mb={{ md: '64px', sm: '32px' }}
                 w={{ xl: '800px', lg: '55%', md: '80%', sm: '90%' }}>

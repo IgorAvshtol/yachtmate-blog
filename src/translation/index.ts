@@ -111,6 +111,9 @@ export const eng = {
     congratulations: 'Success!',
     description: 'Your password has been successfully recovered, now you can enter your personal account!',
     login_btn: 'Login'
+  },
+  translate_modal: {
+    description: 'Sorry, this article is only available in english.',
   }
 };
 
@@ -227,5 +230,8 @@ export const rus = {
     congratulations: 'Поздравляем!',
     description: 'Ваш пароль успешно восстановлен, теперь вы можете войти в личный кабинет!',
     login_btn: 'Войти'
+  },
+  translate_modal: {
+    description: 'Извините, данная статья доступна только на русском языке.',
   }
 };
