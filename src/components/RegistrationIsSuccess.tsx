@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { Button, Flex, Text } from '@chakra-ui/react';
 
-import ok from 'public/ok.png';
+import ok from '../../public/ok.png';
 import { eng, rus } from 'translation';
 
 export const RegistrationIsSuccess = (): JSX.Element => {

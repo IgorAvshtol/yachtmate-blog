@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Button, Flex, Text } from '@chakra-ui/react';
 
-import ok from 'public/ok.png';
+import ok from '../../public/ok.png';
 import { useAppDispatch } from 'store/store';
 import { closeAllModals } from 'store/auth/authSlice';
 import { eng, rus } from 'translation';

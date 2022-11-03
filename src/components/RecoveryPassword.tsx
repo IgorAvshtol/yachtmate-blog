@@ -9,7 +9,7 @@ import { FormCustomInput } from './Input/FormCustomInput';
 import { recoveryPasswordModalIsOpen, resetPasswordModalIsOpen, signInModalIsOpen } from 'store/auth/authSlice';
 import { sendEmailForRecoveryPassword } from 'store/auth/authThunk';
 import { eng, rus } from 'translation';
-import back from 'public/backBtn.svg';
+import back from '../../public/backBtn.svg';
 
 interface IRecoveryPassword {
   email: string;

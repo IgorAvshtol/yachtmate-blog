@@ -3,11 +3,11 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Button, Fade, Flex, Link, Text } from '@chakra-ui/react';
 
-import iconHome from 'public/iconHome.svg';
-import iconSearch from 'public/iconSearch.svg';
-import avatar from 'public/avatar.svg';
-import login from 'public/profile.png';
-import blackHeart from 'public/blackHeart.svg';
+import iconHome from '../../../public/iconHome.svg';
+import iconSearch from '../../../public/iconSearch.svg';
+import avatar from '../../../public/avatar.svg';
+import login from '../../../public/profile.png';
+import blackHeart from '../../../public/blackHeart.svg';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import { eng, rus } from 'translation';
 import { signInModalIsOpen } from 'store/auth/authSlice';

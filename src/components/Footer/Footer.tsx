@@ -2,11 +2,11 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Box, Flex, Link, Text } from '@chakra-ui/react';
 
-import waveUp from 'public/waveUp.svg';
-import waveDown from 'public/waveDown.svg';
-import yachtmateLogo from 'public/yachtmateLogo.png';
-import facebookLogo from 'public/facebookLogo.png';
-import instagramLogo from 'public/instagramLogo.png';
+import waveUp from '../../../public/waveUp.svg';
+import waveDown from '../../../public/waveDown.svg';
+import yachtmateLogo from '../../../public/yachtmateLogo.png';
+import facebookLogo from '../../../public/facebookLogo.png';
+import instagramLogo from '../../../public/instagramLogo.png';
 import { PoweredBy } from './PoweredBy';
 import { eng, rus } from 'translation';
 

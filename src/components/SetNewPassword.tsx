@@ -11,7 +11,7 @@ import { TypeLoadingStatus } from '../interfaces';
 import { Spinner } from './Spinner';
 import { setNewPassword } from 'store/auth/authThunk';
 import { eng, rus } from 'translation';
-import back from 'public/backBtn.svg';
+import back from '../../public/backBtn.svg';
 
 interface ISetNewPassword {
   password: string;

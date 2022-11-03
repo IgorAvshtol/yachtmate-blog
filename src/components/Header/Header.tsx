@@ -2,9 +2,9 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Box, Button, Flex, Link, Text } from '@chakra-ui/react';
 
-import logoNew from 'public/IconLogo.svg';
-import login from 'public/login.png';
-import avatar from 'public/avatar.svg';
+import logoNew from '../../../public/IconLogo.svg';
+import login from '../../../public/login.png';
+import avatar from '../../../public/avatar.svg';
 import { SelectLang } from './SelectLang';
 import { eng, rus } from 'translation';
 import { useAppDispatch, useAppSelector } from 'store/store';
