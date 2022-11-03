@@ -1,6 +1,6 @@
-Host: https://https://blog.test.yachtmate.club
+Host: https://blog.test.yachtmate.club
 
 User-agent: *
 Allow: /
 
-Sitemap: http://blog.test.yachtmate.club/sitemap.xml
+Sitemap: https://blog.test.yachtmate.club/sitemap.xml
