@@ -5,7 +5,7 @@ import { eng, rus } from 'translation';
 import { LastArticle } from './LastArticle';
 import { PenultimateArticle } from './PenultimateArticle';
 
-export const MainPosts = (): JSX.Element => {
+export const MainPosts = ({articles}:any): JSX.Element => {
   const router = useRouter();
   const t = router.locale === 'en' ? eng : rus;
 
@@ -16,7 +16,7 @@ export const MainPosts = (): JSX.Element => {
           {t.main_title}
         </Text>
         <Flex mt={{ md: '40px', sm: '24px' }} justifyContent='space-between' flexDir={{ md: 'row', sm: 'column' }}>
-          <LastArticle/>
+          <LastArticle articles={articles}/>
           <PenultimateArticle/>
         </Flex>
       </Flex>
