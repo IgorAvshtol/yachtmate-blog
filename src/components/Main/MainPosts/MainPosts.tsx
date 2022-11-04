@@ -4,8 +4,9 @@ import { Flex, Text } from '@chakra-ui/react';
 import { eng, rus } from 'translation';
 import { LastArticle } from './LastArticle';
 import { PenultimateArticle } from './PenultimateArticle';
+import { IArticlesDataForSSR } from 'interfaces';
 
-export const MainPosts = ({articles}:any): JSX.Element => {
+export const MainPosts = ({ articles }: IArticlesDataForSSR): JSX.Element => {
   const router = useRouter();
   const t = router.locale === 'en' ? eng : rus;
 
@@ -17,7 +18,7 @@ export const MainPosts = ({articles}:any): JSX.Element => {
         </Text>
         <Flex mt={{ md: '40px', sm: '24px' }} justifyContent='space-between' flexDir={{ md: 'row', sm: 'column' }}>
           <LastArticle articles={articles}/>
-          <PenultimateArticle/>
+          <PenultimateArticle articles={articles}/>
         </Flex>
       </Flex>
   );

@@ -6,33 +6,34 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 
 import { useAppSelector } from 'store/store';
 import { Wrapper } from '../../Wrapper';
-import { TypeLoadingStatus } from 'interfaces';
+import { IArticlesDataForSSR, TypeLoadingStatus } from 'interfaces';
 import { PenultimateArticleWithSkeleton } from '../../Skeleton/PenultimateArticleWithSkeleton';
 
-export const PenultimateArticle = (): JSX.Element => {
+export const PenultimateArticle = ({ articles }: IArticlesDataForSSR): JSX.Element => {
   const router = useRouter();
-  const { articles, loading } = useAppSelector(state => state.articles);
+  const { loading } = useAppSelector(state => state.articles);
+  const penultimateArticle = articles[articles?.length - 2];
 
-  const previewDescription = articles[1]?.attributes?.main_description.split('<p>')[1];
+  const previewDescription = penultimateArticle?.attributes?.main_description.split('<p>')[1];
 
   if (loading === TypeLoadingStatus.IS_PENDING) return <PenultimateArticleWithSkeleton/>;
 
   return (
-      <Wrapper slug={articles[1]?.attributes?.slug} borderRadius='12px' _hover={{ textDecoration: 'none' }}>
+      <Wrapper slug={penultimateArticle?.attributes?.slug} borderRadius='12px' _hover={{ textDecoration: 'none' }}>
         <Flex mt={{ md: '0', sm: '12px' }} w={{ md: '330px', sm: '100%' }} direction='column' bg='#F5F7FB'
               borderRadius='12px' p='20px' h='100%'>
           <Box borderRadius='8px' overflow='hidden'>
             {
-                articles[1]?.attributes?.main_image_url &&
+                penultimateArticle?.attributes?.main_image_url &&
                 <Image
-                    src={process.env.NEXT_PUBLIC_BASE_IMAGE_URL + articles[1]?.attributes?.main_image_url + '?resize=290x192&embed'}
+                    src={process.env.NEXT_PUBLIC_BASE_IMAGE_URL + penultimateArticle?.attributes?.main_image_url + '?resize=290x192&embed'}
                     alt='cover' layout='responsive' width='290px' height='192px' objectFit='cover' priority/>
             }
           </Box>
           <Text my='16px' fontSize='14px' letterSpacing='0.5px' opacity='0.5'>
             {
-                articles[1]?.attributes?.createdAt &&
-                format(new Date(articles[1]?.attributes?.createdAt), router.locale === 'ru' ? 'd MMMM yyy' : 'LLL d, yyy', { locale: router.locale === 'ru' ? ru : enUS }).toLocaleLowerCase()
+                penultimateArticle?.attributes?.createdAt &&
+                format(new Date(penultimateArticle?.attributes?.createdAt), router.locale === 'ru' ? 'd MMMM yyy' : 'LLL d, yyy', { locale: router.locale === 'ru' ? ru : enUS }).toLocaleLowerCase()
             }
           </Text>
           <Text as='h2' fontSize='20px'>{articles[1]?.attributes?.main_title}</Text>

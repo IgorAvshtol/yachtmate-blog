@@ -27,6 +27,10 @@ export interface IResponseArticles {
   meta: IMeta
 }
 
+export interface IArticlesDataForSSR {
+  articles: IArticleData[],
+}
+
 export interface IArticleData {
   id: number,
   attributes: IAttributes
