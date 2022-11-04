@@ -24,8 +24,9 @@ export const PenultimateArticle = (): JSX.Element => {
           <Box borderRadius='8px' overflow='hidden'>
             {
                 articles[1]?.attributes?.main_image_url &&
-                <Image src={process.env.NEXT_PUBLIC_BASE_IMAGE_URL + articles[1]?.attributes?.main_image_url}
-                       alt='cover' layout='responsive' width='290px' height='192px' objectFit='cover' priority/>
+                <Image
+                    src={process.env.NEXT_PUBLIC_BASE_IMAGE_URL + articles[1]?.attributes?.main_image_url + '?resize=290x192&embed'}
+                    alt='cover' layout='responsive' width='290px' height='192px' objectFit='cover' priority/>
             }
           </Box>
           <Text my='16px' fontSize='14px' letterSpacing='0.5px' opacity='0.5'>

@@ -21,8 +21,8 @@ export const Post = ({ image, title, date, slug, lang }: IPost): JSX.Element => 
                _even={{ xl: { mt: '30px' }, sm: { mt: '0' } }} _odd={{ xl: { mt: '-200px' }, sm: { mt: '0' } }}
                _hover={{ boxShadow: 'md', cursor: 'pointer' }}>
         <Box borderRadius='8px' overflow='hidden'>
-          <Image src={image} objectFit='cover' layout='responsive' width='400px' height='226px' alt='postCover'
-                 priority/>
+          <Image src={image + '?resize=400x226&embed'} objectFit='cover' layout='responsive' width='400px'
+                 height='226px' alt='postCover' priority/>
         </Box>
         <Text mt='20px' mb='12px' fontSize='14px' letterSpacing='0.5px' opacity='0.5'>
           {correctDate}
