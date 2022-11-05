@@ -139,7 +139,7 @@ export default Article;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const lang = context?.locale;
   const params = context?.params;
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL_FOR_AUTH}/articles?filters[slug][$eq]=${params?.index}&locale=${lang}`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/articles?filters[slug][$eq]=${params?.index}&locale=${lang}`);
   const article = await response.json();
   return { props: { article } };
 };

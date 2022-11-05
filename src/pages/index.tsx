@@ -30,7 +30,7 @@ export default Home;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const lang = context?.locale;
   const pageSize = context?.query['articles'];
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL_FOR_AUTH}/articles?locale=${lang}&pagination[page]=1&pagination[pageSize]=${pageSize || 5}&sort=id%3Adesc`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/articles?locale=${lang}&pagination[page]=1&pagination[pageSize]=${pageSize || 5}&sort=id%3Adesc`);
   const articles = await response.json();
   return { props: { articles } };
 };
