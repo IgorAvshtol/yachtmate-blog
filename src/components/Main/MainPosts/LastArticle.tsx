@@ -12,7 +12,7 @@ import { LastArticleWithSkeleton } from '../../Skeleton/LastArticleWithSkeleton'
 export const LastArticle = ({ articles }: IArticlesDataForSSR): JSX.Element => {
   const router = useRouter();
   const { loading } = useAppSelector(state => state.articles);
-  const lastArticle = articles[articles?.length - 1];
+  const lastArticle = articles[0];
 
   if (loading === TypeLoadingStatus.IS_PENDING) return <LastArticleWithSkeleton/>;
 

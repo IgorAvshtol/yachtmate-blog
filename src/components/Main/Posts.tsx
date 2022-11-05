@@ -5,17 +5,22 @@ import { Post } from './Post';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import { eng, rus } from 'translation';
 import { incrementArticlesCount } from 'store/atricles/articlesSlice';
-import { TypeLoadingStatus } from 'interfaces';
+import { IArticlesDataForSSR, TypeLoadingStatus } from 'interfaces';
 import { PostsPageWithSkeleton } from '../Skeleton/PostsPageWithSkeleton';
 
-export const Posts = (): JSX.Element => {
+export const Posts = ({ articles }: IArticlesDataForSSR): JSX.Element => {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const { articles, articlesCount, totalArticlesCount, loading } = useAppSelector(state => state.articles);
+  const { articlesCount, totalArticlesCount, loading } = useAppSelector(state => state.articles);
   const t = router.locale === 'en' ? eng : rus;
 
   const onMoreBtnClickHandler = () => {
     dispatch(incrementArticlesCount());
+    router.push({
+      query: {
+        'articles': articlesCount + 5
+      }
+    });
   };
 
   return (

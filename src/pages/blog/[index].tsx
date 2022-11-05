@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { GetServerSideProps } from 'next';
 import Image from 'next/image';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -6,20 +7,22 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 
 import { SameArticles } from 'components/SameArticles/SameArticles';
 import { PictureAuthorsBlock } from 'components/PictureAuthorsBlock';
-import { useAppDispatch, useAppSelector } from 'store/store';
-import { getCurrentArticle, setOneViewForArticle } from 'store/atricles/articlesThunk';
-import { TimeBlock } from 'components/TimeBlock';
-import style from 'styles/article.module.css';
+import { SidebarDown } from 'components/Sidebar/SidebarDown';
 import { ArticlePageWithSkeleton } from 'components/Skeleton/ArticlePageWithSkeleton';
 import { Sidebar } from 'components/Sidebar/Sidebar';
+import { useAppDispatch, useAppSelector } from 'store/store';
+import { setOneViewForArticle } from 'store/atricles/articlesThunk';
+import { setArticlesTab } from 'store/atricles/articlesSlice';
+import { TimeBlock } from 'components/TimeBlock';
+import style from 'styles/article.module.css';
 import { eng, rus } from 'translation';
-import { TypeLoadingStatus } from 'interfaces';
-import { SidebarDown } from 'components/Sidebar/SidebarDown';
+import { IArticleDataForSSR, TypeLoadingStatus } from 'interfaces';
 
-const Article = (): JSX.Element => {
+const Article = ({ article }: IArticleDataForSSR): JSX.Element => {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const { currentArticle: data, loading } = useAppSelector(state => state.articles);
+  const { loading } = useAppSelector(state => state.articles);
+  const data = article.data[0];
   const t = router.locale === 'en' ? eng : rus;
   const dataFetchedRef = useRef(false);
   const [html, setHtml] = useState<string>('');
@@ -27,17 +30,13 @@ const Article = (): JSX.Element => {
   const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
-    const currentArticleURLData = {
-      slug: router.query['index'] as string,
-      lang: router.locale as string,
-    };
-    if (currentArticleURLData.slug) {
-      dispatch(getCurrentArticle(currentArticleURLData));
+    if (data?.attributes.slug) {
+      dispatch(setArticlesTab(data.attributes.main_title));
       setShowChild(true);
       dataFetchedRef.current = true;
     }
     data?.id && dispatch(setOneViewForArticle(data?.id));
-  }, [data?.id, dispatch, router.query, router.locale]);
+  }, [data?.attributes.main_title, data?.attributes.slug, data?.id, dispatch]);
 
   useEffect(() => {
     const fragment = document.createElement('div');
@@ -136,3 +135,11 @@ const Article = (): JSX.Element => {
 };
 
 export default Article;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const lang = context?.locale;
+  const params = context?.params;
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL_FOR_AUTH}/articles?filters[slug][$eq]=${params?.index}&locale=${lang}`);
+  const article = await response.json();
+  return { props: { article } };
+};

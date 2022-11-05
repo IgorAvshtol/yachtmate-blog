@@ -12,7 +12,7 @@ import { PenultimateArticleWithSkeleton } from '../../Skeleton/PenultimateArticl
 export const PenultimateArticle = ({ articles }: IArticlesDataForSSR): JSX.Element => {
   const router = useRouter();
   const { loading } = useAppSelector(state => state.articles);
-  const penultimateArticle = articles[articles?.length - 2];
+  const penultimateArticle = articles[1];
 
   const previewDescription = penultimateArticle?.attributes?.main_description.split('<p>')[1];
 

@@ -31,6 +31,10 @@ export interface IArticlesDataForSSR {
   articles: IArticleData[],
 }
 
+export interface IArticleDataForSSR {
+  article: IResponseArticles,
+}
+
 export interface IArticleData {
   id: number,
   attributes: IAttributes

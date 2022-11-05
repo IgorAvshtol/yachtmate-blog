@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AxiosResponse } from 'axios';
 
 import { IArticleData, IArticlesState, IAttributes, IResponseArticles, TypeLoadingStatus, } from 'interfaces';
-import { getArticles, getCurrentArticle, setLike, setUnlike } from './articlesThunk';
+import { getArticles, setLike, setUnlike } from './articlesThunk';
 
 export const initialState: IArticlesState = {
   articles: [],
@@ -21,6 +20,9 @@ export const articleReducer = createSlice({
   reducers: {
     incrementArticlesCount: (state) => {
       state.articlesCount = state.articlesCount + 5;
+    },
+    setArticlesTab: (state, action: PayloadAction<string>) => {
+      state.currentTag = action.payload;
     },
     clearCurrentTag: (state) => {
       state.currentTag = '';
@@ -45,19 +47,19 @@ export const articleReducer = createSlice({
         .addCase(getArticles.rejected, (state) => {
           state.loading = TypeLoadingStatus.IS_REJECTED;
         })
-        .addCase(getCurrentArticle.pending, (state) => {
-          state.loading = TypeLoadingStatus.IS_PENDING;
-        })
-        .addCase(getCurrentArticle.fulfilled.type,
-            (state, action: PayloadAction<AxiosResponse<IArticleData[]>>) => {
-              state.currentArticle = action.payload.data[0];
-              state.currentTag = action.payload.data[0]?.attributes?.main_title;
-              state.loading = TypeLoadingStatus.IS_RESOLVED;
-            }
-        )
-        .addCase(getCurrentArticle.rejected, (state) => {
-          state.loading = TypeLoadingStatus.IS_REJECTED;
-        })
+        // .addCase(getCurrentArticle.pending, (state) => {
+        //   state.loading = TypeLoadingStatus.IS_PENDING;
+        // })
+        // .addCase(getCurrentArticle.fulfilled.type,
+        //     (state, action: PayloadAction<AxiosResponse<IArticleData[]>>) => {
+        //       state.currentArticle = action.payload.data[0];
+        //       state.currentTag = action.payload.data[0]?.attributes?.main_title;
+        //       state.loading = TypeLoadingStatus.IS_RESOLVED;
+        //     }
+        // )
+        // .addCase(getCurrentArticle.rejected, (state) => {
+        //   state.loading = TypeLoadingStatus.IS_REJECTED;
+        // })
         .addCase(setLike.fulfilled.type,
             (state, action: PayloadAction<IAttributes>) => {
               state.currentArticle.attributes = action.payload;
@@ -73,4 +75,4 @@ export const articleReducer = createSlice({
   },
 });
 
-export const { incrementArticlesCount, clearCurrentTag } = articleReducer.actions;
+export const { incrementArticlesCount, clearCurrentTag, setArticlesTab } = articleReducer.actions;

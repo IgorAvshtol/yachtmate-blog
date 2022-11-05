@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import { Flex } from '@chakra-ui/react';
 
 import { MainPosts } from 'components/Main/MainPosts/MainPosts';
@@ -19,7 +19,7 @@ const Home = ({ articles }: IGetStaticProps): JSX.Element => {
         </Head>
         <Flex direction='column' alignItems='center' w='100%' mt={{ md: '65px', sm: '24px' }}>
           <MainPosts articles={articles.data}/>
-          <Posts/>
+          <Posts articles={articles.data}/>
         </Flex>
       </>
   );
@@ -27,9 +27,10 @@ const Home = ({ articles }: IGetStaticProps): JSX.Element => {
 
 export default Home;
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const lang = context?.locale;
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL_FOR_AUTH}/articles?locale=${lang}&pagination[page]=1&pagination[pageSize]=5&sort=id%3Aasc`);
+  const pageSize = context?.query['articles'];
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL_FOR_AUTH}/articles?locale=${lang}&pagination[page]=1&pagination[pageSize]=${pageSize || 5}&sort=id%3Adesc`);
   const articles = await response.json();
   return { props: { articles } };
 };
