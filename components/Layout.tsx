@@ -5,7 +5,7 @@ import { Box, Flex } from '@chakra-ui/react';
 import { Header } from './Header/Header';
 import { TabsBlock } from './TabsBlock';
 import { Footer } from './Footer/Footer';
-import { useAppDispatch, useAppSelector } from 'store/store';
+import { useAppDispatch, useAppSelector } from '../store/store';
 import { getArticles } from 'store/atricles/articlesThunk';
 import { auth } from 'store/auth/authThunk';
 import { ModalWindow } from './Modal';

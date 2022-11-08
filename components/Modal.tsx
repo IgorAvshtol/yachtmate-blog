@@ -4,7 +4,7 @@ import { Box, Flex, Modal, ModalCloseButton, ModalContent, ModalOverlay } from '
 
 import { useAppDispatch, useAppSelector } from 'store/store';
 import { closeAllModals, isError } from 'store/auth/authSlice';
-import logo from '../../public/secondLogo.png';
+import logo from '../public/secondLogo.png';
 
 interface IModalWindow {
   children: ReactNode;

@@ -1,3 +1,9 @@
+# *
 User-agent: *
+Allow: /
 
+# Host
+Host: https://blog.test.yachtmate.club
+
+# Sitemaps
 Sitemap: https://blog.test.yachtmate.club/sitemap.xml

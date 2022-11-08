@@ -2,11 +2,11 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Box, Flex, Link, Text } from '@chakra-ui/react';
 
-import waveUp from '../../../public/waveUp.svg';
-import waveDown from '../../../public/waveDown.svg';
-import yachtmateLogo from '../../../public/yachtmateLogo.png';
-import facebookLogo from '../../../public/facebookLogo.png';
-import instagramLogo from '../../../public/instagramLogo.png';
+import waveUp from 'public/waveUp.svg';
+import waveDown from 'public/waveDown.svg';
+import yachtmateLogo from 'public/yachtmateLogo.png';
+import facebookLogo from 'public/facebookLogo.png';
+import instagramLogo from 'public/instagramLogo.png';
 import { PoweredBy } from './PoweredBy';
 import { eng, rus } from 'translation';
 
@@ -35,7 +35,7 @@ export const Footer = (): JSX.Element => {
                     bg='linear-gradient(180deg, #FFFFFF -9.09%, rgba(255, 255, 255, 0) 274.43%)' bgClip='text'>
                 {t.footer}
               </Text>
-              <Link href='/' _hover={{ textDecoration: 'none' }}>
+              <Link href='/pages' _hover={{ textDecoration: 'none' }}>
                 <Text as='h2' mt={{ md: '56px', sm: '30px' }} fontSize='24px' lineHeight='148%' color='white'
                       opacity='0.4'>
                   support@yachtmate.club

@@ -7,7 +7,7 @@ import { Button, Flex, Text } from '@chakra-ui/react';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import { FormCustomInput } from '../Input/FormCustomInput';
 import { confirmRegistrationUserModalIsOpen, isError, signUpModalIsOpen } from 'store/auth/authSlice';
-import back from '../../../public/backBtn.svg';
+import back from 'public/backBtn.svg';
 import { Timer } from '../Timer';
 import { getRegistrationCode, registration, sendRegistrationCode } from 'store/auth/authThunk';
 import { eng, rus } from 'translation';

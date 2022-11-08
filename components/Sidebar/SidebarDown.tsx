@@ -3,11 +3,11 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Button, Fade, Flex, Link, Text } from '@chakra-ui/react';
 
-import iconHome from '../../../public/iconHome.svg';
-import iconSearch from '../../../public/iconSearch.svg';
-import avatar from '../../../public/avatar.svg';
-import login from '../../../public/profile.png';
-import blackHeart from '../../../public/blackHeart.svg';
+import iconHome from 'public/iconHome.svg';
+import iconSearch from 'public/iconSearch.svg';
+import avatar from 'public/avatar.svg';
+import login from 'public/profile.png';
+import blackHeart from 'public/blackHeart.svg';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import { eng, rus } from 'translation';
 import { signInModalIsOpen } from 'store/auth/authSlice';
@@ -42,7 +42,7 @@ export const SidebarDown = (): JSX.Element => {
         <Flex display={{ md: 'none', sm: 'flex' }} w='100%' justifyContent='center' pos='fixed'
               left='0' bottom='0' zIndex='20' bg='#ffffff' boxShadow='0px -8px 24px rgba(59, 69, 75, 0.04)'>
           <Flex w='95%' h='60px' justifyContent='space-around' alignItems='center'>
-            <Link href='/' bg='transparent' display='flex' flexDirection='column' alignItems='center'>
+            <Link href='/pages' bg='transparent' display='flex' flexDirection='column' alignItems='center'>
               <Image src={iconHome} alt='home'/>
               <Text mt='2px' fontSize='10px'>{t.sidebar.home}</Text>
             </Link>

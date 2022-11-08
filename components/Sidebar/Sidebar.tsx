@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import { Button, Flex, Skeleton, Text } from '@chakra-ui/react';
 
-import dislike from '../../../public/heart.png';
-import like from '../../../public/like.png';
+import dislike from 'public/heart.png';
+import like from 'public/like.png';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import { setLike, setUnlike } from 'store/atricles/articlesThunk';
 import { TypeLoadingStatus } from 'interfaces';

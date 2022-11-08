@@ -15,12 +15,12 @@ import {
   Text
 } from '@chakra-ui/react';
 
-import menu from '../../public/menu.png';
-import menu2 from '../../public/menu2.svg';
-import user from '../../public/user.png';
-import login from '../../public/login.png';
-import question from '../../public/question.png';
-import iconSearch from '../../public/iconSearch.svg';
+import menu from '../public/menu.png';
+import menu2 from '../public/menu2.svg';
+import user from '../public/user.png';
+import login from '../public/login.png';
+import question from '../public/question.png';
+import iconSearch from '../public/iconSearch.svg';
 import { eng, rus } from 'translation';
 import { signInModalIsOpen, signUpModalIsOpen } from 'store/auth/authSlice';
 import { useAppDispatch, useAppSelector } from 'store/store';
@@ -66,7 +66,7 @@ export const SidePanel = (): JSX.Element => {
                 </Box>
                 <Text ml='17px' fontSize='16px'>{t.sidePanel.search}</Text>
               </Link>
-              <Link href='/' mt='24px' bg='transparent' display='flex'
+              <Link href='/pages' mt='24px' bg='transparent' display='flex'
                     alignItems='center'>
                 <Box h='24px' w='24px'>
                   <Image src={menu} alt='blog'/>

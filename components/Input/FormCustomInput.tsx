@@ -4,8 +4,8 @@ import { useRouter } from 'next/router';
 import { InputElementProps, InputGroup, InputRightElement } from '@chakra-ui/input';
 import { Flex, Input, Text, Box } from '@chakra-ui/react';
 
-import eye from '../../../public/eye.png';
-import eyeOff from '../../../public/eye-off.png';
+import eye from '../../public/eye.png';
+import eyeOff from '../../public/eye-off.png';
 import { eng, rus } from 'translation';
 
 interface InputProps extends InputElementProps {
