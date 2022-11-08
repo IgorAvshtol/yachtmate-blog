@@ -9,7 +9,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { data }: IResponseArticles = await response.json();
 
   const fields: ISitemapField[] = data.map(article => ({
-    loc: `${process.env.NEXT_PUBLIC_BASE_MAIN_PAGE_URL}${lang}/blog/${article.attributes.slug}`,
+    loc: `${process.env.NEXT_PUBLIC_BASE_MAIN_PAGE_URL}/${lang}/blog/${article.attributes.slug}`,
     lastmod: new Date().toISOString()
   }));
 
