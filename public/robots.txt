@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://blog.test.yachtmate.club
+Host: http://localhost:3000
 
 # Sitemaps
-Sitemap: https://blog.test.yachtmate.club/sitemap.xml
+Sitemap: http://localhost:3000/sitemap.xml
