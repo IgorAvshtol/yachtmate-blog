@@ -26,14 +26,16 @@ export const Header = (): JSX.Element => {
   };
 
   const onSearchYachtBtnClickHandler = async () => {
-    await router.push(process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE as string);
+    await router.push(router.locale === 'en' ? process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE as string : process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE_RU as string);
   };
 
   return (
       <Flex w='100%' justifyContent='center' boxShadow='0px 8px 24px rgba(59, 69, 75, 0.04)'>
         <Flex h={{ md: '92px', sm: '66' }} w={{ md: '95%', sm: '90%' }} bgColor='white' justifyContent='space-between'
               alignItems='center'>
-          <Link href={process.env.NEXT_PUBLIC_BASE_URL_FOR_HOME_PAGE} w='180px'>
+          <Link
+              href={router.locale === 'en' ? process.env.NEXT_PUBLIC_BASE_URL_FOR_HOME_PAGE : process.env.NEXT_PUBLIC_BASE_URL_FOR_HOME_PAGE_RU}
+              w='180px'>
             <Image src={logoNew} alt='logo'/>
           </Link>
           <Flex display={{ md: 'none', sm: 'block' }}>
@@ -47,7 +49,9 @@ export const Header = (): JSX.Element => {
             {
                 userData?.email &&
                 <Flex>
-                  <Link href={process.env.NEXT_PUBLIC_BASE_URL_FOR_PERSONAL_CABINET} mx='26px'>
+                  <Link
+                      href={router.locale === 'en' ? process.env.NEXT_PUBLIC_BASE_URL_FOR_PERSONAL_CABINET : process.env.NEXT_PUBLIC_BASE_URL_FOR_PERSONAL_CABINET_RU}
+                      mx='26px'>
                     <Box h='44px' w='44px' border='1px #0250c8 solid' rounded='full' pos='relative' overflow='hidden'>
                       <Image src={userData?.photo || avatar} layout='fill' alt='avatar'/>
                     </Box>

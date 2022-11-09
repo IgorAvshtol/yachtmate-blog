@@ -15,12 +15,11 @@ import {
   Text
 } from '@chakra-ui/react';
 
-import menu from '../public/menu.png';
-import menu2 from '../public/menu2.svg';
-import user from '../public/user.png';
-import login from '../public/login.png';
-import question from '../public/question.png';
-import iconSearch from '../public/iconSearch.svg';
+import menu2 from 'public/menu2.svg';
+import user from 'public/user.png';
+import login from 'public/login.png';
+import question from 'public/question.png';
+import iconSearch from 'public/iconSearch.svg';
 import { eng, rus } from 'translation';
 import { signInModalIsOpen, signUpModalIsOpen } from 'store/auth/authSlice';
 import { useAppDispatch, useAppSelector } from 'store/store';
@@ -59,19 +58,14 @@ export const SidePanel = (): JSX.Element => {
             <Box>
               <ModalCloseButton mt='14px' pos='absolute' left='24px' size='sm' w='40px' h='40px' rounded='full'
                                 bgColor='rgba(0, 18, 64, 0.04)'/>
-              <Link href={process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE} mt='70px' bg='transparent' display='flex'
-                    alignItems='center'>
+              <Link
+                  href={router.locale === 'en' ? process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE : process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE_RU}
+                  mt='70px' bg='transparent' display='flex'
+                  alignItems='center'>
                 <Box h='24px' w='24px'>
                   <Image src={iconSearch} alt='search'/>
                 </Box>
                 <Text ml='17px' fontSize='16px'>{t.sidePanel.search}</Text>
-              </Link>
-              <Link href='/pages' mt='24px' bg='transparent' display='flex'
-                    alignItems='center'>
-                <Box h='24px' w='24px'>
-                  <Image src={menu} alt='blog'/>
-                </Box>
-                <Text ml='17px' fontSize='16px'>{t.sidePanel.blog}</Text>
               </Link>
               {
                   !userData.email &&
@@ -92,9 +86,11 @@ export const SidePanel = (): JSX.Element => {
                     </Button>
                   </>
               }
-              <Divider pos='absolute' top={userData.email ? '200px' : '325px'} left='0'/>
-              <Link href={process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE} mt='70px' bg='transparent' display='flex'
-                    alignItems='center'>
+              <Divider pos='absolute' top={userData.email ? '150px' : '275px'} left='0'/>
+              <Link
+                  href={router.locale === 'en' ? process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE : process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE_RU}
+                  mt='70px' bg='transparent' display='flex'
+                  alignItems='center'>
                 <Box h='24px' w='24px'>
                   <Image src={question} alt='question'/>
                 </Box>

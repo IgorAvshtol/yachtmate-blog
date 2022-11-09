@@ -46,20 +46,26 @@ export const SidebarDown = (): JSX.Element => {
               <Image src={iconHome} alt='home'/>
               <Text mt='2px' fontSize='10px'>{t.sidebar.home}</Text>
             </Link>
-            <Link href={process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE} bg='transparent' display='flex'
-                  flexDirection='column' alignItems='center'>
+            <Link
+                href={router.locale === 'en' ? process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE : process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE_RU}
+                bg='transparent' display='flex'
+                flexDirection='column' alignItems='center'>
               <Image src={iconSearch} alt='search'/>
               <Text mt='2px' fontSize='10px'>{t.sidebar.search}</Text>
             </Link>
-            <Link href={process.env.NEXT_PUBLIC_BASE_URL_FOR_FAVORITE_YACHTS} bg='transparent' display='flex'
-                  flexDirection='column' alignItems='center'>
+            <Link
+                href={router.locale === 'en' ? process.env.NEXT_PUBLIC_BASE_URL_FOR_FAVORITE_YACHTS : process.env.NEXT_PUBLIC_BASE_URL_FOR_FAVORITE_YACHTS_RU}
+                bg='transparent' display='flex'
+                flexDirection='column' alignItems='center'>
               <Image src={blackHeart} alt='favorite'/>
               <Text mt='2px' fontSize='10px'>{t.sidebar.favorite}</Text>
             </Link>
             {
               userData.email
-                  ? <Link href={process.env.NEXT_PUBLIC_BASE_URL_FOR_PERSONAL_CABINET} bg='transparent' display='flex'
-                          flexDirection='column' alignItems='center'>
+                  ? <Link
+                      href={router.locale === 'en' ? process.env.NEXT_PUBLIC_BASE_URL_FOR_PERSONAL_CABINET : process.env.NEXT_PUBLIC_BASE_URL_FOR_PERSONAL_CABINET_RU}
+                      bg='transparent' display='flex'
+                      flexDirection='column' alignItems='center'>
                     <Image src={userData?.photo || avatar} width='24px' height='24px' alt='avatar'/>
                     <Text mt='2px' fontSize='10px'>{t.sidebar.profile}</Text>
                   </Link>

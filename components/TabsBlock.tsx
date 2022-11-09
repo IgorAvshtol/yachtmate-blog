@@ -22,7 +22,7 @@ export const TabsBlock = (): JSX.Element => {
         <Breadcrumb w={{ md: '95%', sm: '90%' }} fontWeight='500' fontSize='16px' color='rgba(0, 18, 64, 0.4)'
                     letterSpacing='0.03em'>
           <BreadcrumbItem>
-            <BreadcrumbLink href={process.env.NEXT_PUBLIC_BASE_URL_FOR_HOME_PAGE}>
+            <BreadcrumbLink href={router.locale === 'en' ? process.env.NEXT_PUBLIC_BASE_URL_FOR_HOME_PAGE : process.env.NEXT_PUBLIC_BASE_URL_FOR_HOME_PAGE_RU}>
               {t.tabs_block.main_page}
             </BreadcrumbLink>
           </BreadcrumbItem>

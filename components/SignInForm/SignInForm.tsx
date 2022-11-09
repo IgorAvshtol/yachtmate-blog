@@ -21,7 +21,8 @@ export const SignInForm = (): JSX.Element => {
   const onSubmit: SubmitHandler<ISignInData> = async (data) => {
     try {
       const response = await dispatch(login(data));
-      response.type === 'auth/login/fulfilled' && await router.push(process.env.NEXT_PUBLIC_BASE_URL_FOR_PERSONAL_CABINET as string);
+      response.type === 'auth/login/fulfilled' &&
+      await router.push(router.locale === 'en' ? process.env.NEXT_PUBLIC_BASE_URL_FOR_PERSONAL_CABINET as string : process.env.NEXT_PUBLIC_BASE_URL_FOR_PERSONAL_CABINET_RU as string);
     } catch (e) {
       console.log('Error');
     }
