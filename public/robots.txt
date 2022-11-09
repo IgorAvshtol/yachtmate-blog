@@ -6,4 +6,4 @@ Allow: /
 Host: https://blog.yachtmate.club/
 
 # Sitemaps
-Sitemap: https://blog.yachtmate.club//sitemap.xml
+Sitemap: https://blog.yachtmate.club/sitemap.xml
