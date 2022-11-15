@@ -20,7 +20,7 @@ export const Posts = ({ articles }: IArticlesDataForSSR): JSX.Element => {
       query: {
         'articles': articlesCount + 5
       }
-    });
+    }, undefined, { scroll: false });
   };
 
   return (
