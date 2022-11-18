@@ -22,6 +22,7 @@ export const SidebarDown = (): JSX.Element => {
   const onLoginBtnClick = () => {
     dispatch(signInModalIsOpen());
   };
+
   useEffect(() => {
     let oldValue = 0;
     let newValue = 0;
