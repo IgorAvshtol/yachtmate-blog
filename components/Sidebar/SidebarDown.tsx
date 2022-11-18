@@ -19,23 +19,22 @@ export const SidebarDown = (): JSX.Element => {
   const { userData } = useAppSelector(state => state.auth);
   const [purpose, setPurpose] = useState(false);
 
-  const listenScrollEvent = (e: any) => {
-    const delta = Math.sign(e.deltaY);
-    if (delta === 1) {
-      setPurpose(true);
-    } else {
-      setPurpose(false);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('wheel', listenScrollEvent);
-    return () => window.removeEventListener('wheel', listenScrollEvent);
-  }, []);
-
   const onLoginBtnClick = () => {
     dispatch(signInModalIsOpen());
   };
+  useEffect(() => {
+    let oldValue = 0;
+    let newValue = 0;
+    window.addEventListener('scroll', function () {
+      newValue = window.scrollY;
+      if (oldValue - newValue < 0) {
+        setPurpose(true);
+      } else if (oldValue - newValue > 0) {
+        setPurpose(false);
+      }
+      oldValue = newValue;
+    });
+  }, []);
 
   return (
       <Fade in={!purpose}>
