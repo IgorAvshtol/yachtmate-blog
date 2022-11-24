@@ -1,10 +1,11 @@
 import { ReactNode, useRef } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { Box, Flex, Modal, ModalCloseButton, ModalContent, ModalOverlay } from '@chakra-ui/react';
 
 import { useAppDispatch, useAppSelector } from 'store/store';
 import { closeAllModals, isError } from 'store/auth/authSlice';
-import logo from '../public/secondLogo.png';
+import logo from 'public/secondLogo.png';
 
 interface IModalWindow {
   children: ReactNode;
@@ -12,6 +13,9 @@ interface IModalWindow {
 
 export const ModalWindow = ({ children }: IModalWindow): JSX.Element => {
   const dispatch = useAppDispatch();
+  const router = useRouter();
+  const query = router.query['modal'] as string;
+
   const {
     signInModalOpen,
     signUpModalOpen,
@@ -24,15 +28,17 @@ export const ModalWindow = ({ children }: IModalWindow): JSX.Element => {
   } = useAppSelector(state => state.auth);
   const initRef = useRef(null);
 
-  const onCloseModal = () => {
+  const onCloseModal = async () => {
     dispatch(closeAllModals());
     dispatch(isError(''));
+    await router.push('/', '/', { locale: router.locale });
   };
 
   return (
       <>
         <Modal onClose={onCloseModal} isCentered initialFocusRef={initRef}
                isOpen={signUpModalOpen && signUpModalOpen
+                   || query === 'signup'
                    || signInModalOpen && signInModalOpen
                    || recoveryPasswordModalOpen && recoveryPasswordModalOpen
                    || setReceivedCodeModalOpen && setReceivedCodeModalOpen
@@ -53,7 +59,7 @@ export const ModalWindow = ({ children }: IModalWindow): JSX.Element => {
                 </Box>
               </Flex>
               <Flex w='100%' direction='column' alignItems='center' p='20px'>
-                {(signInModalOpen || signUpModalOpen || recoveryPasswordIsSuccessModalOpen || registrationIsSuccessModalOpen)
+                {(query === 'signup' || signInModalOpen || signUpModalOpen || recoveryPasswordIsSuccessModalOpen || registrationIsSuccessModalOpen)
                     &&
                     <Flex mb={{ md: '0', sm: '44px' }} w='100%' justifyContent='end'>
                       <ModalCloseButton mt='24px' pos={{ md: 'static', sm: 'absolute' }} left={{ sm: '30px' }} size='md'

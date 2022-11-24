@@ -28,9 +28,10 @@ export const SignInForm = (): JSX.Element => {
     }
   };
 
-  const onLoginButtonClickHandler = () => {
+  const onLoginButtonClickHandler = async () => {
     dispatch(signUpModalIsOpen());
     dispatch(signInModalIsOpen());
+    await router.push('/', '/', { locale: router.locale });
   };
 
   const onRecoveryButtonClickHandler = () => {

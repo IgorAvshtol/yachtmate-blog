@@ -5,7 +5,7 @@ import { Box, Flex } from '@chakra-ui/react';
 import { Header } from './Header/Header';
 import { TabsBlock } from './TabsBlock';
 import { Footer } from './Footer/Footer';
-import { useAppDispatch, useAppSelector } from '../store/store';
+import { useAppDispatch, useAppSelector } from 'store/store';
 import { getArticles } from 'store/atricles/articlesThunk';
 import { auth } from 'store/auth/authThunk';
 import { ModalWindow } from './Modal';
@@ -28,6 +28,7 @@ interface ILayout {
 export const Layout = ({ children }: ILayout) => {
   const router = useRouter();
   const language = router.locale as string;
+  const query = router.query['modal'] as string;
   const dispatch = useAppDispatch();
 
   const {
@@ -60,6 +61,9 @@ export const Layout = ({ children }: ILayout) => {
           <TabsBlock/>
         </Box>
         <ModalWindow>
+          {/*This condition we use to redirect when click on Register in footer article*/}
+          {query === 'signup' && <SignUpForm/>}
+
           {signUpModalOpen && <SignUpForm/>}
           {signInModalOpen && <SignInForm/>}
           {recoveryPasswordModalOpen && <RecoveryPassword/>}

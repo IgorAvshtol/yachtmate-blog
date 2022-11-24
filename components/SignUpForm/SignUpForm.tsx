@@ -15,6 +15,7 @@ import { eng, rus } from 'translation';
 export const SignUpForm = (): JSX.Element => {
   const router = useRouter();
   const t = router.locale === 'en' ? eng : rus;
+  const query = router.query['modal'] as string;
   const dispatch = useAppDispatch();
   const { loading, error } = useAppSelector(state => state.auth);
   const [acceptConditions, setAcceptConditions] = useState<boolean>(false);
@@ -31,9 +32,10 @@ export const SignUpForm = (): JSX.Element => {
 
   const acceptTermHandler = () => setAcceptConditions(!acceptConditions);
 
-  const onLogUpButtonClickHandler = () => {
+  const onLogUpButtonClickHandler = async () => {
     dispatch(signUpModalIsOpen());
     dispatch(signInModalIsOpen());
+    await router.push('/', '/', { locale: router.locale });
   };
 
   return (
@@ -41,14 +43,16 @@ export const SignUpForm = (): JSX.Element => {
         <Text as='h2' fontWeight='600' fontSize='32px' letterSpacing='0.3px'>
           {t.registration_modal.title}
         </Text>
-        <Flex mt='20px'>
-          <Text fontSize='16px' lineHeight='140%' letterSpacing='0.7px' color='rgba(0, 18, 64, 0.6)'>
-            {t.registration_modal.availability_account}
-          </Text>
-          <Button ml='5px' variant='link' color='#0250C8' onClick={onLogUpButtonClickHandler}>
-            {t.registration_modal.login_btn}
-          </Button>
-        </Flex>
+        {query !== 'signup' &&
+            <Flex mt='20px'>
+              <Text fontSize='16px' lineHeight='140%' letterSpacing='0.7px' color='rgba(0, 18, 64, 0.6)'>
+                {t.registration_modal.availability_account}
+              </Text>
+              <Button ml='5px' variant='link' color='#0250C8' onClick={onLogUpButtonClickHandler}>
+                {t.registration_modal.login_btn}
+              </Button>
+            </Flex>
+        }
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormCustomInput label='email' {...register('email')} mt='32px' placeholder={t.placeholders.email}/>
           <FormCustomInput label='name' {...register('name')} mt='12px' placeholder={t.placeholders.name}/>

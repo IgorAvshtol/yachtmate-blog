@@ -41,8 +41,9 @@ export const RecoveryPassword = (): JSX.Element => {
             <Image src={back} width='7px' height='10px' alt='back'/>
           </Flex>
         </Button>
-        <Text mt='24px' fontWeight='600' fontSize='32px' lineHeight='110%'
-              letterSpacing='0.3px'>{t.recovery_pas.title}</Text>
+        <Text mt='24px' fontWeight='600' fontSize='32px' lineHeight='110%' letterSpacing='0.3px'>
+          {t.recovery_pas.title}
+        </Text>
         <Text mt='12px' fontWeight='00' fontSize='16px' lineHeight='140%' letterSpacing='0.7px'
               color='rgba(0, 18, 64, 0.6)'>
           {t.recovery_pas.description}
