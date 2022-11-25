@@ -9,8 +9,8 @@ import avatar from 'public/avatar.svg';
 import login from 'public/profile.png';
 import blackHeart from 'public/blackHeart.svg';
 import { useAppDispatch, useAppSelector } from 'store/store';
+import { addYachtModalIsOpen, signInModalIsOpen } from 'store/auth/authSlice';
 import { eng, rus } from 'translation';
-import { signInModalIsOpen } from 'store/auth/authSlice';
 
 export const SidebarDown = (): JSX.Element => {
   const router = useRouter();
@@ -21,6 +21,16 @@ export const SidebarDown = (): JSX.Element => {
 
   const onLoginBtnClick = () => {
     dispatch(signInModalIsOpen());
+  };
+
+  const onSearchYachtBtnClickHandler = async () => {
+    if (userData?.email && userData?.yacht_name) {
+      await router.push(router.locale === 'en' ? process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE as string : process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE_RU as string);
+    } else if (userData?.email && !userData?.yacht_name) {
+      dispatch(addYachtModalIsOpen());
+    } else if (!userData?.email) {
+      dispatch(signInModalIsOpen());
+    }
   };
 
   useEffect(() => {
@@ -46,8 +56,7 @@ export const SidebarDown = (): JSX.Element => {
               <Image src={iconHome} alt='home'/>
               <Text mt='2px' fontSize='10px'>{t.sidebar.home}</Text>
             </Link>
-            <Link
-                href={router.locale === 'en' ? process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE : process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE_RU}
+            <Link onClick={onSearchYachtBtnClickHandler}
                 bg='transparent' display='flex'
                 flexDirection='column' alignItems='center'>
               <Image src={iconSearch} alt='search'/>

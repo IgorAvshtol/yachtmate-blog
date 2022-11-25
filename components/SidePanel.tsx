@@ -21,7 +21,7 @@ import login from 'public/login.png';
 import question from 'public/question.png';
 import iconSearch from 'public/iconSearch.svg';
 import { eng, rus } from 'translation';
-import { signInModalIsOpen, signUpModalIsOpen } from 'store/auth/authSlice';
+import { addYachtModalIsOpen, signInModalIsOpen, signUpModalIsOpen } from 'store/auth/authSlice';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import { SelectLang } from './Header/SelectLang';
 
@@ -42,6 +42,16 @@ export const SidePanel = (): JSX.Element => {
     dispatch(signUpModalIsOpen());
   };
 
+  const onSearchYachtBtnClickHandler = async () => {
+    if (userData?.email && userData?.yacht_name) {
+      await router.push(router.locale === 'en' ? process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE as string : process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE_RU as string);
+    } else if (userData?.email && !userData?.yacht_name) {
+      dispatch(addYachtModalIsOpen());
+    } else if (!userData?.email) {
+      dispatch(signInModalIsOpen());
+    }
+  };
+
   return (
       <>
         <Button as={Button} bg='transparent' p='0' pl='10px' onClick={onOpen}>
@@ -58,10 +68,8 @@ export const SidePanel = (): JSX.Element => {
             <Box>
               <ModalCloseButton mt='14px' pos='absolute' left='24px' size='sm' w='40px' h='40px' rounded='full'
                                 bgColor='rgba(0, 18, 64, 0.04)'/>
-              <Link
-                  href={router.locale === 'en' ? process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE : process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE_RU}
-                  mt='70px' bg='transparent' display='flex'
-                  alignItems='center'>
+              <Link onClick={onSearchYachtBtnClickHandler} mt='70px' bg='transparent' display='flex'
+                    alignItems='center'>
                 <Box h='24px' w='24px'>
                   <Image src={iconSearch} alt='search'/>
                 </Box>

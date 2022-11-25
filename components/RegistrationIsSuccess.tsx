@@ -9,7 +9,13 @@ export const RegistrationIsSuccess = (): JSX.Element => {
   const router = useRouter();
   const t = router.locale === 'en' ? eng : rus;
 
-  const onEnterBtnClickHAndler = () => router.push(process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE as string);
+  const onEnterBtnClickHAndler = async () => {
+    if (router.locale === 'en') {
+      await router.push(process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE as string);
+    } else {
+      await router.push(process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE_RU as string);
+    }
+  };
 
   return (
       <Flex direction='column' alignItems='center'>

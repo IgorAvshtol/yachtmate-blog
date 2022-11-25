@@ -8,7 +8,7 @@ import avatar from 'public/avatar.svg';
 import { SelectLang } from './SelectLang';
 import { eng, rus } from 'translation';
 import { useAppDispatch, useAppSelector } from 'store/store';
-import { signInModalIsOpen, signUpModalIsOpen } from 'store/auth/authSlice';
+import { addYachtModalIsOpen, signInModalIsOpen, signUpModalIsOpen } from 'store/auth/authSlice';
 import { SidePanel } from '../SidePanel';
 
 export const Header = (): JSX.Element => {
@@ -26,7 +26,13 @@ export const Header = (): JSX.Element => {
   };
 
   const onSearchYachtBtnClickHandler = async () => {
-    await router.push(router.locale === 'en' ? process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE as string : process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE_RU as string);
+    if (userData?.email && userData?.yacht_name) {
+      await router.push(router.locale === 'en' ? process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE as string : process.env.NEXT_PUBLIC_BASE_URL_FOR_MAIN_SITE_RU as string);
+    } else if (userData?.email && !userData?.yacht_name) {
+      dispatch(addYachtModalIsOpen());
+    } else if (!userData?.email) {
+      dispatch(signInModalIsOpen());
+    }
   };
 
   return (

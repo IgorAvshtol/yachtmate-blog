@@ -24,7 +24,8 @@ export const ModalWindow = ({ children }: IModalWindow): JSX.Element => {
     setReceivedCodeForRegistrationModalOpen,
     setNewPasswordModalOpen,
     recoveryPasswordIsSuccessModalOpen,
-    registrationIsSuccessModalOpen
+    registrationIsSuccessModalOpen,
+    addYachtModalOpen
   } = useAppSelector(state => state.auth);
   const initRef = useRef(null);
 
@@ -46,6 +47,7 @@ export const ModalWindow = ({ children }: IModalWindow): JSX.Element => {
                    || setNewPasswordModalOpen && setNewPasswordModalOpen
                    || recoveryPasswordIsSuccessModalOpen && recoveryPasswordIsSuccessModalOpen
                    || registrationIsSuccessModalOpen && registrationIsSuccessModalOpen
+                   || addYachtModalOpen && addYachtModalOpen
                }
         >
           <ModalOverlay/>
@@ -59,7 +61,7 @@ export const ModalWindow = ({ children }: IModalWindow): JSX.Element => {
                 </Box>
               </Flex>
               <Flex w='100%' direction='column' alignItems='center' p='20px'>
-                {(query === 'signup' || signInModalOpen || signUpModalOpen || recoveryPasswordIsSuccessModalOpen || registrationIsSuccessModalOpen)
+                {(query === 'signup' || signInModalOpen || signUpModalOpen || recoveryPasswordIsSuccessModalOpen || registrationIsSuccessModalOpen || addYachtModalOpen)
                     &&
                     <Flex mb={{ md: '0', sm: '44px' }} w='100%' justifyContent='end'>
                       <ModalCloseButton mt='24px' pos={{ md: 'static', sm: 'absolute' }} left={{ sm: '30px' }} size='md'

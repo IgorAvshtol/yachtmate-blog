@@ -8,18 +8,17 @@ import { Footer } from './Footer/Footer';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import { getArticles } from 'store/atricles/articlesThunk';
 import { auth } from 'store/auth/authThunk';
-import { ModalWindow } from './Modal';
-import { SignUpForm } from './SignUpForm/SignUpForm';
-import { SignInForm } from './SignInForm/SignInForm';
+import { ModalWindow } from './Modals';
+import { SignUpFormModal } from './Modals/SignUpFormModal';
+import { SignInFormModal } from './Modals/SignInFormModal';
 import { RecoveryPassword } from './RecoveryPassword';
 import { EnterReceivedCode } from './EnterCode/EnterReceivedCode';
 import { SetNewPassword } from './SetNewPassword';
 import { RecoveryPasswordIsSuccess } from './RecoveryPasswordIsSuccess';
 import { RegistrationIsSuccess } from './RegistrationIsSuccess';
 import { EnterReceivedCodeForRegistration } from './EnterCode/EnterReceivedCodeForRegistration';
-import { getUserFromLocalStorage } from 'services/localStorage';
-import { getCurrentUser } from 'store/auth/authSlice';
 import { SidebarDown } from './Sidebar/SidebarDown';
+import { AddYachtModal } from './Modals/AddYachtModal';
 
 interface ILayout {
   children: ReactNode;
@@ -39,19 +38,15 @@ export const Layout = ({ children }: ILayout) => {
     setReceivedCodeForRegistrationModalOpen,
     setNewPasswordModalOpen,
     recoveryPasswordIsSuccessModalOpen,
-    registrationIsSuccessModalOpen
+    registrationIsSuccessModalOpen,
+    addYachtModalOpen
   } = useAppSelector(state => state.auth);
 
   const { articlesCount } = useAppSelector(state => state.articles);
 
   useEffect(() => {
     dispatch(getArticles({ lang: language, pageSize: articlesCount }));
-    const currentUser = getUserFromLocalStorage();
-    if (!currentUser) {
-      dispatch(auth());
-    } else {
-      dispatch(getCurrentUser(currentUser));
-    }
+    dispatch(auth());
   }, [articlesCount, dispatch, language]);
 
   return (
@@ -62,16 +57,17 @@ export const Layout = ({ children }: ILayout) => {
         </Box>
         <ModalWindow>
           {/*This condition we use to redirect when click on Register in footer article*/}
-          {query === 'signup' && <SignUpForm/>}
+          {query === 'signup' && <SignUpFormModal/>}
 
-          {signUpModalOpen && <SignUpForm/>}
-          {signInModalOpen && <SignInForm/>}
+          {signUpModalOpen && <SignUpFormModal/>}
+          {signInModalOpen && <SignInFormModal/>}
           {recoveryPasswordModalOpen && <RecoveryPassword/>}
           {setReceivedCodeModalOpen && <EnterReceivedCode/>}
           {setReceivedCodeForRegistrationModalOpen && <EnterReceivedCodeForRegistration/>}
           {setNewPasswordModalOpen && <SetNewPassword/>}
           {recoveryPasswordIsSuccessModalOpen && <RecoveryPasswordIsSuccess/>}
           {registrationIsSuccessModalOpen && <RegistrationIsSuccess/>}
+          {addYachtModalOpen && <AddYachtModal/>}
         </ModalWindow>
         <Flex justifyContent='center' w='100%'>
           {children}

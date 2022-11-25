@@ -72,7 +72,8 @@ export interface IUserData {
   _id: string,
   email: string,
   name: string,
-  photo?: string
+  photo?: string,
+  yacht_name?: string
 }
 
 export interface ISignUpData {
@@ -116,5 +117,6 @@ export interface IAuthState {
   recoveryPasswordIsSuccessModalOpen: boolean;
   registrationIsSuccessModalOpen: boolean;
   emailForRecoveryPassword: string;
+  addYachtModalOpen: boolean;
   error: string;
 }

@@ -114,6 +114,12 @@ export const eng = {
   },
   translate_modal: {
     description: 'Sorry, this article is only available in english.',
+  },
+  add_yacht_modal: {
+    title: 'Place the yacht',
+    description_paragraph_first: 'Yachtmate this is a closed club of shipowners and captains. To join it and have the opportunity to meet and exchange boats with other members of the club - place your boat by filling out a small form. After placing the ship, you will have access to the full functionality of searching and interacting with other members of the club.',
+    description_paragraph_second: 'After the administrator of the club checks your data your account will receive the status "confirmed".',
+    btn: 'Place yacht'
   }
 };
 
@@ -233,5 +239,11 @@ export const rus = {
   },
   translate_modal: {
     description: 'Извините, данная статья доступна только на русском языке.',
+  },
+  add_yacht_modal: {
+    title: 'Разместите яхту',
+    description_paragraph_first: 'Yachtmate - это закрытый клуб судовладельцев и Капитанов. Чтобы вступить в него и иметь возможность знакомиться и обмениваться лодками с другими членами клуба - разместите свою лодку, заполнив не большую анкету. После размещения судна Вам будет доступен полный функционал поиска и взаимодействия с другими членами клуба.',
+    description_paragraph_second: 'После проверки администратором клуба ваших данных - ваш эккаунт получит статус «подтверждён».',
+    btn: 'Разместить яхту'
   }
 };

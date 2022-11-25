@@ -24,6 +24,7 @@ export const initialState: IAuthState = {
   recoveryPasswordIsSuccessModalOpen: false,
   registrationIsSuccessModalOpen: false,
   emailForRecoveryPassword: '',
+  addYachtModalOpen: false,
   error: ''
 };
 
@@ -31,9 +32,6 @@ export const authReducer = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    getCurrentUser: (state, action: PayloadAction<IUserData>) => {
-      state.userData = action.payload;
-    },
     signInModalIsOpen: (state) => {
       state.signInModalOpen = !state.signInModalOpen;
       state.error = '';
@@ -54,6 +52,7 @@ export const authReducer = createSlice({
       state.setNewPasswordModalOpen = false;
       state.recoveryPasswordIsSuccessModalOpen = false;
       state.registrationIsSuccessModalOpen = false;
+      state.addYachtModalOpen = false;
     },
     resetPasswordModalIsOpen: (state) => {
       state.setReceivedCodeModalOpen = !state.setReceivedCodeModalOpen;
@@ -69,6 +68,9 @@ export const authReducer = createSlice({
     },
     registrationIsSuccessModalIsOpen: (state) => {
       state.registrationIsSuccessModalOpen = !state.registrationIsSuccessModalOpen;
+    },
+    addYachtModalIsOpen: (state) => {
+      state.addYachtModalOpen = !state.addYachtModalOpen;
     },
     isError: (state, action: PayloadAction<string>) => {
       state.error = action.payload;
@@ -206,7 +208,6 @@ export const authReducer = createSlice({
 });
 
 export const {
-  getCurrentUser,
   signInModalIsOpen,
   signUpModalIsOpen,
   isError,
@@ -214,5 +215,6 @@ export const {
   recoveryPasswordModalIsOpen,
   confirmRegistrationUserModalIsOpen,
   setNewPasswordModalIsOpen,
-  resetPasswordModalIsOpen
+  resetPasswordModalIsOpen,
+  addYachtModalIsOpen
 } = authReducer.actions;

@@ -12,7 +12,7 @@ import { Spinner } from '../Spinner';
 import { getRegistrationCode } from 'store/auth/authThunk';
 import { eng, rus } from 'translation';
 
-export const SignUpForm = (): JSX.Element => {
+export const SignUpFormModal = (): JSX.Element => {
   const router = useRouter();
   const t = router.locale === 'en' ? eng : rus;
   const query = router.query['modal'] as string;
