@@ -32,9 +32,6 @@ export const authReducer = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    getCurrentUser: (state, action: PayloadAction<IUserData>) => {
-      state.userData = action.payload;
-    },
     signInModalIsOpen: (state) => {
       state.signInModalOpen = !state.signInModalOpen;
       state.error = '';
@@ -211,7 +208,6 @@ export const authReducer = createSlice({
 });
 
 export const {
-  getCurrentUser,
   signInModalIsOpen,
   signUpModalIsOpen,
   isError,

@@ -48,13 +48,7 @@ export const Layout = ({ children }: ILayout) => {
 
   const { articlesCount } = useAppSelector(state => state.articles);
 
-  // useLayoutEffect(() => {
-  //   dispatch(auth());
-  // }, [dispatch]);
-
   useEffect(() => {
-    // const currentUser = getUserFromLocalStorage();
-    // dispatch(getCurrentUser(currentUser));
     dispatch(auth());
     setShowChild(true);
     dispatch(getArticles({ lang: language, pageSize: articlesCount }));
