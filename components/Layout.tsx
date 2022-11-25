@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Box, Flex } from '@chakra-ui/react';
 
@@ -19,6 +19,8 @@ import { RegistrationIsSuccess } from './RegistrationIsSuccess';
 import { EnterReceivedCodeForRegistration } from './EnterCode/EnterReceivedCodeForRegistration';
 import { SidebarDown } from './Sidebar/SidebarDown';
 import { AddYachtModal } from './Modals/AddYachtModal';
+import { HeaderBlockSkeleton } from './Skeleton/HeaderBlockSkeleton';
+import { TypeLoadingStatus } from '../interfaces';
 
 interface ILayout {
   children: ReactNode;
@@ -29,6 +31,7 @@ export const Layout = ({ children }: ILayout) => {
   const language = router.locale as string;
   const query = router.query['modal'] as string;
   const dispatch = useAppDispatch();
+  const [showChild, setShowChild] = useState(false);
 
   const {
     signUpModalOpen,
@@ -39,19 +42,28 @@ export const Layout = ({ children }: ILayout) => {
     setNewPasswordModalOpen,
     recoveryPasswordIsSuccessModalOpen,
     registrationIsSuccessModalOpen,
-    addYachtModalOpen
+    addYachtModalOpen,
+      loading
   } = useAppSelector(state => state.auth);
 
   const { articlesCount } = useAppSelector(state => state.articles);
 
+  // useLayoutEffect(() => {
+  //   dispatch(auth());
+  // }, [dispatch]);
+
   useEffect(() => {
-    dispatch(getArticles({ lang: language, pageSize: articlesCount }));
+    // const currentUser = getUserFromLocalStorage();
+    // dispatch(getCurrentUser(currentUser));
     dispatch(auth());
+    setShowChild(true);
+    dispatch(getArticles({ lang: language, pageSize: articlesCount }));
   }, [articlesCount, dispatch, language]);
+
 
   return (
       <Flex minH='100vh' w='100%' h='100%' alignItems='center' flexDirection='column'>
-        <Header/>
+        {(!showChild || loading === TypeLoadingStatus.IS_PENDING) ? <HeaderBlockSkeleton/> : <Header/>}
         <Box w='100%'>
           <TabsBlock/>
         </Box>

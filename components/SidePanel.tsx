@@ -76,7 +76,7 @@ export const SidePanel = (): JSX.Element => {
                 <Text ml='17px' fontSize='16px'>{t.sidePanel.search}</Text>
               </Link>
               {
-                  !userData.email &&
+                  !userData?.email &&
                   <>
                     <Button mt='24px' p='0' bg='transparent' w='200px' display='flex' justifyContent='start'
                             onClick={onLoginBtnClick}>
