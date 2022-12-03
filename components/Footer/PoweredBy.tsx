@@ -14,7 +14,7 @@ export const PoweredBy = (): JSX.Element => {
               © 2022, yachtmate. All rights reserved.
             </Text>
             <Text as='h2' w='300px' fontSize='16px' lineHeight='140%' color='rgba(255, 255, 255, 0.75)'
-                  textAlign='center'>
+                  textAlign={{ md: 'left', sm: 'center' }}>
               Powered by&nbsp;
               <Link color='white' textDecoration='underline' href='https://meow-code.com'>almo</Link>
             </Text>
