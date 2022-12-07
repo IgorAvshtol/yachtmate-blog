@@ -47,7 +47,8 @@ export const Footer = (): JSX.Element => {
                     {t.footer.yacht_search}
                   </Text>
                 </Link>
-                <Link href='/pages' _hover={{ textDecoration: 'none' }}>
+                <Link href={router.locale === 'en' ? process.env.NEXT_PUBLIC_BASE_URL_FOR_YACHT_CLUB_PAGE : process.env.NEXT_PUBLIC_BASE_URL_FOR_YACHT_CLUB_PAGE_RU}
+                      _hover={{ textDecoration: 'none' }}>
                   <Text w='190px' mt='16px' as='h2' fontSize='20px' lineHeight='148%' color='white'>
                     {t.footer.yacht_club}
                   </Text>
